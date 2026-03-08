@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
         <div className="font-display bg-[#101622] min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
             <style jsx global>{`
                 :root {
-                    --primary: #556b2f;
+                    --primary: #f57a00;
                     --background-dark: #101622;
                 }
                 .font-display {
@@ -52,8 +52,8 @@ export default function AdminLoginPage() {
                 }
                 .subtle-pattern {
                     background-color: #101622;
-                    background-image: radial-gradient(rgba(85, 107, 47, 0.13) 0.5px, transparent 0.5px), 
-                                      radial-gradient(rgba(85, 107, 47, 0.13) 0.5px, #101622 0.5px);
+                    background-image: radial-gradient(rgba(245, 122, 0, 0.13) 0.5px, transparent 0.5px), 
+                                      radial-gradient(rgba(245, 122, 0, 0.13) 0.5px, #101622 0.5px);
                     background-size: 24px 24px;
                     background-position: 0 0, 12px 12px;
                 }
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
                         <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/20 rounded-full mb-6 ring-1 ring-primary/30">
                             <span className="material-symbols-outlined text-primary text-3xl">local_shipping</span>
                         </div>
-                        <h1 className="text-3xl font-extrabold text-white tracking-tight">FleetCorp Admin</h1>
+                        <h1 className="text-3xl font-extrabold text-white tracking-tight">ResursLogistics Admin</h1>
                         <p className="mt-2 text-slate-400 text-sm font-medium">Secure access for fleet administrators</p>
                     </div>
 
@@ -142,7 +142,7 @@ export default function AdminLoginPage() {
                 {/* External Branding / Copyright */}
                 <div className="mt-8 text-center text-slate-500">
                     <p className="text-sm">
-                        © 2024 FleetCorp Logistics. All rights reserved.
+                        © 2026 ResursLogistics. All rights reserved.
                     </p>
                     <p className="text-[10px] mt-2 uppercase tracking-tight font-medium">Пароль: 123456</p>
                 </div>

@@ -26,7 +26,7 @@
   --color-background-offset: #F4F6F9;
   --color-background-dark-fleet: #0a0e1a;
   /* Extracted HTML Specs */
-  --color-primary: #556b2f;
+  --color-primary: #f57a00;
   --color-accent-beige: #f5f5dc;
   --color-background-light: #faf9f6;
   --color-background-dark: #101622;
@@ -93,7 +93,7 @@ body {
 
   .subtle-pattern {
     background-color: #faf9f6;
-    background-image: radial-gradient(#556b2f11 0.5px, transparent 0.5px), radial-gradient(#556b2f11 0.5px, #faf9f6 0.5px);
+    background-image: radial-gradient(#f57a0011 0.5px, transparent 0.5px), radial-gradient(#f57a0011 0.5px, #faf9f6 0.5px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
   }
@@ -384,6 +384,7 @@ details[open] summary~* {
 .text-gradient {
   background: linear-gradient(to right, #ffffff, #94a3b8);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
