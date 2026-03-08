@@ -1,0 +1,10 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <rect x="100" y="150" width="600" height="300" rx="20" fill="#334155"/>
+  <circle cx="400" cy="280" r="60" fill="#f97316" opacity="0.3"/>
+  <path d="M350 300 L380 330 L450 260" stroke="#f97316" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="200" y="380" width="400" height="15" rx="7" fill="#475569"/>
+  <rect x="200" y="410" width="300" height="15" rx="7" fill="#475569"/>
+  <text x="400" y="120" text-anchor="middle" fill="#f97316" font-size="24" font-weight="bold" font-family="system-ui">2009</text>
+  <text x="400" y="520" text-anchor="middle" fill="#94a3b8" font-size="18" font-family="system-ui">First Contracts</text>
+</svg>

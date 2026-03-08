@@ -1,0 +1,25 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgGrad2027" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad2027)"/>
+  <circle cx="400" cy="300" r="200" fill="url(#glowGrad)"/>
+  <circle cx="400" cy="300" r="120" fill="none" stroke="#f97316" stroke-width="2" opacity="0.5" stroke-dasharray="10 5"/>
+  <circle cx="400" cy="300" r="80" fill="none" stroke="#f97316" stroke-width="2" opacity="0.8"/>
+  <circle cx="400" cy="300" r="40" fill="#f97316" opacity="0.3"/>
+  <path d="M400 180 L400 220 M400 380 L400 420 M280 300 L320 300 M480 300 L520 300" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="400" cy="180" r="6" fill="#f97316"/>
+  <circle cx="400" cy="420" r="6" fill="#f97316"/>
+  <circle cx="280" cy="300" r="6" fill="#f97316"/>
+  <circle cx="520" cy="300" r="6" fill="#f97316"/>
+  <path d="M340 260 L460 340 M460 260 L340 340" stroke="#fb923c" stroke-width="2" opacity="0.5"/>
+  <text x="400" y="80" text-anchor="middle" fill="#f97316" font-size="24" font-weight="bold" font-family="system-ui">2027</text>
+  <text x="400" y="560" text-anchor="middle" fill="#94a3b8" font-size="18" font-family="system-ui">Global Ecosystem</text>
+</svg>

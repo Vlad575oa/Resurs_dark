@@ -1,0 +1,538 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-olive-spruce: #4A5F3C;
+  --color-olive-spruce-dark: #3A4F2C;
+  --color-silhouette: #2C2C2C;
+  --color-anthracite: #1C1C1C;
+
+  /* Design System 2.0 - Earth Stability */
+  --color-cloud-dancer: #F0EDE9;
+  --color-anthracite-core: #2D2E30;
+  --color-burnt-terra: #256af4;
+  --color-safe-green: #4C6444;
+
+  --color-liquid-silver: #E5E7EB;
+  --color-transformative-teal: #0F766E;
+
+  /* New Fleet Management Palette */
+  --color-primary-main: #f57a00;
+  --color-primary-dark: #c26100;
+  --color-navy: #0B1F3B;
+  --color-navy-light: #153055;
+  --color-background-offset: #F4F6F9;
+  --color-background-dark-fleet: #0a0e1a;
+  /* Extracted HTML Specs */
+  --color-primary: #556b2f;
+  --color-accent-beige: #f5f5dc;
+  --color-background-light: #faf9f6;
+  --color-background-dark: #101622;
+  --color-navy-custom: #0B1F3B;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}
+
+:root {
+  --background: var(--color-cloud-dancer);
+  --foreground: var(--color-anthracite-core);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-anthracite-core);
+    --foreground: var(--color-cloud-dancer);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilities for "Quiet Tech" */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-panel {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .subtle-pattern {
+    background-color: #faf9f6;
+    background-image: radial-gradient(#556b2f11 0.5px, transparent 0.5px), radial-gradient(#556b2f11 0.5px, #faf9f6 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+  }
+
+  .liquid-hover {
+    transition-property: all;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .btn-puffy {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-puffy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.05) 100%);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Glossy Shine Overlay */
+  .btn-puffy::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle at center,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        transparent 70%);
+    transform: rotate(35deg);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .btn-puffy:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 12px 20px -5px rgba(0, 0, 0, 0.15),
+      0 8px 10px -5px rgba(0, 0, 0, 0.1),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-puffy:hover::after {
+    opacity: 1;
+    animation: glossy-shine 1.5s infinite linear;
+  }
+
+  @keyframes glossy-shine {
+    0% {
+      transform: translate(-30%, -30%) rotate(35deg);
+    }
+
+    100% {
+      transform: translate(30%, 30%) rotate(35deg);
+    }
+  }
+
+  .btn-puffy-primary {
+    background: linear-gradient(145deg, #f57a00, #e67300);
+    border: none;
+  }
+
+  .btn-puffy-secondary {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* FAQ Sweep Animation */
+details>summary {
+  list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary~* {
+  animation: sweep .3s ease-in-out;
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+/* ── Hero Generative Gradient Orbs ─────────────────────────────────── */
+
+/* Base canvas: smooth hue shift in Cloud Dancer / Teal range          */
+@keyframes hero-canvas {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Orb 1 – drifts clockwise (Teal glow)                                */
+@keyframes orb-a {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(6%, -4%) scale(1.12);
+  }
+
+  66% {
+    transform: translate(-4%, 5%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Orb 2 – counter-clockwise (Cloud Dancer warm fills)                 */
+@keyframes orb-b {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  30% {
+    transform: translate(-5%, 3%) scale(1.08);
+  }
+
+  65% {
+    transform: translate(4%, -5%) scale(0.93);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* Orb 3 – gentle breathe (centre accent)                              */
+@keyframes orb-c {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.2) rotate(25deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.hero-canvas {
+  background: linear-gradient(135deg,
+      #f8f7f5 0%,
+      #f2ede7 25%,
+      #ece5dc 50%,
+      #f8f7f5 75%,
+      #f4f0ea 100%);
+  background-size: 350% 350%;
+  animation: hero-canvas 22s ease-in-out infinite;
+}
+
+.hero-orb-a {
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(245, 122, 0, 0.07) 0%, transparent 70%);
+  filter: blur(64px);
+  animation: orb-a 18s ease-in-out infinite;
+  top: -10%;
+  right: -5%;
+}
+
+.hero-orb-b {
+  position: absolute;
+  width: 55%;
+  height: 55%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(248, 247, 245, 0.95) 0%, rgba(220, 200, 170, 0.15) 60%, transparent 80%);
+  filter: blur(48px);
+  animation: orb-b 24s ease-in-out infinite;
+  bottom: -15%;
+  left: -8%;
+}
+
+.hero-orb-c {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(180, 145, 100, 0.06) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: orb-c 30s ease-in-out infinite;
+  top: 35%;
+  left: 30%;
+}
+
+/* FleetCorp Styles */
+.text-glow {
+  text-shadow: 0 0 20px rgba(37, 106, 244, 0.5);
+}
+
+.glass-panel {
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 106, 244, 0.15);
+}
+
+.glass-panel-solutions {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 106, 244, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Infinite Scroll Animation */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 40s linear infinite;
+}
+
+/* Management Model Styles */
+.card-hover:hover {
+  box-shadow: 0 0 30px -10px rgba(37, 106, 244, 0.3);
+  border-color: #256af4;
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, #1f2937 1px, transparent 1px),
+    linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+}
+
+.bg-grid-fade {
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+/* FleetCorp Enterprise Styles */
+.glass-card {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Guardian Transport Styles */
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.btn-liquid {
+  background: linear-gradient(135deg, #13ecda 0%, #0db8aa 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(19, 236, 218, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-liquid:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(19, 236, 218, 0.5);
+}
+
+.glass-panel {
+  background: rgba(28, 39, 38, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scanlines {
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.2));
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.wireframe-container {
+  perspective: 1000px;
+}
+
+.wireframe-truck {
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotateX(5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotateX(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(5deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.hotspot::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #13ecda;
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Gold Text Emboss Effect */
+.gold-emboss {
+  background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(19, 236, 218, 0.15);
+}
+
+.inner-glow {
+  box-shadow: inset 0 0 10px rgba(19, 236, 218, 0.1);
+}
+
+.ascii-container {
+  font-family: 'Noto Sans Mono', monospace;
+  line-height: 1.1;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.grid-bg {
+  background-size: 40px 40px;
+}
+
+/* Custom Scrollbar for Fleet Calculator */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 106, 244, 0.4) rgba(255, 255, 255, 0.02);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  margin-inline: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(37, 106, 244, 0.4);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 106, 244, 0.6);
+}

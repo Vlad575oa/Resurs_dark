@@ -1,0 +1,881 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "services": "Services",
+    "solutions": "Solutions",
+    "about": "About",
+    "cases": "Cases",
+    "faq": "FAQ",
+    "news": "News",
+    "contacts": "Contacts",
+    "submitRequest": "Submit Request",
+    "company": "Company",
+    "career": "Career",
+    "pressCenter": "Пресс-center",
+    "logo": "ResursTrans",
+    "language": "Language"
+  },
+  "Hero": {
+    "premiumLogistics": "Premium Logistics",
+    "title": "Next-Level Corporate Fleet Management",
+    "description": "Complete transport function outsourcing: control, efficiency, cost reduction, and process transparency.",
+    "getAudit": "Get Fleet Audit",
+    "calculateSavings": "Calculate Savings",
+    "visuals": {
+      "gpsSignal": "GPS Signal",
+      "active": "Active",
+      "slaRate": "SLA Rate",
+      "telemetry": "Telemetry",
+      "surface": "Surface",
+      "highway": "Highway",
+      "fuelLevel": "Fuel Level",
+      "activeUnits": "Active Units",
+      "seeTransport": "We see transport inside out",
+      "smartOutsourcing": "smart outsourcing from",
+      "replayTooltip": "Replay sequence",
+      "muteTooltip": "Mute sound",
+      "unmuteTooltip": "Unmute sound"
+    },
+    "ticker": {
+      "trustedBy": "Trusted by leading companies",
+      "marketLeaders": "Proven solutions for market leaders"
+    }
+  },
+  "PainPoints": {
+    "hiddenCosts": "Hidden Costs",
+    "title": "Turning Hidden Losses into Transparent Profits",
+    "fuelWaste": {
+      "title": "Fuel Waste",
+      "desc": "Uncontrolled mileage and fraud consume up to 20% of fuel."
+    },
+    "inefficientRoutes": {
+      "title": "Inefficient Routes",
+      "desc": "Empty runs and suboptimal logistics."
+    },
+    "unscheduledRepairs": {
+      "title": "Unscheduled Repairs",
+      "desc": "Lack of preventive maintenance leads to expensive breakdowns."
+    },
+    "downtime": {
+      "title": "Vehicle Downtime",
+      "desc": "Vehicles idle waiting for repairs or parts."
+    },
+    "fines": {
+      "title": "Fines and Accidents",
+      "desc": "Aggressive driving increases risks and expenses."
+    },
+    "humanFactor": {
+      "title": "Human Factor",
+      "desc": "Driver errors, unauthorized trips, and low discipline."
+    },
+    "quote": "If you don't have a digital control system — you're losing up to 30% of your budget.",
+    "savingsPotential": "Savings Potential",
+    "checkFleet": "Check Your Fleet"
+  },
+  "Solutions": {
+    "title": "Optimized Logistics Infrastructure",
+    "description": "Scalable technology solutions designed to optimize corporate fleet operations and reduce overhead costs.",
+    "fleetManagement": {
+      "title": "Fleet Management",
+      "desc": "Complete lifecycle management of your vehicles, from acquisition to disposal, ensuring maximum uptime."
+    },
+    "driverOutsourcing": {
+      "title": "Driver Outsourcing",
+      "desc": "Professional, vetted drivers trained in safety and efficiency, ready to scale with your needs."
+    },
+    "dispatchService": {
+      "title": "24/7 Dispatching",
+      "desc": "Round-the-clock monitoring and support (24/7) to handle non-standard situations and ensure continuous cargo movement."
+    },
+    "fuelControl": {
+      "title": "Fuel Control",
+      "desc": "Advanced digital fuel tracking systems to detect anomalies, prevent theft, and reduce losses."
+    },
+    "analyticsReporting": {
+      "title": "Analytics and Reporting",
+      "desc": "Real-time dashboards and detailed reports for data-driven operational decisions."
+    }
+  },
+  "SocialProof": {
+    "yearsExperience": "Years Experience",
+    "activeUnits": "Active Units",
+    "regionsCovered": "Regions Covered",
+    "slaAdherence": "SLA Adherence",
+    "kmMonthly": "Km Monthly"
+  },
+  "Workflow": {
+    "badge": "Our Process",
+    "title": "Simple Process — Measurable Results",
+    "description": "A structured approach to fleet optimization that guarantees transparency and efficiency at every stage.",
+    "step": "Step",
+    "steps": {
+      "analysis": {
+        "title": "Analysis and Audit",
+        "desc": "Comprehensive audit of current routes, costs, and utilization rates."
+      },
+      "model": {
+        "title": "Optimization Model",
+        "desc": "Development of individual strategy and simulation model."
+      },
+      "connection": {
+        "title": "System Integration",
+        "desc": "Seamless integration of IT infrastructure and vehicle telematics."
+      },
+      "launch": {
+        "title": "Launch and Control",
+        "desc": "Pilot launch, real-time adjustments, and process calibration."
+      },
+      "analytics": {
+        "title": "Monthly Analytics",
+        "desc": "Detailed reporting and continuous improvement cycles."
+      }
+    }
+  },
+  "Technology": {
+    "techStack": "Tech Stack",
+    "title": "Complete Digitalization of Transport Function",
+    "liveSystem": "Live System",
+    "gpsMonitoring": {
+      "title": "GPS Monitoring",
+      "desc": "Real-time vehicle tracking with precision geofencing and historical route replay capabilities."
+    },
+    "fuelAnalytics": {
+      "title": "Fuel Analytics",
+      "desc": "Advanced consumption monitoring to detect anomalies, theft, and optimization opportunities."
+    },
+    "biDashboards": {
+      "title": "BI Dashboards",
+      "desc": "Executive-level aggregated data views for strategic decision making and cost control."
+    },
+    "driverKpi": {
+      "title": "Driver KPI",
+      "desc": "Automated scoring system measuring safety, efficiency, and compliance for every driver."
+    },
+    "exploreTech": "Explore our full technology stack"
+  },
+  "Guarantees": {
+    "badge": "Safety First",
+    "title": "Complete Safety and Risk Control",
+    "description": "We take full responsibility for your transport operations, ensuring comprehensive coverage and peace of mind on every kilometer.",
+    "list": {
+      "insurance": {
+        "title": "Full Insurance",
+        "desc": "Comprehensive insurance coverage for passengers and cargo during every trip, relieving you of liability."
+      },
+      "sla": {
+        "title": "SLA Guarantee",
+        "desc": "Strict Service Level Agreements (SLA) with financial penalties for delays or quality violations, contractually binding."
+      },
+      "liability": {
+        "title": "Contractual Liability",
+        "desc": "We assume full legal and financial responsibility for transport operations, protecting your business."
+      },
+      "riskControl": {
+        "title": "Risk Control",
+        "desc": "24/7 centralized monitoring, strict multi-stage driver verification, and daily vehicle inspections."
+      }
+    }
+  },
+  "Faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Answering key questions about corporate fleet outsourcing.",
+    "q1": {
+      "question": "Is outsourcing cheaper than maintaining your own fleet?",
+      "answer": "Yes, clients typically save 20-30% by eliminating hidden fleet ownership costs such as unexpected maintenance, insurance premiums, administrative overhead, and depreciation. We leverage economies of scale to provide better rates."
+    },
+    "q2": {
+      "question": "How quickly can we launch the service?",
+      "answer": "We can typically mobilize a fleet within 14 days for standard requirements. For complex large-scale operations using specialized vehicles, we provide a detailed transition plan, typically taking 4-6 weeks to ensure no disruptions."
+    },
+    "q3": {
+      "question": "What happens in case of an accident or breakdown?",
+      "answer": "We handle everything. Our 24/7 dispatch center immediately dispatches a replacement vehicle so your schedule isn't affected. We handle all reports, insurance claims, and repairs."
+    },
+    "q4": {
+      "question": "Is there a trial period?",
+      "answer": "Yes, we offer a pilot project format. This allows you to evaluate our service quality, safety level, and driver professionalism in practice before launching full-scale cooperation."
+    }
+  },
+  "Cases": {
+    "successStories": "Success Stories",
+    "title": "Our Clients' Results",
+    "viewAll": "View all case studies",
+    "category": "Logistics & Distribution",
+    "caseTitle": "RetailChain X Logistics Overhaul",
+    "problem": {
+      "label": "The Problem",
+      "text": "Escalating last-mile delivery costs and lack of transparency in fuel consumption led to a 12% budget overrun in Q4."
+    },
+    "solution": {
+      "label": "Our Solution",
+      "text": "Implemented dynamic route optimization algorithms combined with digital fuel control sensors across 200+ fleet units."
+    },
+    "readMore": "Read full case study",
+    "costReduction": "Total Cost Reduction (6 Months)",
+    "aboveTarget": "Above Target",
+    "beforeOptimization": "Before Optimization",
+    "afterOptimization": "After Optimization",
+    "fuelSaved": "Fuel Saved",
+    "timeSaved": "Daily Time Saved"
+  },
+  "CallToAction": {
+    "title": "Ready to Reduce Transport Costs?",
+    "description": "Get a personalized calculation within 24 hours and find out how much you can save by optimizing your corporate fleet operations.",
+    "submitRequest": "Submit Request",
+    "requestQuote": "Request Quote",
+    "averageSavings": "Average Savings",
+    "roiDescription": "Clients achieve return on investment (ROI) within the first 3 months of outsourcing."
+  },
+  "Footer": {
+    "company": "Company",
+    "about": "About Us",
+    "career": "Career",
+    "pressCenter": "Press Center",
+    "contacts": "Contacts",
+    "services": "Services",
+    "corporateTaxi": "Corporate Taxi",
+    "busTransportation": "Bus Transportation",
+    "eventLogistics": "Event Logistics",
+    "vipTransport": "VIP Transport",
+    "contactUs": "Contact Us",
+    "address": "2-ya Khutorskaya St., 38A, Bldg. 14, Moscow",
+    "phones": {
+      "tollFree": "8 800-500-2625",
+      "moscow": "+7 (495) 646-08-39"
+    },
+    "email": "info@resourcetrans.ru",
+    "copyright": "© 2024 ResursTrans. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "cookieSettings": "Cookie Settings"
+  },
+  "Language": {
+    "ariaLabel": "Switch language",
+    "russian": "Russian",
+    "english": "English"
+  },
+  "UI": {
+    "askAi": "ASK AI",
+    "aiAssistant": "Telegram"
+  },
+  "Ecosystem": {
+    "digitalInfrastructure": "Digital Infrastructure",
+    "title": "Fleet Under Digital Control",
+    "description": "We create a unified management system:",
+    "features": [
+      "24/7 Vehicle Control",
+      "Continuous Monitoring and Risk Forecasting",
+      "Auto-Control System (web + mobile)",
+      "Electronic Waybills",
+      "Automated Technical Inspection",
+      "Electronic Medical Examinations",
+      "Repair Management (Auto-Mechanic)",
+      "Passenger Flow Control",
+      "Electronic Cashier",
+      "Driver Condition Monitoring"
+    ],
+    "realTimeAnalytics": "Real-time Analytics",
+    "accuracy": "99.8% ACCURACY",
+    "systemOptimal": "SYSTEM OPTIMAL",
+    "savingsPotential": "Savings Potential",
+    "allProcesses": "All processes — in one platform."
+  },
+  "EconomicEffect": {
+    "measurableResults": "Measurable Results",
+    "title": "Measurable Results for Your Business",
+    "description": "After implementing the digital management system, the fleet transforms from a cost center into a managed asset.",
+    "results": {
+      "01": {
+        "value": "15–30%",
+        "label": "Cost Reduction",
+        "desc": "on fleet maintenance and operation"
+      },
+      "02": {
+        "value": "up to 40%",
+        "label": "Downtime Reduction",
+        "desc": "through predictive servicing"
+      },
+      "03": {
+        "value": "MIN",
+        "label": "Accident Reduction",
+        "desc": "and improved driving culture"
+      },
+      "04": {
+        "value": "ZERO",
+        "label": "Fine Minimization",
+        "desc": "full legislative compliance"
+      },
+      "05": {
+        "value": "MAX",
+        "label": "Manageability Growth",
+        "desc": "transparent real-time KPIs"
+      }
+    }
+  },
+  "TargetAudience": {
+    "industrySolutions": "Industry Solutions",
+    "title": "Who Our Solution Is For",
+    "scale": "vehicle units",
+    "scaleDescription": "Any scale — from local fleets to federal holdings.",
+    "audiences": [
+      "Industrial Enterprises",
+      "Construction Companies",
+      "Energy Sector",
+      "Municipal Transport",
+      "Corporate Fleets"
+    ]
+  },
+  "Clients": {
+    "trustReliability": "Trust & Reliability",
+    "title": "Why They Trust Us",
+    "description": "Large corporate clients across Russia choose us for reliability and technological leadership.",
+    "trustFactors": [
+      "We Work by SLA",
+      "Integration with 1C and ERP",
+      "Compliance with Russian Legislation",
+      "Information Security",
+      "Transparent Financial Model"
+    ]
+  },
+  "Calculator": {
+    "financialAudit": "Financial Audit",
+    "title": "Calculate Savings in 1 Minute",
+    "vehicles": "Number of Vehicles",
+    "mileage": "Avg. Mileage/Month (km)",
+    "consumption": "Avg. Consumption (L/100km)",
+    "region": "Region",
+    "regions": [
+      "Central Federal District",
+      "Northwestern Federal District",
+      "Ural Federal District",
+      "Siberian Federal District",
+      "Far Eastern Federal District"
+    ],
+    "calculate": "Get Calculation",
+    "thankYou": "Thank You!",
+    "processingMessage": "We will prepare an individual calculation and contact you within 24 hours.",
+    "changeData": "Change Data",
+    "estimatedSavings": "Estimated Annual Savings",
+    "roiPotential": "ROI Potential",
+    "roiDescription": "Calculation based on weighted average optimization metrics from 100+ projects. Exact results depend on your fleet structure.",
+    "auditAll": "Audit of all loss zones",
+    "strategyDevelopment": "2026 Strategy Development"
+  },
+  "ManagementModel": {
+    "roadmap": "Roadmap",
+    "title": "How It Works",
+    "description": "Launch time — from 30 days.",
+    "steps": {
+      "01": {
+        "title": "Current Expense Audit",
+        "desc": "Deep analysis of current fleet condition and search for hidden budget holes."
+      },
+      "02": {
+        "title": "Savings Potential Calculation",
+        "desc": "Development of financial model and fixation of measurable KPI results."
+      },
+      "03": {
+        "title": "Digital Platform Implementation",
+        "desc": "Seamless transition to management via Auto-Control system."
+      },
+      "04": {
+        "title": "Control and Support",
+        "desc": "Regular optimization and 24/7 support to achieve target metrics."
+      }
+    }
+  },
+  "Timeline": {
+    "2008": {
+      "title": "Birth of the Idea",
+      "description": "First concepts of innovative transport management. Formation of a team of like-minded professionals."
+    },
+    "2010": {
+      "title": "Company Foundation",
+      "description": "ResursTrans begins its journey as an ambitious startup in transport logistics. First clients, first routes, first successes."
+    },
+    "2014": {
+      "title": "Launch of First IT Solutions",
+      "description": "Realizing the need for digitalization. Implementation of first Auto-Control modules for corporate fleet monitoring."
+    },
+    "2018": {
+      "title": "Expansion to Federal Level",
+      "description": "Opening branches in 10 Russian regions. Significant fleet expansion to 1500 vehicles."
+    },
+    "2021": {
+      "title": "Complete Digitalization",
+      "description": "Transition to electronic waybills and transport documents. AI implementation for predictive maintenance analytics."
+    },
+    "2024": {
+      "title": "Outsourcing Market Leader",
+      "description": "ResursTrans — recognized expert and reliable partner of Russia's largest corporations in transport management."
+    },
+    "2027": {
+      "title": "Global Ecosystem",
+      "description": "Transformation into a global technology leader. Autonomous management systems and international expansion."
+    }
+  },
+  "ServicesPage": {
+    "catalogTitle": "Service Catalog",
+    "catalogDescription": "Comprehensive solutions for transport infrastructure. Efficiency measurable in numbers.",
+    "edition": "EDITION 2026 // VOL. 1",
+    "company": "RESURS-TRANS GLOBAL",
+    "services": {
+      "01": {
+        "title": "Outsourcing",
+        "subtitle": "Responsibility for Results",
+        "description": "Delegating non-core functions to professionals. We handle fleet, personnel, and risk management."
+      },
+      "02": {
+        "title": "Rental",
+        "subtitle": "Equipment on Demand",
+        "description": "Flexible solutions for peak loads. Over 10,000 units of special equipment ready to work."
+      },
+      "03": {
+        "title": "Management",
+        "subtitle": "Intelligent Logistics",
+        "description": "Digital platforms for control and dispatching. Complete process transparency in real-time."
+      },
+      "04": {
+        "title": "Consulting",
+        "subtitle": "Market Expertise",
+        "description": "Transport process audit and efficiency strategy implementation. 18 years of experience in one team."
+      }
+    },
+    "haveTask": "HAVE A TASK?",
+    "letsDiscuss": "Let's discuss your solution.",
+    "contactUs": "Contact Us"
+  },
+  "SolutionsPage": {
+    "title": "Technological Solutions",
+    "description": "Digital transformation of your fleet. Innovations that work for your profit.",
+    "sections": {
+      "gps": {
+        "title": "GPS Monitoring",
+        "desc": "Real-time tracking of equipment movement with meter-level precision."
+      },
+      "fuel": {
+        "title": "Fuel Control",
+        "desc": "Theft prevention and consumption optimization through digital sensors."
+      },
+      "autoControl": {
+        "title": "Auto-Control",
+        "desc": "A unified platform for managing all fleet processes."
+      }
+    }
+  },
+  "CasesPage": {
+    "title": "Our Case Studies",
+    "description": "Real success stories. How we help market leaders optimize logistics.",
+    "items": {
+      "mining": {
+        "title": "Mining Sector",
+        "subtitle": "Quarry Optimization",
+        "desc": "Reduced equipment downtime by 25% in the first quarter."
+      },
+      "retail": {
+        "title": "Retail",
+        "subtitle": "City Logistics",
+        "desc": "Route optimization and delivery cost reduction by 15%."
+      },
+      "oil_gas": {
+        "title": "Oil & Gas",
+        "subtitle": "Energy Transport Logistics",
+        "desc": "Comprehensive oilfield services support. 30% reduction in equipment transportation costs."
+      },
+      "construction": {
+        "title": "Construction",
+        "subtitle": "Heavy Equipment Management",
+        "desc": "Fleet management at construction sites. 40% downtime reduction."
+      },
+      "agriculture": {
+        "title": "Agriculture",
+        "subtitle": "Agro-Transport Solutions",
+        "desc": "Harvest and fuel transportation optimization. 35% time loss reduction during harvest season."
+      },
+      "passenger": {
+        "title": "Passenger Transport",
+        "subtitle": "Corporate Mobility",
+        "desc": "Employee shuttle services organization. 99.8% schedule and SLA compliance."
+      }
+    }
+  },
+  "AboutPage": {
+    "title": "About Us | ResursTrans",
+    "description": "History of ResursTrans, the market leader in transport outsourcing services.",
+    "heroTitle": "Our Story",
+    "heroDescription": "From a small startup to a federal leader in business transport asset management.",
+    "timeline": {
+      "2008": {
+        "title": "Birth of the Idea",
+        "description": "First concepts of innovative transport management. Formation of a team of like-minded professionals."
+      },
+      "2009": {
+        "title": "First Contracts",
+        "description": "Signing first agreements with industrial enterprises. Launch of pilot fleet management projects."
+      },
+      "2010": {
+        "title": "Company Foundation",
+        "description": "ResursTrans begins its journey as an ambitious startup in transport logistics. First clients, first routes, first successes."
+      },
+      "2011": {
+        "title": "Geographic Expansion",
+        "description": "Opening of the first regional office. Expansion beyond the Moscow region."
+      },
+      "2014": {
+        "title": "Launch of First IT Solutions",
+        "description": "Realizing the need for digitalization. Implementation of first Auto-Control modules for corporate fleet monitoring."
+      },
+      "2018": {
+        "title": "Expansion to Federal Level",
+        "description": "Opening branches in 10 Russian regions. Significant fleet expansion to 1500 vehicles."
+      },
+      "2021": {
+        "title": "Complete Digitalization",
+        "description": "Transition to electronic waybills and transport documents. AI implementation for predictive maintenance analytics."
+      },
+      "2024": {
+        "title": "Outsourcing Market Leader",
+        "description": "ResursTrans — recognized expert and reliable partner of Russia's largest corporations in transport management."
+      },
+      "2026": {
+        "title": "Technology Leadership",
+        "description": "Implementation of cutting-edge AI solutions and launch of proprietary fleet digital transformation platform."
+      },
+      "2027": {
+        "title": "Global Ecosystem",
+        "description": "Transformation into a global technology leader. Autonomous management systems and international expansion."
+      }
+    }
+  },
+  "ContactsPage": {
+    "title": "Contacts | ResursTrans",
+    "description": "Get in touch. Contact information for ResursTrans company.",
+    "pageTitle": "Contacts",
+    "headOffice": "Central Office in Moscow",
+    "address": "Address",
+    "addressValue": "127287, Russia, Moscow, 2-ya Khutorskaya St., 38A, Bldg. 14",
+    "phone": "Phone",
+    "phoneValue": "+7 (495) 646-08-39",
+    "hours": "Mon-Fri: 9:00 - 18:00",
+    "email": "Email",
+    "emailValue": "info@resourcetrans.ru",
+    "writeUs": "Write to Us",
+    "name": "Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "john@example.com",
+    "message": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "sendMessage": "Send Message",
+    "consentText": "I consent to the processing of personal data in accordance with the ",
+    "consentLink": "Privacy Policy",
+    "howToGet": "How to get there",
+    "howToGetSteps": [
+      "1. Dmitrovskaya Metro Station. From the metro vestibule (through glass doors), turn left, then follow the passage to the first left turn upwards.",
+      "2. Upon exiting outside, turn right into the archway.",
+      "3. Then walk straight to the end of the residential building (on your right)."
+    ],
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "regionalTitle": "Regional Divisions",
+    "regionalBranches": [
+      {
+        "name": "ResursTrans Branch in Moscow",
+        "address": "127276, Moscow, Botanicheskaya st., 10 D, bld. 1",
+        "phone": "+7 (495) 150-00-59"
+      },
+      {
+        "name": "ResursTrans Branch in Khabarovsk",
+        "address": "680000, Khabarovsk, Pushkina st., 50",
+        "phone": "+7 (421) 259-89-95"
+      },
+      {
+        "name": "ResursTrans Branch in Irkutsk",
+        "address": "664025 Irkutsk, Lenina st. 6, of.421",
+        "phone": "+7 (395) 248-28-23"
+      },
+      {
+        "name": "ResursTrans Branch in St. Petersburg",
+        "address": "191144, St. Petersburg, Bakunina ave., 5",
+        "phone": "+7 (812) 317-11-36"
+      },
+      {
+        "name": "ResursTrans Branch in Chita",
+        "address": "672012, Chita, Podgorbunskogo st. 62",
+        "phone": "+7 (302) 228-41-76"
+      },
+      {
+        "name": "ResursTrans Branch in Novosibirsk",
+        "address": "630099, Novosibirsk, Vokzalnaya magistral st., 16, of.708",
+        "phone": "+7 (383) 227-84-40"
+      },
+      {
+        "name": "ResursTrans Branch in Chelyabinsk",
+        "address": "454091, Chelyabinsk, Elkina st. 45 A, 15th floor",
+        "phone": "+7 (351) 242-00-51"
+      },
+      {
+        "name": "ResursTrans Branch in Yekaterinburg",
+        "address": "620107, Yekaterinburg, Vyezdnoy lane, 1",
+        "phone": "+7 (343) 311-12-22"
+      },
+      {
+        "name": "ResursTrans Branch in Samara",
+        "address": "443082, Samara, Rechnaya st., 46",
+        "phone": "+7 (846) 300-44-97"
+      },
+      {
+        "name": "ResursTrans Branch in Saratov",
+        "address": "410012, Saratov, Teatralnaya sq., 11a, off.1",
+        "phone": "+7 (845) 233-85-84"
+      },
+      {
+        "name": "ResursTrans Branch in N. Novgorod",
+        "address": "603108, Nizhny Novgorod, st. Kostarikha - 2",
+        "phone": "+7 (831) 262-16-58"
+      },
+      {
+        "name": "ResursTrans Separate Division in Balakovo",
+        "address": "413840, Saratov region, Balakovo, Dorozhnaya st., 4/10",
+        "phone": "+7 (845) 354-49-00"
+      },
+      {
+        "name": "ResursTrans Separate Division in Vladimir",
+        "address": "600001, Vladimir, Dvoryanskaya st., 27A, bldg. 7",
+        "phone": "+7 (495) 477-56-05"
+      },
+      {
+        "name": "ResursTrans Branch in Kaliningrad",
+        "address": "236011, Kaliningrad, Tikhoretsky dead end, 2B",
+        "phone": "+7 (4012) 720-388"
+      }
+    ]
+  },
+  "CareerPage": {
+    "title": "Career | ResursTrans",
+    "description": "We create all conditions for professional growth of employees and prefer to grow talent within the company. Learn more about careers at ResursTrans.",
+    "backToMain": "Back to Main",
+    "heroTitle": "Career at",
+    "heroDescription": "We create all conditions for professional growth of employees and prefer to grow talent within the company. ResursTrans has many success stories where regular employees became managers.",
+    "hrPolicy": "HR Policy",
+    "vacancies": "Our Vacancies",
+    "employees": "employees",
+    "professions": "professions and work areas",
+    "programs": "educational programs in the Corporate University",
+    "corporateLife": "Corporate Life",
+    "corporateDescription": "The company regularly holds events aimed at boosting corporate spirit:",
+    "activities": [
+      "Team Building",
+      "Corporate Events",
+      "Master Classes",
+      "Volunteer and Social Initiatives"
+    ],
+    "corporateExtra": "Additionally, ResursTrans organizes an annual professional skills competition for drivers, where winners receive certificates and cash prizes, and are sent to the Interregional Professional Skills Competition Resurs Group in Sochi.",
+    "socialMedia": "Learn more about the company's corporate life on our social media pages:",
+    "ctaTitle": "If you want to work in our team,",
+    "ctaDescription": "please send us your resume",
+    "fillForm": "Fill Out the Form"
+  },
+  "NewsPage": {
+    "title": "News | ResursTrans",
+    "description": "Current news from ResursTrans transport and logistics company.",
+    "pageTitle": "News",
+    "news1": {
+      "date": "February 12, 2026",
+      "title": "Opening of New Logistics Hub",
+      "description": "ResursTrans expands presence in the Ural region, launching a new modern transport hub."
+    },
+    "news2": {
+      "date": "February 5, 2026",
+      "title": "AI Implementation in Route Planning",
+      "description": "Our new algorithm reduces empty runs by 15% thanks to predictive analytics."
+    },
+    "news3": {
+      "date": "January 28, 2026",
+      "title": "Year Results: Growth Exceeded Forecasts",
+      "description": "Group company revenue grew by 40% over the past year, reaching record levels."
+    },
+    "readMore": "Read More"
+  },
+  "TechnologyPage": {
+    "systemArch": "SYSTEM_ARCHITECTURE // V.2.0",
+    "title": "Technology",
+    "allSystems": "ALL SYSTEMS OPERATIONAL",
+    "manifesto": "We don't just implement software. We build the digital nervous system of your business. Every byte of data works for safety and efficiency.",
+    "techSpecs": "Technical Specs",
+    "architecture": "Architecture:",
+    "microservices": "Microservices",
+    "latency": "Latency:",
+    "security": "Security:",
+    "enterpriseGrade": "Enterprise Grade",
+    "techStack": {
+      "01": {
+        "title": "PREDICTIVE_ANALYTICS",
+        "desc": "Machine learning algorithms for predicting equipment failures.",
+        "status": "RUNNING",
+        "metric": "99.8% ACCURACY"
+      },
+      "02": {
+        "title": "DIGITAL_PLATFORMS",
+        "desc": "Unified ecosystem for fleet and personnel management.",
+        "status": "ONLINE",
+        "metric": "24/7 UPTIME"
+      },
+      "03": {
+        "title": "BLOCKCHAIN_LOG",
+        "desc": "Immutable operations registry for absolute transparency (DPP).",
+        "status": "SECURE",
+        "metric": "SHA-256 VERIFIED"
+      }
+    },
+    "connecting": "CONNECTING TO SERVER...",
+    "lat": "LAT: 55.7558 N",
+    "lon": "LON: 37.6173 E"
+  },
+  "Losses": {
+    "hiddenCosts": "Hidden Costs",
+    "title": "Every Day Your Fleet is Losing Money",
+    "savingsPotential": "Savings Potential",
+    "checkFleet": "Check Your Fleet"
+  },
+  "Sustainability": {
+    "guardianDesign": "Guardian Design",
+    "title": "Safety as the Highest Value",
+    "description": "Every ResursTrans solution is an investment in your peace of mind.",
+    "cards": {
+      "dpp": {
+        "title": "Digital Product Passport (DPP)",
+        "desc": "Supply chain transparency verification through blockchain certification."
+      },
+      "ecology": {
+        "title": "Eco-Friendliness",
+        "desc": "We implement standards that protect the planet and your resources."
+      },
+      "stability": {
+        "title": "Stability Guarantor",
+        "desc": "Flawless control and risk forecasting for your business."
+      }
+    },
+    "viewReport": "View ESG Report"
+  },
+  "Comparison": {
+    "title": "Model Comparison",
+    "description": "Why Market Leaders Switch to Outsourcing",
+    "parameter": "Parameter",
+    "ownFleet": "Own Fleet (Risks)",
+    "resursTrans": "ResursTrans (Benefits)",
+    "data": {
+      "budget": {
+        "category": "Budget",
+        "own": "Hidden costs for repairs and insurance beyond the plan.",
+        "resurs": "Fixed Tariff: Transparent planning for the year."
+      },
+      "taxes": {
+        "category": "Taxes",
+        "own": "High payroll tax burden (driver and mechanic staff).",
+        "resurs": "20% VAT Deduction: All services are accepted as expenses."
+      },
+      "reliability": {
+        "category": "Reliability",
+        "own": "Losses due to equipment failure or staff illness.",
+        "resurs": "20% replacement within 2 hours: Guaranteed vehicle backup."
+      },
+      "finance": {
+        "category": "Finance",
+        "own": "CapEx: Freezing capital in 'hardware'.",
+        "resurs": "OpEx Model: Money works on business development."
+      }
+    }
+  },
+  "Stories": {
+    "humanCapital": "Human Capital",
+    "story": "story",
+    "01": {
+      "quote": "“Technology doesn’t replace people. It gives us the superpower to see the invisible.”",
+      "author": "Alexey S.",
+      "role": "Chief Engineer, 12 years with the company"
+    },
+    "02": {
+      "quote": "“Safety is not about instructions; it’s about culture. And we build it every day.”",
+      "author": "Maria V.",
+      "role": "Quality Director"
+    },
+    "03": {
+      "quote": "“When you manage 10,000 vehicles, every second of analytics is worth millions.”",
+      "author": "Dmitry K.",
+      "role": "Head of Digital Transformation"
+    }
+  },
+  "GuardianMap": {
+    "title": "Safety Geography",
+    "description": "We are present in all key regions, ensuring a unified standard of quality.",
+    "activeFleets": "Active Fleets",
+    "certifiedDrivers": "Certified Drivers",
+    "responseCenters": "Response Centers",
+    "locations": {
+      "moscow": "Moscow",
+      "ural": "Ural",
+      "siberia": "Siberia",
+      "south": "South",
+      "farEast": "Far East"
+    },
+    "stats": {
+      "load": "Load",
+      "uptime": "Uptime",
+      "latency": "Latency",
+      "activeUnits": "Active Units",
+      "systemLoad": "System Load",
+      "securityLevel": "Security Level",
+      "max": "MAX"
+    },
+    "controlSystem": "CONTROL SYSTEM"
+  },
+  "PersonalBrand": {
+    "note": "Note_001.txt",
+    "title": "Faces Behind the Technology",
+    "quote": "“We believe in ‘human authenticity’. Our leaders share experiences and doubts because trust is built on sincerity, not perfect algorithms.”",
+    "description": "Expert insights and the ‘backstage’ of a transport holding. Living stories of professionals who solve complex logistics problems every day.",
+    "readBlog": "Read Blog",
+    "photoExpert": "[Expert Photo]",
+    "chiefEngineer": "Chief Engineer",
+    "year": "2026"
+  },
+  "Scale": {
+    "title": "Scale that Guarantees Stability.",
+    "description": "Our solutions work where precision and safety are critical.",
+    "stats": {
+      "years": "Years of Leadership",
+      "units": "Equipment Units",
+      "profs": "Professionals",
+      "digital": "Digital Processes",
+      "branches": "Branches across RF"
+    }
+  },
+  "Metadata": {
+    "homeTitle": "ResursTrans — Smart Transport and Special Equipment Outsourcing",
+    "homeDescription": "We see transport inside out. Professional transport outsourcing for large business. Modern IT platform and control of every vehicle unit."
+  },
+  "PrivacyPolicy": {
+    "title": "Privacy Policy",
+    "content": "1. GENERAL PROVISIONS\n\n1.1. This Privacy Policy (hereinafter — the Policy) defines the procedure for processing and protecting personal data of ResursTrans website users (hereinafter — the Site, the Company).\n\n1.2. The Company respects user privacy and takes all necessary measures to protect personal data.\n\n1.3. By using the Site, you express your consent to this Policy.\n\n2. COLLECTION OF PERSONAL DATA\n\n2.1. The Company may collect the following personal data:\n- Full name\n- Email address\n- Phone number\n- Company information\n- Other information provided voluntarily by the user\n\n2.2. Data collection is carried out through feedback forms, subscriptions, and other interactive elements of the Site.\n\n3. PURPOSES OF DATA PROCESSING\n\n3.1. Personal data is used for:\n- Processing user requests\n- Providing services and support\n- Informing about new services and offers\n- Improving Site functionality\n\n4. DATA PROTECTION\n\n4.1. The Company applies necessary technical and organizational measures to protect personal data from unauthorized access, alteration, disclosure, or destruction.\n\n5. DATA TRANSFER TO THIRD PARTIES\n\n5.1. The Company does not transfer personal data to third parties, except as required by Russian Federation law.\n\n6. COOKIE FILES\n\n6.1. The Site uses cookies to improve user experience and analyze traffic.\n\n7. USER RIGHTS\n\n7.1. Users have the right to access, correct, and delete their personal data.\n\n8. CONTACTS\n\n8.1. For questions about personal data processing, contact: info@resourcetrans.ru"
+  },
+  "CookieBanner": {
+    "text": "We use cookies to improve your experience. By continuing to use this site, you agree to our ",
+    "link": "Privacy Policy",
+    "accept": "Got it"
+  },
+  "TelegramModal": {
+    "title": "Redirecting to Telegram",
+    "description": "You are leaving the ResursTrans website and moving to a third-party application. Please note that during the transition, your phone number and profile data will become available to the messenger platform.",
+    "cancel": "Cancel",
+    "proceed": "Proceed"
+  },
+  "TermsOfUse": {
+    "title": "Terms of Use",
+    "content": "1. GENERAL PROVISIONS\n\n1.1. These Terms of Use (hereinafter — the Terms) govern the use of the ResursTrans website (hereinafter — the Site).\n\n1.2. By using the Site, you confirm that you have read and unconditionally accept these Terms.\n\n1.3. The Company reserves the right to make changes to the Terms at any time.\n\n2. INTELLECTUAL PROPERTY\n\n2.1. All Site materials are protected by copyright and are the property of the Company.\n\n2.2. Any use of Site materials is only possible with the written permission of the Company.\n\n3. RULES OF USE\n\n3.1. The user agrees to:\n- Use the Site for lawful purposes\n- Not disrupt Site functionality\n- Not distribute malicious software\n- Not attempt to gain unauthorized access\n\n4. LIABILITY\n\n4.1. The Company is not liable for:\n- Damages arising from Site use\n- Operation of third-party resources linked on the Site\n- Temporary interruptions in Site operation\n\n5. SERVICE PROVISION\n\n5.1. Information on the Site is for informational purposes only and does not constitute a public offer.\n\n5.2. The Company reserves the right to change information on the Site without prior notice.\n\n6. GOVERNING LAW\n\n6.1. These Terms are governed by the laws of the Russian Federation.\n\n7. CONTACTS\n\n7.1. For questions related to Site use, contact: info@resourcetrans.ru"
+  },
+  "CookieSettings": {
+    "title": "Cookie Settings",
+    "content": "1. WHAT ARE COOKIES\n\n1.1. Cookies are small text files that are saved to your device when you visit the Site.\n\n1.2. They allow the Site to remember your actions and preferences.\n\n2. TYPES OF COOKIES\n\n2.1. We use the following types of cookies:\n\n• Essential Cookies\n  - Provide basic Site functionality\n  - Cannot be disabled\n  - Do not store personal data\n\n• Analytics Cookies\n  - Help understand how users interact with the Site\n  - Collect anonymous statistics\n  - Example: Google Analytics\n\n• Functional Cookies\n  - Remember your preferences (language, region)\n  - Improve user experience\n\n• Marketing Cookies\n  - Used to display relevant advertising\n  - Track advertising campaign effectiveness\n\n3. COOKIE MANAGEMENT\n\n3.1. You can manage cookie settings through your browser:\n- Chrome: Settings → Privacy → Cookies\n- Firefox: Settings → Privacy → Cookies\n- Safari: Settings → Privacy\n- Edge: Settings → Cookies\n\n3.2. Disabling cookies may affect Site functionality.\n\n4. STORAGE PERIOD\n\n4.1. Session cookies are deleted after closing the browser.\n\n4.2. Persistent cookies are stored from 24 hours to 2 years.\n\n5. THIRD PARTIES\n\n5.1. Some cookies are set by third-party services:\n- Google Analytics\n- Yandex.Metrica\n- Social networks\n\n6. POLICY UPDATES\n\n6.1. The cookie policy may be updated periodically.\n\n7. CONTACTS\n\n7.1. For questions about cookie usage: info@resourcetrans.ru"
+  }
+}
