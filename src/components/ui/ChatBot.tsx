@@ -30,6 +30,7 @@ export default function ChatBot() {
     const [isTyping, setIsTyping] = useState(false);
     const [currentStep, setCurrentStep] = useState<string>("initial");
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
 
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -54,6 +55,37 @@ export default function ChatBot() {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages, isTyping]);
+
+    // Footer detection logic
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const isFooterVisible = entries.some(entry => entry.isIntersecting);
+                setIsVisible(!isFooterVisible);
+            },
+            {
+                threshold: 0.1,
+                rootMargin: "0px 0px 50px 0px" // Start hiding slightly before the footer is fully in view
+            }
+        );
+
+        // Regular check for footers in the DOM
+        const observeFooters = () => {
+            const footers = document.querySelectorAll('footer');
+            footers.forEach(footer => observer.observe(footer));
+        };
+
+        observeFooters();
+
+        // Also watch for DOM changes in case footers are rendered dynamically
+        const mutationObserver = new MutationObserver(observeFooters);
+        mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+        return () => {
+            observer.disconnect();
+            mutationObserver.disconnect();
+        };
+    }, []);
 
     const addBotMessage = (stepKey: string) => {
         setIsTyping(true);
@@ -138,7 +170,17 @@ export default function ChatBot() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-[999]">
+        <motion.div
+            initial={false}
+            animate={{
+                opacity: isVisible ? 1 : 0,
+                y: isVisible ? 0 : 100,
+                scale: isVisible ? 1 : 0.8,
+                pointerEvents: isVisible ? "auto" : "none"
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed bottom-6 right-6 z-[999]"
+        >
             {/* FAB Button */}
             <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -261,6 +303,6 @@ export default function ChatBot() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     );
 }
