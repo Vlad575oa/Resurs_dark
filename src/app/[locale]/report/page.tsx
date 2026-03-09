@@ -1,23 +1,38 @@
+import type { Metadata } from "next";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
 import Link from "next/link";
+import { getServerTranslations } from "@/lib/server-intl";
 
-export const metadata = {
-    title: "Quarterly Fleet Efficiency Report - ResursLogistics",
-    description: "Detailed analysis of fleet performance, cost savings, and environmental impact.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+
+    return {
+        title: locale === 'en' ? "Quarterly Fleet Efficiency Report | РесурсЛогистика" : "Квартальный отчет об эффективности автопарка | РесурсЛогистика",
+        description: locale === 'en'
+            ? "Detailed analysis of fleet performance, cost savings, and environmental impact."
+            : "Подробный анализ эффективности автопарка, экономии средств и воздействия на окружающую среду.",
+        alternates: {
+            canonical: `/${locale}/report`,
+        }
+    };
+}
 
 export default async function ReportPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const { messages } = await getServerTranslations(locale);
+    const legalDict = (messages as any).Legal;
+
+    // Report content is primarily English but wrapped in localized shell
     return (
         <div className="bg-background-dark min-h-screen text-slate-100 flex flex-col">
-            <HeaderScroll />
+            <HeaderScroll locale={locale} dict={messages} />
 
             <main className="flex-grow pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto">
-                    <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
+                    <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
                         <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        Back to Home
+                        {legalDict.backHome}
                     </Link>
 
                     <h1 className="text-4xl md:text-5xl font-black text-white uppercase mb-8">Q1 2026 Fleet Efficiency Report</h1>
@@ -51,7 +66,7 @@ export default async function ReportPage({ params }: { params: Promise<{ locale:
                 </div>
             </main>
 
-            <Footer locale={locale} />
+            <Footer locale={locale} dict={messages} />
         </div>
     );
 }

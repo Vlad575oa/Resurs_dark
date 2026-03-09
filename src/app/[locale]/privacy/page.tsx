@@ -4,24 +4,36 @@ import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
 import { getServerTranslations } from "@/lib/server-intl";
 
-export const metadata: Metadata = {
-    title: "Privacy Policy | FleetCorp Global",
-    description: "FleetCorp Global Privacy Policy and Data Protection standards.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const { messages } = await getServerTranslations(locale);
+    const { title } = (messages as any).PrivacyPolicy;
+
+    return {
+        title: `${title} | РесурсЛогистика`,
+        description: locale === 'en'
+            ? "Privacy Policy and Data Protection standards of ResursLogistics."
+            : "Политика конфиденциальности и стандарты защиты данных компании РесурсЛогистика.",
+        alternates: {
+            canonical: `/${locale}/privacy`,
+        }
+    };
+}
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const { messages } = await getServerTranslations(locale);
     const { title, content } = (messages as any).PrivacyPolicy;
+    const legalDict = (messages as any).Legal;
 
     return (
         <div className="bg-background-dark min-h-screen flex flex-col">
-            <HeaderScroll />
+            <HeaderScroll locale={locale} dict={messages} />
             <main className="flex-grow pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto">
                     <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
                         <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        {locale === 'en' ? 'Back to Home' : 'Назад на главную'}
+                        {legalDict.backHome}
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-black text-white uppercase mb-12 tracking-tighter">
                         {title}
@@ -37,7 +49,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
                     </div>
                 </div>
             </main>
-            <Footer locale={locale} />
+            <Footer locale={locale} dict={messages} />
         </div>
     );
 }

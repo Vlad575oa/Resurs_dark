@@ -1,23 +1,37 @@
+import type { Metadata } from "next";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
 import Link from "next/link";
+import { getServerTranslations } from "@/lib/server-intl";
 
-export const metadata = {
-    title: "Global Enterprise Logistics Transformation - Case Study",
-    description: "How we helped a global manufacturing leader optimize 1,500+ vehicles across 12 countries.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+
+    return {
+        title: locale === 'en' ? "Global Enterprise Logistics Transformation | РесурсЛогистика" : "Глобальная трансформация корпоративной логистики | РесурсЛогистика",
+        description: locale === 'en'
+            ? "How we helped a global manufacturing leader optimize 1,500+ vehicles across 12 countries."
+            : "Как мы помогли мировому лидеру производства оптимизировать более 1500 автомобилей в 12 странах.",
+        alternates: {
+            canonical: `/${locale}/cases/detail`,
+        }
+    };
+}
 
 export default async function CasesDetailPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const { messages } = await getServerTranslations(locale);
+    const legalDict = (messages as any).Legal;
+
     return (
         <div className="bg-background-dark min-h-screen text-slate-100 flex flex-col">
-            <HeaderScroll />
+            <HeaderScroll locale={locale} dict={messages} />
 
             <main className="flex-grow pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto">
-                    <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
+                    <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
                         <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        Back to Home
+                        {legalDict.backHome}
                     </Link>
 
                     <div className="mb-12">
@@ -78,7 +92,7 @@ export default async function CasesDetailPage({ params }: { params: Promise<{ lo
                 </div>
             </main>
 
-            <Footer locale={locale} />
+            <Footer locale={locale} dict={messages} />
         </div>
     );
 }

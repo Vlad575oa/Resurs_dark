@@ -1,9 +1,12 @@
 import Image from "next/image";
 
 export default function Hero({ dict }: { dict: any }) {
-  const titleHtml = dict.title
+  const title = dict?.title || "Advanced Fleet Management & Outsourcing";
+  const titleHtml = title
     .replace('корпоративным', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">корпоративным</span>')
-    .replace('нового уровня', '<span class="text-primary text-glow">нового уровня</span>');
+    .replace('нового уровня', '<span class="text-primary text-glow">нового уровня</span>')
+    .replace('Corporate', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Corporate</span>')
+    .replace('Next-Level', '<span class="text-primary text-glow">Next-Level</span>');
 
   return (
     <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20 overflow-hidden">

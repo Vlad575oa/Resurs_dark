@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function CasesHero({ locale }: { locale: string }) {
+export default function CasesHero({ locale, dict }: { locale: string; dict: any }) {
     return (
         <section className="relative pt-32 pb-24 px-6 md:px-10 lg:px-40 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Glow */}
@@ -14,43 +14,20 @@ export default function CasesHero({ locale }: { locale: string }) {
                     <div className="flex flex-col gap-4">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
                             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                            <span className="text-primary text-xs font-bold uppercase tracking-wider">{locale === 'en' ? 'Technology 4.0' : 'Технология 4.0'}</span>
+                            <span className="text-primary text-xs font-bold uppercase tracking-wider">{dict.badge}</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white uppercase">
-                            {locale === 'en' ? 'Intelligent ' : 'ИНТЕЛЛЕКТУАЛЬНОЕ '}<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{locale === 'en' ? 'FLEET' : 'УПРАВЛЕНИЕ'}</span>
-                            {" "}{locale === 'en' ? 'MANAGEMENT' : 'АВТОПАРКОМ'}
+                            {dict.title}<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{dict.accent}</span>
+                            {" "}{dict.suffix}
                         </h1>
                         <p className="text-lg text-slate-400 max-w-lg leading-relaxed">
-                            {locale === 'en'
-                                ? 'Unified digital ecosystem for complete control over your vehicles. Reduce costs and improve efficiency with cutting-edge telematics and AI.'
-                                : 'Единая цифровая экосистема для полного контроля над вашим транспортом. Снижайте издержки и повышайте эффективность с помощью передовых технологий телематики и AI.'}
+                            {dict.description}
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        {[
-                            {
-                                title: locale === 'en' ? "GPS Monitoring" : "GPS Мониторинг",
-                                desc: locale === 'en' ? "Accuracy up to 1 meter in real time." : "Точность до 1 метра в реальном времени.",
-                                icon: "satellite_alt"
-                            },
-                            {
-                                title: locale === 'en' ? "Fuel Control" : "Контроль Топлива",
-                                desc: locale === 'en' ? "Protection against siphoning and consumption analysis." : "Защита от сливов и анализ расхода.",
-                                icon: "local_gas_station"
-                            },
-                            {
-                                title: locale === 'en' ? "Deep Analytics" : "Глубокая Аналитика",
-                                desc: locale === 'en' ? "BI reports and predictive diagnostics." : "BI-отчеты и предиктивная диагностика.",
-                                icon: "analytics"
-                            },
-                            {
-                                title: locale === 'en' ? "Smart Routing" : "Умная Маршрутизация",
-                                desc: locale === 'en' ? "Logistics optimization via AI algorithms." : "Оптимизация логистики AI алгоритмами.",
-                                icon: "route"
-                            },
-                        ].map((item) => (
+                        {dict.features.map((item: any) => (
                             <div key={item.title} className="group flex items-start gap-4 p-4 rounded-xl border border-[#282e39] bg-[#151a23] hover:border-primary/50 transition-colors">
                                 <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                                     <span className="material-symbols-outlined">{item.icon}</span>

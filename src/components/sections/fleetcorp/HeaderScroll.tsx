@@ -4,15 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function HeaderScroll() {
+export default function HeaderScroll({ locale, dict }: { locale: string; dict: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const pathname = usePathname();
-
-  // Robust locale detection
-  const pathParts = pathname.split('/');
-  const locale = ['en', 'hi', 'ru'].includes(pathParts[1]) ? pathParts[1] : 'ru';
 
   const languages = [
     { code: 'ru', flag: 'ru', label: 'Русский' },
@@ -22,13 +18,16 @@ export default function HeaderScroll() {
 
   const currentLang = languages.find(l => l.code === locale) || languages[0];
 
+  const headerDict = dict.Header || dict;
+
   const navLinks = [
-    { href: `/${locale}`, label: locale === 'en' ? 'Home' : locale === 'hi' ? 'मुख्य' : 'Главная' },
-    { href: `/${locale}/cases`, label: locale === 'en' ? 'Cases' : locale === 'hi' ? 'मामले' : 'Кейсы' },
-    { href: `/${locale}/services`, label: locale === 'en' ? 'Services' : locale === 'hi' ? 'सेवाएं' : 'Услуги' },
-    { href: `/${locale}/about`, label: locale === 'en' ? 'About' : locale === 'hi' ? 'बारे में' : 'О нас' },
-    { href: `/${locale}/news`, label: locale === 'en' ? 'News' : locale === 'hi' ? 'समाचार' : 'Новости' },
-    { href: `/${locale}/contacts`, label: locale === 'en' ? 'Contacts' : locale === 'hi' ? 'संपर्क' : 'Контакты' },
+    { href: `/${locale}`, label: headerDict.home },
+    { href: `/${locale}/cases`, label: headerDict.cases },
+    { href: `/${locale}/services`, label: headerDict.services },
+    { href: `/${locale}/about`, label: headerDict.about },
+    { href: `/${locale}/news`, label: headerDict.news },
+    { href: `/${locale}/calculator`, label: headerDict.calculator },
+    { href: `/${locale}/contacts`, label: headerDict.contacts },
   ];
 
   useEffect(() => {
@@ -74,7 +73,7 @@ export default function HeaderScroll() {
             <div className="flex items-center justify-center size-9 rounded bg-gradient-to-br from-primary to-blue-700 text-white shadow-[0_0_15px_rgba(37,106,244,0.3)]">
               <span className="material-symbols-outlined text-xl">local_shipping</span>
             </div>
-            <h2 className="text-white text-lg font-bold tracking-tight">Fleet Corp</h2>
+            <h2 className="text-white text-lg font-bold tracking-tight">РесурсЛогистика</h2>
           </div>
 
           {/* Desktop Navigation */}
@@ -154,7 +153,7 @@ export default function HeaderScroll() {
             </div>
 
             <button className="bg-primary hover:bg-blue-600 text-white text-xs font-black uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all shadow-[0_4px_15px_rgba(37,106,244,0.3)] hover:scale-105 active:scale-95">
-              {(locale as string) === 'ru' ? 'Оставить заявку' : (locale as string) === 'hi' ? 'अनुरोध भेजें' : 'Submit Request'}
+              {headerDict.submitRequest}
             </button>
           </div>
 
@@ -202,8 +201,8 @@ export default function HeaderScroll() {
                   key={l.code}
                   href={pathname.startsWith(`/${locale}`) ? pathname.replace(`/${locale}`, `/${l.code}`) : `/${l.code}${pathname}`}
                   className={`flex flex-col items-center gap-3 p-4 rounded-xl border transition-all ${locale === l.code
-                      ? 'bg-primary/10 border-primary shadow-lg shadow-primary/10 text-white'
-                      : 'bg-white/5 border-white/10 text-slate-400'
+                    ? 'bg-primary/10 border-primary shadow-lg shadow-primary/10 text-white'
+                    : 'bg-white/5 border-white/10 text-slate-400'
                     }`}
                   onClick={() => {
                     document.cookie = `NEXT_LOCALE=${l.code}; path=/; max-age=31536000`;

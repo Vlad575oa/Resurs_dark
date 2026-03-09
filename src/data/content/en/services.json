@@ -1,44 +1,44 @@
 {
     "hero": {
-        "badge": "Премиальные решения",
-        "title": "Комплексная оптимизация автопарка",
-        "subtitle": "Полный спектр услуг управления транспортом для корпоративного бизнеса"
+        "badge": "Premium Solutions",
+        "title": "Comprehensive Fleet Optimization",
+        "subtitle": "Full spectrum of transport management services for corporate business"
     },
     "items": [
         {
             "slug": "strategic-outsourcing",
-            "title": "Стратегический Аутсорсинг",
-            "desc": "Полное операционное управление с гарантированным соблюдением SLA",
+            "title": "Strategic Outsourcing",
+            "desc": "Complete operational management with guaranteed SLA compliance",
             "icon": "business_center"
         },
         {
             "slug": "fleet-management",
-            "title": "Управление Автопарком",
-            "desc": "Отслеживание жизненного цикла от приобретения до реализации",
+            "title": "Fleet Management",
+            "desc": "Lifecycle tracking from acquisition to disposal",
             "icon": "directions_car"
         },
         {
             "slug": "predictive-maintenance",
-            "title": "Предиктивное Обслуживание",
-            "desc": "ИИ-планирование и логистика ремонта для минимизации простоев",
+            "title": "Predictive Maintenance",
+            "desc": "AI-powered scheduling and repair logistics to minimize downtime",
             "icon": "build_circle"
         },
         {
             "slug": "driver-management",
-            "title": "Управление Водителями",
-            "desc": "Обучение безопасности, контроль комплаенса и расчет зарплаты",
+            "title": "Driver Management",
+            "desc": "Safety training, compliance monitoring, and payroll calculation",
             "icon": "sports_motorsports"
         },
         {
             "slug": "digital-monitoring",
-            "title": "Цифровой Мониторинг",
-            "desc": "Телематика в реальном времени и аналитика производительности",
+            "title": "Digital Monitoring",
+            "desc": "Real-time telematics and performance analytics",
             "icon": "monitoring"
         },
         {
             "slug": "cost-optimization",
-            "title": "Оптимизация Затрат",
-            "desc": "Стратегии снижения расхода топлива и анализ стоимости владения TCO",
+            "title": "Cost Optimization",
+            "desc": "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis",
             "icon": "account_balance_wallet"
         }
     ]

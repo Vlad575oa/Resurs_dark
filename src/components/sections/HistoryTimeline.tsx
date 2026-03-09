@@ -3,8 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import ru from "@/app/messages/ru.json";
-import en from "@/app/messages/en.json";
 
 interface HistoryItem {
     year: string;
@@ -13,13 +11,12 @@ interface HistoryItem {
     image: string;
 }
 
-export const HistoryTimeline = ({ locale }: { locale: string }) => {
+export const HistoryTimeline = ({ dict }: { dict: any }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: containerRef });
-    const dictionary = locale === 'en' ? en : ru;
-    const { timeline } = dictionary.AboutPage;
+    const timeline = dict;
 
-    const historyItems: HistoryItem[] = Object.entries(timeline).map(([year, info]) => {
+    const historyItems: HistoryItem[] = Object.entries(timeline).map(([year, info]: [string, any]) => {
         let ext = "webp";
         if (["2008", "2009", "2011", "2026", "2027"].includes(year)) ext = "svg";
         return {

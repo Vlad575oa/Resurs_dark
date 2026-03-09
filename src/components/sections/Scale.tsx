@@ -3,13 +3,13 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-export const Scale = ({ locale }: { locale: string }) => {
-    const STATS = [
-        { value: "18", label: locale === 'en' ? "Years of Leadership" : "Лет лидерства", suffix: " " },
-        { value: "10", label: locale === 'en' ? "Equipment Units" : "Единиц техники", suffix: "k" },
-        { value: "13", label: locale === 'en' ? "Professionals" : "Профессионалов", suffix: "k" },
-        { value: "70", label: locale === 'en' ? "Digital Processes" : "Процессов в цифре", suffix: "%" },
-        { value: "15", label: locale === 'en' ? "Branches in RF" : "Филиалов по РФ", suffix: " " }
+export const Scale = ({ dict }: { dict: any }) => {
+    const STATS = dict.scaleStats || [
+        { value: "18", label: "Years of Leadership", suffix: " " },
+        { value: "10", label: "Equipment Units", suffix: "k" },
+        { value: "13", label: "Professionals", suffix: "k" },
+        { value: "70", label: "Digital Processes", suffix: "%" },
+        { value: "15", label: "Branches in RF", suffix: " " }
     ];
 
     const containerRef = useRef(null);
@@ -53,9 +53,9 @@ export const Scale = ({ locale }: { locale: string }) => {
                         viewport={{ once: true }}
                         className="text-5xl md:text-7xl font-bold text-cloud-dancer tracking-tighter leading-[0.9]"
                     >
-                        Масштаб,<br />
-                        <span className="text-white/40 font-serif italic">гарантирующий</span><br />
-                        стабильность.
+                        {dict.scaleTitle.main},<br />
+                        <span className="text-white/40 font-serif italic">{dict.scaleTitle.accent}</span><br />
+                        {dict.scaleTitle.suffix}.
                     </motion.h2>
 
                     <motion.p
@@ -65,12 +65,12 @@ export const Scale = ({ locale }: { locale: string }) => {
                         viewport={{ once: true }}
                         className="text-xl text-white/60 font-serif leading-relaxed"
                     >
-                        Наши решения работают там, где критична точность и безопасность.
+                        {dict.scaleDescription}
                     </motion.p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 border border-white/10">
-                    {STATS.map((stat, i) => (
+                    {STATS.map((stat: any, i: number) => (
                         <div key={i} className="bg-anthracite-core p-8 flex flex-col justify-between aspect-square group hover:bg-[#333436] transition-colors relative overflow-hidden">
                             {/* Hover Accent */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-burnt-terra scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />

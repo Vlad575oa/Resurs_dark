@@ -1,5 +1,5 @@
 {
-  "Navigation": {
+  "Header": {
     "home": "Home",
     "services": "Services",
     "solutions": "Solutions",
@@ -8,10 +8,11 @@
     "faq": "FAQ",
     "news": "News",
     "contacts": "Contacts",
+    "calculator": "Calculator",
     "submitRequest": "Submit Request",
     "company": "Company",
     "career": "Career",
-    "pressCenter": "Пресс-center",
+    "pressCenter": "Press Center",
     "logo": "ResursLogistics",
     "language": "Language"
   },
@@ -424,31 +425,152 @@
     "catalogDescription": "Comprehensive solutions for transport infrastructure. Efficiency measurable in numbers.",
     "edition": "EDITION 2026 // VOL. 1",
     "company": "RESURS-TRANS GLOBAL",
+    "servicesList": [
+      {
+        "id": "outsourcing",
+        "title": "Outsourcing",
+        "subtitle": "Responsibility for Results",
+        "description": "Delegating non-core functions to professionals. We handle fleet, personnel, and risk management.",
+        "image": "/images/services/outsourcing.webp",
+        "imageColor": "bg-[#4A5F3C]"
+      },
+      {
+        "id": "rental",
+        "title": "Rental",
+        "subtitle": "Equipment on Demand",
+        "description": "Flexible solutions for peak loads. Over 10,000 units of special equipment ready to work.",
+        "image": "/images/services/rental.webp",
+        "imageColor": "bg-[#2C2C2C]"
+      },
+      {
+        "id": "management",
+        "title": "Management",
+        "subtitle": "Intelligent Logistics",
+        "description": "Digital platforms for control and dispatching. Complete process transparency in real-time.",
+        "image": "/images/services/management.webp",
+        "imageColor": "bg-[#0F766E]"
+      },
+      {
+        "id": "consulting",
+        "title": "Consulting",
+        "subtitle": "Market Expertise",
+        "description": "Transport process audit and efficiency strategy implementation. 18 years of experience in one team.",
+        "image": "/images/services/consulting.webp",
+        "imageColor": "bg-[#1C1C1C]"
+      }
+    ],
     "services": {
-      "01": {
+      "outsourcing": {
         "title": "Outsourcing",
         "subtitle": "Responsibility for Results",
         "description": "Delegating non-core functions to professionals. We handle fleet, personnel, and risk management."
       },
-      "02": {
+      "rental": {
         "title": "Rental",
         "subtitle": "Equipment on Demand",
         "description": "Flexible solutions for peak loads. Over 10,000 units of special equipment ready to work."
       },
-      "03": {
+      "management": {
         "title": "Management",
         "subtitle": "Intelligent Logistics",
         "description": "Digital platforms for control and dispatching. Complete process transparency in real-time."
       },
-      "04": {
+      "consulting": {
         "title": "Consulting",
         "subtitle": "Market Expertise",
         "description": "Transport process audit and efficiency strategy implementation. 18 years of experience in one team."
+      },
+      "strategic-outsourcing": {
+        "title": "Strategic Outsourcing",
+        "subtitle": "Full Management",
+        "description": "Full operational management with guaranteed SLA compliance. We become your dedicated fleet department and handle all risks."
+      },
+      "fleet-management": {
+        "title": "Fleet Management",
+        "subtitle": "Lifecycle Control",
+        "description": "Lifecycle tracking from acquisition to disposal. Complete asset visibility and operational cost optimization."
+      },
+      "predictive-maintenance": {
+        "title": "Predictive Maintenance",
+        "subtitle": "AI Monitoring",
+        "description": "AI-driven scheduling and repair logistics to minimize downtime and extend the life of your fleet."
+      },
+      "driver-management": {
+        "title": "Driver Management",
+        "subtitle": "Safety & Compliance",
+        "description": "Safety training, compliance control, and payroll integration. We care for your personnel and team safety."
+      },
+      "digital-monitoring": {
+        "title": "Digital Monitoring",
+        "subtitle": "Real-time Data",
+        "description": "Real-time telematics and performance analytics. Data-driven insights for mature management decisions."
+      },
+      "cost-optimization": {
+        "title": "Cost Optimization",
+        "subtitle": "Maximum Efficiency",
+        "description": "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis. We help you save where others spend."
       }
     },
     "haveTask": "HAVE A TASK?",
     "letsDiscuss": "Let's discuss your solution.",
     "contactUs": "Contact Us"
+  },
+  "ServiceDetail": {
+    "back": "Back to Home",
+    "included": "What is included",
+    "consultation": "Need a consultation?",
+    "consultationDesc": "Our experts will help you find the best solution for your business.",
+    "cta": "Request Audit",
+    "parameter": "Service parameter"
+  },
+  "NewsDetail": {
+    "back": "Back to Home",
+    "readMore": "Read more"
+  },
+  "AuditCalculator": {
+    "title": "Technical & Economic Audit",
+    "subtitle": "Outsourcing Efficiency Assessment",
+    "description": "Professional tool for directors and owners. Calculate the real TCO (Total Cost of Ownership) and optimization potential.",
+    "fleet": {
+      "title": "Your Fleet",
+      "count": "Number of Vehicles",
+      "type": "Vehicle Type",
+      "age": "Average Age (years)",
+      "types": {
+        "light": "Passenger",
+        "van": "Light Commercial",
+        "truck": "Heavy Truck",
+        "special": "Specialized"
+      }
+    },
+    "personnel": {
+      "title": "Personnel & Taxes",
+      "driversPerVeh": "Drivers per Vehicle",
+      "salary": "Driver Salary (Net)",
+      "taxes": "Taxes & social security (30.2%)",
+      "medical": "Medical checks & training"
+    },
+    "costs": {
+      "title": "Operating Expenses",
+      "fuel": "Fuel Consumption (L/100km)",
+      "fuelPrice": "Fuel Price ($/L)",
+      "maintenance": "Service & parts/mo",
+      "insurance": "Insurance (OSAGO/KASKO)",
+      "management": "Management Overhead (5-10%)",
+      "vat": "VAT (20%)",
+      "withVat": "Include VAT",
+      "withoutVat": "Without VAT"
+    },
+    "results": {
+      "title": "Audit Results",
+      "currentTotal": "Current Annual Cost",
+      "outsourcedTotal": "Outsourced Cost",
+      "savings": "Annual Savings",
+      "efficiency": "Efficiency Growth",
+      "taxBenefit": "Tax Benefit (VAT)",
+      "download": "Download Report (PDF)",
+      "consult": "Request Detailed Audit"
+    }
   },
   "SolutionsPage": {
     "title": "Technological Solutions",
@@ -504,11 +626,57 @@
       }
     }
   },
+  "CaseDetail": {
+    "back": "Back to Cases",
+    "savings": "Savings",
+    "roi": "ROI Period",
+    "status": "Status",
+    "about": "About the Project",
+    "ctaTitle": "Want similar results?",
+    "ctaDesc": "Request a free audit of your fleet right now.",
+    "ctaButton": "Request Audit",
+    "months": "mo.",
+    "active": "Active"
+  },
   "AboutPage": {
     "title": "About Us | ResursLogistics",
     "description": "History of ResursLogistics, the market leader in transport outsourcing services.",
-    "heroTitle": "Our Story",
-    "heroDescription": "From a small startup to a federal leader in business transport asset management.",
+    "heroTitle": "Leadership Through Time",
+    "heroDescription": "We build the future of logistics based on decades of experience and innovative management technologies.",
+    "ourLegacy": "Our Legacy",
+    "scaleTitle": {
+      "main": "Scale",
+      "accent": "Guaranteeing",
+      "suffix": "Stability"
+    },
+    "scaleDescription": "Our solutions work where precision and safety are mission-critical.",
+    "scaleStats": [
+      {
+        "value": "18",
+        "label": "Years of Leadership",
+        "suffix": " "
+      },
+      {
+        "value": "10",
+        "label": "Equipment Units",
+        "suffix": "k"
+      },
+      {
+        "value": "13",
+        "label": "Professionals",
+        "suffix": "k"
+      },
+      {
+        "value": "70",
+        "label": "Digital Processes",
+        "suffix": "%"
+      },
+      {
+        "value": "15",
+        "label": "Branches in RF",
+        "suffix": " "
+      }
+    ],
     "timeline": {
       "2008": {
         "title": "Birth of the Idea",
@@ -860,6 +1028,9 @@
     "homeTitle": "ResursLogistics — Smart Transport and Special Equipment Outsourcing",
     "homeDescription": "We see transport inside out. Professional transport outsourcing for large business. Modern IT platform and control of every vehicle unit."
   },
+  "Legal": {
+    "backHome": "Back to Home"
+  },
   "PrivacyPolicy": {
     "title": "Privacy Policy",
     "content": "1. GENERAL PROVISIONS\n\n1.1. This Privacy Policy (hereinafter — the Policy) defines the procedure for processing and protecting personal data of ResursLogistics website users (hereinafter — the Site, the Company).\n\n1.2. The Company respects user privacy and takes all necessary measures to protect personal data.\n\n1.3. By using the Site, you express your consent to this Policy.\n\n2. COLLECTION OF PERSONAL DATA\n\n2.1. The Company may collect the following personal data:\n- Full name\n- Email address\n- Phone number\n- Company information\n- Other information provided voluntarily by the user\n\n2.2. Data collection is carried out through feedback forms, subscriptions, and other interactive elements of the Site.\n\n3. PURPOSES OF DATA PROCESSING\n\n3.1. Personal data is used for:\n- Processing user requests\n- Providing services and support\n- Informing about new services and offers\n- Improving Site functionality\n\n4. DATA PROTECTION\n\n4.1. The Company applies necessary technical and organizational measures to protect personal data from unauthorized access, alteration, disclosure, or destruction.\n\n5. DATA TRANSFER TO THIRD PARTIES\n\n5.1. The Company does not transfer personal data to third parties, except as required by Russian Federation law.\n\n6. COOKIE FILES\n\n6.1. The Site uses cookies to improve user experience and analyze traffic.\n\n7. USER RIGHTS\n\n7.1. Users have the right to access, correct, and delete their personal data.\n\n8. CONTACTS\n\n8.1. For questions about personal data processing, contact: info@resurslo.ru"
@@ -882,5 +1053,321 @@
   "CookieSettings": {
     "title": "Cookie Settings",
     "content": "1. WHAT ARE COOKIES\n\n1.1. Cookies are small text files that are saved to your device when you visit the Site.\n\n1.2. They allow the Site to remember your actions and preferences.\n\n2. TYPES OF COOKIES\n\n2.1. We use the following types of cookies:\n\n• Essential Cookies\n  - Provide basic Site functionality\n  - Cannot be disabled\n  - Do not store personal data\n\n• Analytics Cookies\n  - Help understand how users interact with the Site\n  - Collect anonymous statistics\n  - Example: Google Analytics\n\n• Functional Cookies\n  - Remember your preferences (language, region)\n  - Improve user experience\n\n• Marketing Cookies\n  - Used to display relevant advertising\n  - Track advertising campaign effectiveness\n\n3. COOKIE MANAGEMENT\n\n3.1. You can manage cookie settings through your browser:\n- Chrome: Settings → Privacy → Cookies\n- Firefox: Settings → Privacy → Cookies\n- Safari: Settings → Privacy\n- Edge: Settings → Cookies\n\n3.2. Disabling cookies may affect Site functionality.\n\n4. STORAGE PERIOD\n\n4.1. Session cookies are deleted after closing the browser.\n\n4.2. Persistent cookies are stored from 24 hours to 2 years.\n\n5. THIRD PARTIES\n\n5.1. Some cookies are set by third-party services:\n- Google Analytics\n- Yandex.Metrica\n- Social networks\n\n6. POLICY UPDATES\n\n6.1. The cookie policy may be updated periodically.\n\n7. CONTACTS\n\n7.1. For questions about cookie usage: info@resurslo.ru"
+  },
+  "Industries": {
+    "badge": "Industries",
+    "title": "FOR WHOM WE WORK",
+    "description": "Tailored logistics ecosystems for high-demand sectors requiring precision and reliability.",
+    "items": {
+      "industrial": {
+        "name": "Industrial Manufacturing",
+        "desc": "Optimized heavy machinery logistics and raw material transport streams."
+      },
+      "oil_gas": {
+        "name": "Oil & Gas",
+        "desc": "Mission-critical reliability for remote extraction sites and pipeline maintenance."
+      },
+      "construction": {
+        "name": "Construction",
+        "desc": "Real-time equipment tracking across multiple job sites."
+      },
+      "government": {
+        "name": "Government",
+        "desc": "Secure, compliant public sector transport protocols."
+      },
+      "logistics": {
+        "name": "Logistics",
+        "desc": "Global supply chain efficiency and route optimization."
+      }
+    }
+  },
+  "IndustryDetails": {
+    "industrial-manufacturing": {
+      "title": "Industrial Manufacturing",
+      "subtitle": "Precision Logistics for Heavy Industry",
+      "description": "In the world of industrial manufacturing, timing is everything. Our fleet management solutions ensure that raw materials arrive exactly when needed and finished goods reach their destination without delay.",
+      "caseStudy": {
+        "company": "Global Steels Corp",
+        "challenge": "High vehicle downtime and unpredictable delivery schedules.",
+        "solution": "Implementation of predictive maintenance and real-time route optimization for heavy transporters.",
+        "result": "25% reduction in operational costs and 99.8% on-time delivery rate."
+      }
+    },
+    "oil-and-gas": {
+      "title": "Oil & Gas",
+      "subtitle": "Reliability in Extreme Environments",
+      "description": "Transporting equipment and personnel to remote extraction sites requires extreme reliability. Our AI-driven monitoring ensures safety and compliance in the most challenging conditions.",
+      "caseStudy": {
+        "company": "Arctic Energy",
+        "challenge": "Losing contact with vehicles in remote northern regions.",
+        "solution": "Satellite-linked telematics and emergency protocol automation.",
+        "result": "Zero safety incidents in 24 months and 15% better fuel efficiency."
+      }
+    },
+    "construction": {
+      "title": "Construction",
+      "subtitle": "Managing Moving Assets Across Sites",
+      "description": "Construction sites are dynamic. Our platform provides real-time tracking for every piece of equipment, from heavy excavators to support trucks.",
+      "caseStudy": {
+        "company": "BuildRight Infrastructure",
+        "challenge": "Unauthorized use of equipment and difficult asset scheduling.",
+        "solution": "Geofencing and automated usage reporting for all job sites.",
+        "result": "30% increase in asset utilization and significant reduction in theft risk."
+      }
+    },
+    "government": {
+      "title": "Government",
+      "subtitle": "Secure & Compliant Public Sector Fleet",
+      "description": "Public sector logistics demand transparency and strict compliance. We provide secure data management and audited reporting for government agencies.",
+      "caseStudy": {
+        "company": "City Transport Dept",
+        "challenge": "Outdated reporting systems and high maintenance backlogs.",
+        "solution": "Digital fleet department outsourcing with full transparency portals.",
+        "result": "40% faster maintenance turnaround and complete regulatory compliance."
+      }
+    },
+    "logistics": {
+      "title": "Logistics",
+      "subtitle": "The Backbone of Global Commerce",
+      "description": "Optimize every mile. Our ecosystem integrates with your supply chain to provide end-to-end visibility and efficiency.",
+      "caseStudy": {
+        "company": "SwiftPost International",
+        "challenge": "Rising fuel costs and inefficient last-mile delivery.",
+        "solution": "AI-based dynamic routing and driver behavior monitoring.",
+        "result": "20% reduction in fuel consumption and 15% increase in daily deliveries."
+      }
+    },
+    "caseStory": "Success Story:",
+    "challenge": "The Challenge",
+    "solution": "The Solution",
+    "impact": "The Impact"
+  },
+  "FleetServices": {
+    "badge": "Premium Enterprise Solutions",
+    "title": "End-to-End",
+    "titleAccent": "Fleet Optimization",
+    "description": "Comprehensive outsourcing and management services designed for enterprise scale. We handle the complexity of global logistics so you can focus on core business operations.",
+    "learnMore": "Learn more",
+    "items": {
+      "strategic": {
+        "title": "Strategic Outsourcing",
+        "desc": "Full operational takeover with guaranteed SLA adherence. We become your dedicated fleet department."
+      },
+      "fleet": {
+        "title": "Fleet Management",
+        "desc": "Lifecycle tracking from acquisition to remarketing. Complete asset visibility and control."
+      },
+      "maintenance": {
+        "title": "Predictive Maintenance",
+        "desc": "AI-driven scheduling and repair logistics to minimize downtime and extend vehicle lifespan."
+      },
+      "driver": {
+        "title": "Driver Management",
+        "desc": "Safety training, compliance handling, and payroll integration. Keeping your team safe and compliant."
+      },
+      "monitoring": {
+        "title": "Digital Monitoring",
+        "desc": "Real-time telematics and EV performance analytics. Data-driven insights for smarter decisions."
+      },
+      "cost": {
+        "title": "Cost Optimization",
+        "desc": "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis to maximize ROI."
+      }
+    }
+  },
+  "ChallengesSection": {
+    "badge": "Challenges",
+    "title": "NAVIGATING",
+    "titleAccent": "COMPLEXITY",
+    "description": "Managing enterprise fleets without a unified system leads to bleeding costs and operational friction.",
+    "fullCycle": {
+      "title": "Full-Cycle Management",
+      "desc": "Our comprehensive ecosystem transforms fleet operations from a cost center into a strategic asset. We unify acquisition, maintenance, staffing, and disposal into a single, transparent dashboard.",
+      "points": [
+        "Predictive Maintenance AI",
+        "Real-time Global Tracking",
+        "Certified Driver Pool"
+      ],
+      "button": "LEARN ABOUT THE SOLUTION"
+    },
+    "items": {
+      "costs": {
+        "title": "Rising Costs",
+        "desc": "Unpredictable maintenance spikes and fuel inefficiency draining budgets."
+      },
+      "control": {
+        "title": "Opaque Control",
+        "desc": "Lack of real-time data creating blind spots in daily operations."
+      },
+      "staffing": {
+        "title": "Staffing Complexities",
+        "desc": "High turnover rates and costly training cycles for new drivers."
+      },
+      "downtime": {
+        "title": "Downtime Risks",
+        "desc": "Unexpected failures halting critical supply lines and revenue."
+      }
+    }
+  },
+  "StatsSection": {
+    "title": "Global Scale.",
+    "titleAccent": "Unmatched Reliability.",
+    "description": "Our infrastructure is built for mission-critical operations across continents.",
+    "reportButton": "View 2026 Report",
+    "items": [
+      {
+        "label": "15+ Years Experience",
+        "value": "15+"
+      },
+      {
+        "label": "50+ Global Regions",
+        "value": "50+"
+      },
+      {
+        "label": "10k+ Units Managed",
+        "value": "10k+"
+      },
+      {
+        "label": "98% SLA Adherence",
+        "value": "98+"
+      },
+      {
+        "label": "24/7 Global Support",
+        "value": "24/7"
+      }
+    ]
+  },
+  "CTASection": {
+    "title": "Ready to scale your fleet operations?",
+    "description": "Partner with the industry leader in corporate fleet management. Get a customized plan that fits your global needs.",
+    "consultation": "Schedule Consultation",
+    "cases": "View Case Studies"
+  },
+  "TrustedBy": {
+    "title": "Trusted By Industry Leaders",
+    "items": [
+      {
+        "name": "GE",
+        "icon": "electric_bolt"
+      },
+      {
+        "name": "Nike",
+        "icon": "checkroom"
+      },
+      {
+        "name": "Adidas",
+        "icon": "sports_soccer"
+      },
+      {
+        "name": "H&M",
+        "icon": "storefront"
+      },
+      {
+        "name": "Amazon",
+        "icon": "shopping_cart"
+      },
+      {
+        "name": "Google",
+        "icon": "search"
+      },
+      {
+        "name": "IBM",
+        "icon": "computer"
+      },
+      {
+        "name": "Cisco",
+        "icon": "router"
+      },
+      {
+        "name": "Bayer",
+        "icon": "medication"
+      },
+      {
+        "name": "Sony",
+        "icon": "tv"
+      }
+    ]
+  },
+  "FooterNav": {
+    "company": {
+      "title": "Company",
+      "links": [
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "News",
+          "href": "/news"
+        },
+        {
+          "label": "Contacts",
+          "href": "/contacts"
+        },
+        {
+          "label": "Services",
+          "href": "/services"
+        }
+      ]
+    },
+    "resources": {
+      "title": "Resources",
+      "links": [
+        {
+          "label": "Cases",
+          "href": "/cases"
+        }
+      ]
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "cookies": "Cookie Settings"
+    },
+    "presence": "Global Presence",
+    "copyright": "© 2026 ResursLogistics. All rights reserved."
+  },
+  "ContactPage": {
+    "title": "Contacts | ResursLogistics",
+    "description": "Get in touch with us for audits, consultations, or partnership opportunities.",
+    "badge": "Contact Us",
+    "heroTitle": "Let's ",
+    "heroAccent": "Begin",
+    "heroDescription": "Contact us for a free audit of your fleet or a consultation on cost optimization.",
+    "info": {
+      "email": {
+        "label": "Email",
+        "value": "info@resurslo.ru"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "+7 (495) 123-45-67"
+      },
+      "office": {
+        "label": "Office",
+        "value": "Moscow, \"Lotos\" BC, Odesskaya St, 2"
+      }
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Alexander",
+      "company": "Company",
+      "companyPlaceholder": "Logistics LLC",
+      "emailPhone": "Email / Phone",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your fleet...",
+      "consent": "I consent to the processing of my personal data in accordance with the ",
+      "privacyPolicy": "Privacy Policy",
+      "submit": "Send Request"
+    },
+    "map": {
+      "title": "Our Main Office",
+      "schedule": "Mon-Fri: 09:00 - 18:00"
+    },
+    "externalLink": {
+      "warning": "You are leaving the ResursLogistics website and moving to Telegram. Continue?",
+      "confirm": "Proceed",
+      "cancel": "Cancel"
+    }
   }
 }

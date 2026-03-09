@@ -1,27 +1,101 @@
 {
     "hero": {
-        "badge": "Реальные результаты",
-        "title": "Кейсы наших клиентов",
-        "subtitle": "Посмотрите, как мы помогли ведущим компаниям оптимизировать транспортные расходы"
+        "badge": "Real Results",
+        "title": "Client Case Studies",
+        "subtitle": "See how we've helped leading companies optimize their transportation costs"
+    },
+    "casesHero": {
+        "badge": "Technology 4.0",
+        "title": "INTELLIGENT ",
+        "accent": "FLEET",
+        "suffix": "MANAGEMENT",
+        "description": "Unified digital ecosystem for complete control over your vehicles. Reduce costs and improve efficiency with cutting-edge telematics and AI.",
+        "features": [
+            {
+                "title": "GPS Monitoring",
+                "desc": "Accuracy up to 1 meter in real time.",
+                "icon": "satellite_alt"
+            },
+            {
+                "title": "Fuel Control",
+                "desc": "Protection against siphoning and consumption analysis.",
+                "icon": "local_gas_station"
+            },
+            {
+                "title": "Deep Analytics",
+                "desc": "BI reports and predictive diagnostics.",
+                "icon": "analytics"
+            },
+            {
+                "title": "Smart Routing",
+                "desc": "Logistics optimization via AI algorithms.",
+                "icon": "route"
+            }
+        ]
+    },
+    "caseStudies": {
+        "title": "Implementation Results",
+        "description": "Real performance indicators of our clients after integrating the ResursLogistics system.",
+        "viewAll": "View all cases",
+        "cta": {
+            "title": "Ready to optimize your business?",
+            "subtitle": "Get a personalized calculation of the system's payback for your fleet today.",
+            "button": "Calculate Savings"
+        },
+        "items": [
+            {
+                "slug": "retailer-logistics",
+                "category": "Logistics",
+                "title": "Major Retailer",
+                "desc": "Delivery route optimization for a fleet of 500+ trucks nationwide.",
+                "metric": "-27%",
+                "metricLabel": "Expenses",
+                "outcome": "Reduction in fuel costs",
+                "icon": "local_shipping",
+                "color": "orange"
+            },
+            {
+                "slug": "construction-monitoring",
+                "category": "Construction",
+                "title": "BuildMechTrans",
+                "desc": "Implementation of machine sensors and idle time monitoring on construction sites.",
+                "metric": "-35%",
+                "metricLabel": "Idle Time",
+                "outcome": "Reduction in engine idling",
+                "icon": "construction",
+                "color": "blue"
+            },
+            {
+                "slug": "fmcg-distribution",
+                "category": "Distribution",
+                "title": "FMCG Partner",
+                "desc": "Route planning automation and delivery timeline tracking.",
+                "metric": "100%",
+                "metricLabel": "Compliance",
+                "outcome": "Delivery schedule accuracy",
+                "icon": "inventory_2",
+                "color": "purple"
+            }
+        ]
     },
     "cases": [
         {
-            "client": "Ритейл-сеть «МегаМаркет»",
+            "client": "Retail Chain \"MegaMarket\"",
             "result": "−34% TCO",
-            "duration": "6 месяцев",
-            "desc": "Перевели 1200 единиц техники на аутсорсинг, сократили простои на 60%"
+            "duration": "6 months",
+            "desc": "Transitioned 1200 units of equipment to outsourcing, reduced downtime by 60%"
         },
         {
-            "client": "Логистический холдинг «ТрансЛогик»",
-            "result": "−28% топливо",
-            "duration": "4 месяца",
-            "desc": "Внедрили телематику и маршрутизацию на базе ИИ для 800 грузовиков"
+            "client": "Logistics Holding \"TransLogik\"",
+            "result": "−28% fuel",
+            "duration": "4 months",
+            "desc": "Implemented telematics and AI-based routing for 800 trucks"
         },
         {
-            "client": "Фармацевтическая компания «БиоМед»",
+            "client": "Pharmaceutical Company \"BioMed\"",
             "result": "99.2% SLA",
-            "duration": "12 месяцев",
-            "desc": "Гарантированные поставки температурного груза по всей России"
+            "duration": "12 months",
+            "desc": "Guaranteed delivery of temperature-controlled cargo across Russia"
         }
     ]
 }

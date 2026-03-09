@@ -2,14 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import ru from "@/app/messages/ru.json";
 import en from "@/app/messages/en.json";
+import hi from "@/app/messages/hi.json";
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/data/content');
 
 export async function getServerTranslations(locale: string = "ru") {
-    let baseMessages: any = locale === "en" ? { ...en } : { ...ru };
+    let baseMessages: any;
 
-    // Hindi fallback to EN
-    if (locale === "hi") {
+    if (locale === "ru") {
+        baseMessages = { ...ru };
+    } else if (locale === "hi") {
+        baseMessages = { ...hi };
+    } else {
         baseMessages = { ...en };
     }
 

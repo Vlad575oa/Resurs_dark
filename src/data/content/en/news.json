@@ -1,30 +1,30 @@
 {
     "hero": {
-        "badge": "Актуально",
-        "title": "Новости и аналитика",
-        "subtitle": "Экспертные материалы о рынке транспортного аутсорсинга"
+        "badge": "LATEST",
+        "title": "News & Insights",
+        "subtitle": "Expert materials on the transport outsourcing market"
     },
     "articles": [
         {
-            "slug": "ai-fleet-2026",
-            "title": "ИИ в управлении автопарком: тренды 2026",
-            "category": "Аналитика",
-            "date": "07.03.2026",
-            "preview": "Как искусственный интеллект меняет индустрию транспортного менеджмента..."
+            "title": "AI in Fleet Management: 2026 Trends",
+            "category": "Analytics",
+            "date": "Mar 07, 2026",
+            "image": "/images/news/ai-fleet.webp",
+            "content": "<p>We are excited to announce the launch of the new version of our predictive risk analysis system. Version 2.0 uses updated machine learning algorithms that process telematics data in real-time with unprecedented accuracy.</p><h3>Key Improvements:</h3><ul><li>Component failure prediction accuracy up to 92%.</li><li>Analysis of driving style and its impact on part wear.</li><li>Integration with major service centers for automatic maintenance scheduling.</li></ul><p>The new update can predict vehicle component failures with up to 92% accuracy, 500 km before the malfunction occurs. This is a significant step forward in ensuring the safety and efficiency of corporate fleets.</p>"
         },
         {
-            "slug": "green-fleet",
-            "title": "Зеленый автопарк: переход на электротранспорт",
-            "category": "Инновации",
-            "date": "01.03.2026",
-            "preview": "Практические кейсы перевода корпоративного транспорта на электрическую тягу..."
+            "title": "ResursLogistics Expands Presence in Central Asia",
+            "category": "Company",
+            "date": "Mar 01, 2026",
+            "image": "/images/news/expansion.webp",
+            "content": "<p>ResursLogistics continues its international expansion. Today we officially open our new operational hub in Almaty, Kazakhstan.</p><p>This strategic move will allow us to significantly improve the quality of service for our clients in the Central Asian region. The new hub will coordinate cross-border transportation and provide on-the-ground technical support.</p><blockquote>\"Central Asia is a dynamic market with huge potential in logistics. Our presence here will allow us to introduce global standards in fleet management,\" states the company leadership.</blockquote>"
         },
         {
-            "slug": "tco-guide",
-            "title": "Руководство по расчету TCO",
-            "category": "Гайд",
-            "date": "20.02.2026",
-            "preview": "Полное руководство по расчету совокупной стоимости владения автопарком..."
+            "title": "Environmental Standards 2026: The Path to Zero Emission",
+            "category": "Environment",
+            "date": "Feb 25, 2026",
+            "image": "/images/news/green-fleet.webp",
+            "content": "<p>As part of our commitment to ESG principles, ResursLogistics is introducing a new strategy for transitioning to eco-friendly transport. We are helping our partners integrate electric and hybrid vehicles into their supply chains.</p><p>Research shows that using an electric fleet not only reduces your carbon footprint but, when managed correctly, also increases economic efficiency through savings on fuel and maintenance.</p><p>We offer full-cycle support: from auditing your current fleet to installing charging infrastructure and training drivers.</p>"
         }
     ]
 }

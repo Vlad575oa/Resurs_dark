@@ -5,7 +5,8 @@ import { useParams } from 'next/navigation';
 import {
     Save, RefreshCw, ChevronDown, ChevronRight,
     Plus, Trash2, AlertCircle, CheckCircle2, Loader2,
-    Home, Briefcase, Wrench, Users, Newspaper, Phone, HelpCircle
+    Home, Briefcase, Wrench, Users, Newspaper, Phone, HelpCircle,
+    Image as ImageIcon, Upload
 } from 'lucide-react';
 
 // ─── deep setter ─────────────────────────────────────────────────────────────
@@ -21,6 +22,80 @@ function setDeep(obj: any, path: (string | number)[], value: any): any {
 }
 
 // ─── Field components ─────────────────────────────────────────────────────────
+
+function ImageField({ label, value, path, onChange }: {
+    label: string; value: string;
+    path: (string | number)[];
+    onChange: (p: (string | number)[], v: string) => void;
+}) {
+    const [uploading, setUploading] = useState(false);
+    const [preview, setPreview] = useState(value);
+
+    useEffect(() => { setPreview(value); }, [value]);
+
+    const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+        const formData = new FormData();
+        formData.append('files', file);
+
+        try {
+            const res = await fetch('/api/admin/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const result = await res.json();
+            if (result.success && result.uploaded?.[0]) {
+                const newUrl = result.uploaded[0];
+                onChange(path, newUrl);
+                setPreview(newUrl);
+            }
+        } catch (error) {
+            console.error('Upload failed:', error);
+            alert('Ошибка при загрузке изображения');
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    return (
+        <div className="space-y-1.5">
+            <label className="block text-[10px] font-black uppercase tracking-[0.15em] text-slate-300">{label}</label>
+            <div className="flex items-center gap-4">
+                <div className="relative size-16 rounded-xl overflow-hidden bg-white/5 border border-white/10 flex-shrink-0">
+                    {preview ? (
+                        <img src={preview} alt="preview" className="w-full h-full object-cover" />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-slate-700">
+                            <ImageIcon className="size-6" />
+                        </div>
+                    )}
+                    {uploading && (
+                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                            <Loader2 className="size-4 text-white animate-spin" />
+                        </div>
+                    )}
+                </div>
+                <div className="flex-1 space-y-2">
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={e => onChange(path, e.target.value)}
+                        placeholder="/images/example.webp"
+                        className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all font-mono"
+                    />
+                    <label className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[10px] font-bold text-slate-300 hover:text-white cursor-pointer transition-all">
+                        <Upload className="size-3" />
+                        {uploading ? 'Загрузка...' : 'Загрузить новое'}
+                        <input type="file" className="hidden" accept="image/*" onChange={handleUpload} disabled={uploading} />
+                    </label>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 function StringField({ label, value, path, onChange }: {
     label: string; value: string;
@@ -50,11 +125,12 @@ function StringField({ label, value, path, onChange }: {
     );
 }
 
-function ObjectBlock({ label, value, path, onChange, onDelete }: {
+function ObjectBlock({ label, value, path, onChange, onDelete, section }: {
     label: string; value: Record<string, any>;
     path: (string | number)[];
     onChange: (p: (string | number)[], v: any) => void;
     onDelete?: () => void;
+    section?: string;
 }) {
     const [open, setOpen] = useState(true);
     return (
@@ -80,23 +156,28 @@ function ObjectBlock({ label, value, path, onChange, onDelete }: {
             </div>
             {open && (
                 <div className="p-4 space-y-4 bg-[#0d1117]/30">
-                    {renderFields(value, path, onChange)}
+                    {renderFields(value, path, onChange, section)}
                 </div>
             )}
         </div>
     );
 }
 
-function ArrayBlock({ label, value, path, onChange }: {
+function ArrayBlock({ label, value, path, onChange, section }: {
     label: string; value: any[];
     path: (string | number)[];
     onChange: (p: (string | number)[], v: any) => void;
+    section?: string;
 }) {
     const addItem = () => {
         const template = value.length > 0
-            ? Object.fromEntries(Object.keys(value[0]).map(k => [k, '']))
+            ? Object.fromEntries(Object.keys(value[0]).filter(k => {
+                if (section === 'news') return k !== 'slug' && k !== 'preview';
+                return true;
+            }).map(k => [k, '']))
             : { value: '' };
-        onChange(path, [...value, template]);
+        // Prepend for all arrays (usually better for CMS lists)
+        onChange(path, [template, ...value]);
     };
     const removeItem = (idx: number) => onChange(path, value.filter((_, i) => i !== idx));
 
@@ -125,7 +206,7 @@ function ArrayBlock({ label, value, path, onChange }: {
                         </div>
                     ) : (
                         <ObjectBlock key={idx} label={`Элемент ${idx + 1}`} value={item}
-                            path={[...path, idx]} onChange={onChange} onDelete={() => removeItem(idx)} />
+                            path={[...path, idx]} onChange={onChange} onDelete={() => removeItem(idx)} section={section} />
                     )
                 ))}
                 {value.length === 0 && (
@@ -136,16 +217,26 @@ function ArrayBlock({ label, value, path, onChange }: {
     );
 }
 
-function renderFields(data: any, path: (string | number)[], onChange: (path: (string | number)[], value: any) => void): React.ReactNode {
+function renderFields(data: any, path: (string | number)[], onChange: (path: (string | number)[], value: any) => void, section?: string): React.ReactNode {
     if (!data || typeof data !== 'object') return null;
     return Object.entries(data).map(([key, value]) => {
         const currentPath = [...path, key];
+
+        // Simplify News: skip slug and preview
+        if (section === 'news' && (key === 'slug' || key === 'preview')) return null;
+
+        // Detect image fields based on common key patterns
+        const isImageField = /image|img|icon|logo|poster|avatar|preview/i.test(key) && typeof value === 'string';
+
+        if (isImageField)
+            return <ImageField key={key} label={key} value={String(value)} path={currentPath} onChange={onChange} />;
+
         if (typeof value === 'string' || typeof value === 'number')
             return <StringField key={key} label={key} value={String(value)} path={currentPath} onChange={onChange} />;
         if (Array.isArray(value))
-            return <ArrayBlock key={key} label={key} value={value} path={currentPath} onChange={onChange} />;
+            return <ArrayBlock key={key} label={key} value={value} path={currentPath} onChange={onChange} section={section} />;
         if (typeof value === 'object' && value !== null)
-            return <ObjectBlock key={key} label={key} value={value} path={currentPath} onChange={onChange} />;
+            return <ObjectBlock key={key} label={key} value={value} path={currentPath} onChange={onChange} section={section} />;
         return null;
     });
 }
@@ -304,7 +395,7 @@ export default function ContentEditor({ section }: { section: string }) {
                 </div>
             ) : data ? (
                 <div className="bg-[#161b22]/70 backdrop-blur-md border border-white/[0.07] rounded-2xl p-6 space-y-5">
-                    {renderFields(data, [], handleChange)}
+                    {renderFields(data, [], handleChange, section)}
                 </div>
             ) : null}
 

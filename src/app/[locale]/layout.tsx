@@ -21,6 +21,7 @@ const manrope = Manrope({
 });
 
 import TelegramFab from "@/components/ui/TelegramFab";
+import ChatBot from "@/components/ui/ChatBot";
 
 export const metadata: Metadata = {
   title: "FleetCorp - Управление корпоративным автопарком",
@@ -45,7 +46,7 @@ export default async function RootLayout({
         className={`${interTight.variable} ${playfair.variable} ${manrope.variable} font-display antialiased selection:bg-primary selection:text-white`}
       >
         {children}
-        <TelegramFab />
+        <ChatBot />
       </body>
     </html>
   );

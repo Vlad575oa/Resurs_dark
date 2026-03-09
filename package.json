@@ -12,14 +12,16 @@
     "@google/generative-ai": "^0.24.1",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.34.2",
+    "cobe": "^0.6.5",
+    "framer-motion": "^12.35.1",
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
     "nodemailer": "^8.0.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
