@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Playfair_Display, Manrope } from "next/font/google";
 import "../globals.css";
-import "./fonts.css";
 
 const interTight = Inter_Tight({
   variable: "--font-sans",
@@ -47,22 +46,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        {/* Self-hosted Material Icons */}
-        <link
-          rel="preload"
-          href="/fonts/material-symbols-outlined.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body
         className={`${interTight.variable} ${playfair.variable} ${manrope.variable} font-display antialiased selection:bg-primary selection:text-white`}
