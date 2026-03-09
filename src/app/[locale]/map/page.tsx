@@ -6,17 +6,13 @@ import { ArrowRight, MapPin, Phone, Building2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-// Lazy load Globe component with no SSR
+// Lazy load Globe component with no SSR - deferred for performance
 const Globe = dynamic(async () => {
     const module = await import("@/components/ui/Globe");
     return module.default;
 }, {
     ssr: false,
-    loading: () => (
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-800/20 via-[#05070a] to-[#05070a] flex items-center justify-center">
-            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-        </div>
-    )
+    loading: () => null
 });
 
 interface Branch {
@@ -30,6 +26,7 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
     const [branches, setBranches] = useState<Branch[]>([]);
     const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showGlobe, setShowGlobe] = useState(false);
 
     useEffect(() => {
         const mockBranches = locale === 'ru' ? [
@@ -66,15 +63,21 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
 
         setBranches(mockBranches);
         setIsLoaded(true);
+        
+        // Defer Globe loading until after initial paint
+        const timer = setTimeout(() => setShowGlobe(true), 100);
+        return () => clearTimeout(timer);
     }, [locale]);
 
     return (
         <div className="relative h-screen w-screen bg-[#05070a] overflow-hidden flex items-center justify-center font-sans">
             {/* Background Globe Container - Lazy loaded */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none flex items-center justify-center overflow-hidden w-[160vh] h-[160vh] lg:w-[130vh] lg:h-[130vh] transition-opacity duration-1000 opacity-30 lg:opacity-50">
-                <Suspense fallback={null}>
-                    <Globe className="w-full h-full" />
-                </Suspense>
+                {showGlobe && (
+                    <Suspense fallback={null}>
+                        <Globe className="w-full h-full" />
+                    </Suspense>
+                )}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(5,7,10,0.5)_60%,#05070a_90%)]" />
             </div>
 
