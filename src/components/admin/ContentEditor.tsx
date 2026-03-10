@@ -84,7 +84,7 @@ function ImageField({ label, value, path, onChange }: {
                         value={value}
                         onChange={e => onChange(path, e.target.value)}
                         placeholder="/images/example.webp"
-                        className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all font-mono"
+                        className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2.5 text-[16px] md:text-xs text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all font-mono"
                     />
                     <label className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[10px] font-bold text-slate-300 hover:text-white cursor-pointer transition-all">
                         <Upload className="size-3" />
@@ -111,14 +111,14 @@ function StringField({ label, value, path, onChange }: {
                     value={value}
                     onChange={e => onChange(path, e.target.value)}
                     rows={3}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-700 resize-y focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all font-mono"
+                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[16px] md:text-sm text-white placeholder-slate-700 resize-y focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all font-mono"
                 />
             ) : (
                 <input
                     type="text"
                     value={value}
                     onChange={e => onChange(path, e.target.value)}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all"
+                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2.5 text-[16px] md:text-sm text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2564f4]/35 focus:border-[#2564f4]/40 transition-all"
                 />
             )}
         </div>
@@ -312,7 +312,7 @@ export default function ContentEditor({ section }: { section: string }) {
     return (
         <div className="max-w-3xl mx-auto space-y-6">
             {/* Header */}
-            <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="flex items-center gap-4">
                     <div className="relative size-12 flex-shrink-0">
                         <div className="absolute inset-0 rounded-xl blur-[8px] opacity-40" style={{ background: meta.color }} />

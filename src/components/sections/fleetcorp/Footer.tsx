@@ -75,7 +75,7 @@ export default function Footer({ locale, dict }: { locale: string, dict: any }) 
             </div>
             <img
               alt="Global Presence Map"
-              className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
+              className="w-full h-full object-cover opacity-60 md:opacity-40 group-hover:opacity-80 transition-all duration-700 grayscale-0 md:grayscale group-hover:grayscale-0 group-hover:scale-110"
               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=800"
             />
           </Link>

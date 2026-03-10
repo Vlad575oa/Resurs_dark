@@ -205,7 +205,7 @@ export default function ChatBot() {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="absolute bottom-20 right-0 w-[90vw] md:w-[400px] h-[600px] max-h-[80vh] bg-background-dark/95 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                        className="fixed bottom-0 right-0 md:bottom-20 md:right-0 w-full md:w-[400px] h-full md:h-[600px] max-h-[100dvh] md:max-h-[80vh] bg-background-dark/95 backdrop-blur-2xl rounded-t-[2.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Header */}
                         <div className="p-6 bg-gradient-to-r from-primary/20 to-transparent border-b border-white/5 flex items-center gap-4">
@@ -258,7 +258,7 @@ export default function ChatBot() {
                                                         required
                                                         type="text"
                                                         placeholder="+7 (___) ___-__-__"
-                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-[16px] md:text-xs text-white focus:outline-none focus:border-primary transition-colors"
                                                     />
                                                 </div>
                                                 <button className="w-full bg-primary hover:bg-white text-background-dark py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">
@@ -289,7 +289,7 @@ export default function ChatBot() {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder="Задайте свой вопрос..."
-                                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-12 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-primary/50 transition-all"
+                                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-12 text-[16px] md:text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-primary/50 transition-all"
                                 />
                                 <button
                                     onClick={handleSend}

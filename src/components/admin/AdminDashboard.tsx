@@ -41,7 +41,7 @@ export default function AdminDashboard() {
         <div className="max-w-6xl mx-auto space-y-10">
 
             {/* Hero header */}
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#161b22]/70 backdrop-blur-md px-8 py-8">
+            <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#161b22]/70 backdrop-blur-md px-6 py-10 md:px-8 md:py-8">
                 <div className="absolute -right-12 -top-12 w-48 h-48 bg-[#2564f4]/10 rounded-full blur-[60px] pointer-events-none" />
                 <div className="absolute right-6 bottom-0 opacity-5 pointer-events-none">
                     <Zap className="size-40 text-[#2564f4]" fill="currentColor" />
@@ -51,10 +51,10 @@ export default function AdminDashboard() {
                         <span className="size-1.5 rounded-full bg-[#2564f4] animate-pulse" />
                         ResursCMS · Активен
                     </div>
-                    <h1 className="text-3xl font-black text-white mb-1 tracking-tight">
+                    <h1 className="text-2xl md:text-3xl font-black text-white mb-2 md:mb-1 tracking-tight">
                         Панель управления
                     </h1>
-                    <p className="text-white text-sm max-w-md">
+                    <p className="text-slate-300 text-xs md:text-sm max-w-md">
                         Редактируйте контент страниц, управляйте медиафайлами и отслеживайте состояние сайта
                     </p>
                 </div>
@@ -68,7 +68,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Status strip */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                     { label: 'Страниц в CMS', value: String(pages.length), icon: HardDrive, color: '#2564f4' },
                     { label: 'Медиафайлов', value: mediaCount !== null ? String(mediaCount) : '—', icon: Image, color: '#8b5cf6' },
