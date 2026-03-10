@@ -62,13 +62,13 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
             </div>
 
             {/* H1 - Critical ATF Content */}
-            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+            <h1 suppressHydrationWarning className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
               {renderTitle(title)}
             </h1>
 
             {/* Description */}
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-xl max-w-2xl border-l-4 border-l-primary">
-              <p className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed">
+              <p suppressHydrationWarning className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed">
                 {dict.description}
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
               >
                 <span className="flex items-center justify-center gap-2 relative z-10">
                   {dict.submitRequest || 'Получить коммерческое предложение'}
-                  <span className="material-symbols-outlined text-xl">
+                  <span suppressHydrationWarning className="material-symbols-outlined text-xl">
                     arrow_forward
                   </span>
                 </span>
@@ -90,7 +90,7 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
                 href={underConstructionUrl}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300"
               >
-                <span className="material-symbols-outlined text-xl text-primary">
+                <span suppressHydrationWarning className="material-symbols-outlined text-xl text-primary">
                   analytics
                 </span>
                 {dict.getAudit}
@@ -119,7 +119,7 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
               </div>
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/20 rounded-lg text-primary">
-                  <span className="material-symbols-outlined text-lg">
+                  <span suppressHydrationWarning className="material-symbols-outlined text-lg">
                     trending_up
                   </span>
                 </div>

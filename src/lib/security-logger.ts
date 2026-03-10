@@ -47,20 +47,29 @@ function ensureLogDir(): void {
  * Log a security event
  */
 export function logSecurityEvent(event: Omit<SecurityLogEvent, 'timestamp'>): void {
-  ensureLogDir();
-  
-  const logEntry: SecurityLogEvent = {
-    ...event,
-    timestamp: new Date().toISOString(),
-  };
-  
-  // Append to log file
-  const logLine = JSON.stringify(logEntry) + '\n';
-  fs.appendFileSync(LOG_FILE, logLine);
-  
-  // Alert on critical/high severity events in development
-  if (event.severity === 'critical' || event.severity === 'high') {
-    console.error('[SECURITY ALERT]', JSON.stringify(logEntry));
+  try {
+    // Only attempt filesystem operations in Node.js environment
+    if (typeof window !== 'undefined') return;
+
+    ensureLogDir();
+    
+    const logEntry: SecurityLogEvent = {
+      ...event,
+      timestamp: new Date().toISOString(),
+    };
+    
+    // Append to log file
+    const logLine = JSON.stringify(logEntry) + '\n';
+    fs.appendFileSync(LOG_FILE, logLine);
+    
+    // Alert on critical/high severity events in development
+    if (event.severity === 'critical' || event.severity === 'high') {
+      console.error('[SECURITY ALERT]', JSON.stringify(logEntry));
+    }
+  } catch (err) {
+    // Fallback to console if file logging fails, but don't crash
+    console.error('[SECURITY ERROR] Failed to write log:', err);
+    console.warn('[SECURITY EVENT]', JSON.stringify(event));
   }
 }
 

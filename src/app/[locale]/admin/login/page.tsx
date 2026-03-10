@@ -25,13 +25,19 @@ export default function AdminLoginPage() {
                 body: JSON.stringify({ password }),
             });
             if (!res.ok) {
-                const data = await res.json();
-                setError(data.error || 'Неверный пароль. Попробуйте снова.');
+                let errorMsg = `Error ${res.status}: ${res.statusText}`;
+                try {
+                   const data = await res.json();
+                   errorMsg = data.error || errorMsg;
+                } catch {
+                   // Fallback for non-JSON responses (e.g., 500 errors)
+                }
+                setError(errorMsg);
             } else {
                 router.push(`/${locale}/admin`);
             }
-        } catch {
-            setError('Ошибка соединения с сервером');
+        } catch (err) {
+            setError(`Ошибка соединения: ${err instanceof Error ? err.message : 'Unknown network error'}`);
         } finally {
             setLoading(false);
         }

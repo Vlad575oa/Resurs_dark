@@ -52,10 +52,10 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
                     <h2 className="text-primary text-sm font-bold tracking-[0.15em] uppercase">
                         {dict?.badge || "Industry Leaders"}
                     </h2>
-                    <h3 className="text-white text-3xl md:text-4xl font-bold tracking-tight">
+                    <h3 suppressHydrationWarning className="text-white text-3xl md:text-4xl font-bold tracking-tight">
                         {dict?.title || "Sectors We Serve"}
                     </h3>
-                    <p className="text-slate-400 max-w-2xl mt-2 text-lg">
+                    <p suppressHydrationWarning className="text-slate-400 max-w-2xl mt-2 text-lg">
                         {dict?.description || "Specialized solutions for enterprise requirements."}
                     </p>
                 </div>
@@ -76,7 +76,7 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                             <div className="absolute bottom-0 left-0 p-6 w-full">
                                 <div className="mb-2 text-primary">
-                                    <span className="material-symbols-outlined text-3xl">{item.icon}</span>
+                                    <span suppressHydrationWarning className="material-symbols-outlined text-3xl">{item.icon}</span>
                                 </div>
                                 <h4 className="text-white text-xl font-bold mb-1">{item.name}</h4>
                                 <p className="text-slate-300 text-sm leading-relaxed max-w-md">{item.description}</p>
