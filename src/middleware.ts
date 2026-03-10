@@ -10,10 +10,43 @@ export function middleware(request: NextRequest) {
 
     // Admin panel redirect to involve locale
     if (pathname === '/admin') {
-        return NextResponse.redirect(new URL(`/${defaultLocale}/admin`, request.url));
+        const response = NextResponse.redirect(new URL(`/${defaultLocale}/admin`, request.url));
+        if (!request.cookies.has('csrf-token')) {
+            response.cookies.set('csrf-token', generateCsrfToken(), {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                path: '/admin',
+                maxAge: 60 * 60 * 24,
+            });
+        }
+        return response;
     }
     if (pathname.startsWith('/admin/')) {
-        return NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
+        const response = NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
+        if (!request.cookies.has('csrf-token')) {
+            response.cookies.set('csrf-token', generateCsrfToken(), {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                path: '/admin',
+                maxAge: 60 * 60 * 24,
+            });
+        }
+        return response;
+    }
+
+    // Set CSRF token for actual localized admin routes if missing
+    if (pathname.includes('/admin') && !request.cookies.has('csrf-token')) {
+        const response = NextResponse.next();
+        response.cookies.set('csrf-token', generateCsrfToken(), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            path: '/admin',
+            maxAge: 60 * 60 * 24,
+        });
+        return response;
     }
 
     // Skip API routes — no locale prefix needed
