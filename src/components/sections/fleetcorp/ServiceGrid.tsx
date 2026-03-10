@@ -41,14 +41,14 @@ export default function ServiceGrid({ dict, locale }: { dict: any; locale: strin
     ];
 
     return (
-        <section className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark text-slate-100">
+        <section className="relative pt-20 pb-16 px-6 2xl:px-32 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Decoration */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] bg-grid-fade"></div>
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3"></div>
             </div>
 
-            <div className="max-w-[1200px] mx-auto relative z-10 text-center mb-16">
+            <div className="max-w-[1200px] 2xl:max-w-[1700px] mx-auto relative z-10 text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                     {dict?.badge || "Our Services"}
@@ -62,7 +62,7 @@ export default function ServiceGrid({ dict, locale }: { dict: any; locale: strin
             </div>
 
             {/* Service Grid */}
-            <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="max-w-[1200px] 2xl:max-w-[1700px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map((s) => (
                     <div key={s.title} className="group relative bg-[#151b26] border border-slate-800 rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 overflow-hidden">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">

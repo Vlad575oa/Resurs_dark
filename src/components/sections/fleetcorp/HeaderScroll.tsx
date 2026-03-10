@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function HeaderScroll({ locale, dict }: { locale: string; dict: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const languages = [
     { code: 'ru', flag: 'ru', label: 'Русский' },
@@ -59,13 +61,18 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 transition-all duration-300 ${isScrolled || isMenuOpen
-          ? "bg-background-dark/95 shadow-lg py-2"
-          : "bg-background-dark/80 py-4"
-          } border-b border-white/5 backdrop-blur-md z-50 px-4 md:px-10 lg:px-20`}
+        className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
+          isMounted && (isScrolled || isMenuOpen)
+            ? "bg-background-dark/95 shadow-lg py-2"
+            : "bg-background-dark/80 py-4"
+        } border-b border-white/5 backdrop-blur-md z-50 px-4 md:px-10 lg:px-20 2xl:px-32`}
       >
         <div className="relative flex items-center justify-between md:justify-center h-12">
           {/* Logo */}
@@ -152,12 +159,12 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
               )}
             </div>
 
-            <Link
-              href={`/${locale}/under-construction`}
+            <button
+              onClick={() => router.push(`/${locale}/under-construction`)}
               className="bg-primary hover:bg-blue-600 text-white text-xs font-black uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all shadow-[0_4px_15px_rgba(37,106,244,0.3)] hover:scale-105 active:scale-95 inline-block"
             >
               {headerDict.submitRequest}
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}

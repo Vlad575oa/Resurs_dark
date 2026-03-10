@@ -10,9 +10,9 @@ export default function NumbersScaleGlobal({ dict, locale }: { dict: any; locale
     ];
 
     return (
-        <section className="bg-[#0b0e14] py-24 px-6 border-t border-slate-900 relative">
+        <section className="bg-[#0b0e14] py-24 px-6 2xl:px-32 border-t border-slate-900 relative">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent opacity-50"></div>
-            <div className="max-w-[1200px] mx-auto relative z-10">
+            <div className="max-w-[1200px] 2xl:max-w-[1700px] mx-auto relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                     <div className="max-w-xl">
                         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">

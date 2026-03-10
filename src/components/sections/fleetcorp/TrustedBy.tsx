@@ -16,7 +16,7 @@ export default function TrustedBy({ dict }: { dict: any }) {
     const title = dict?.title || dict?.TrustedBy?.title || "Trusted By Industry Leaders";
     return (
         <section className="w-full border-y border-white/5 bg-background-dark py-12 overflow-hidden">
-            <div className="mb-8 px-6 lg:px-10 text-center">
+            <div className="mb-8 px-6 md:px-10 lg:px-20 2xl:px-32 text-center">
                 <p className="text-xs font-bold tracking-[0.3em] text-slate-500 uppercase opacity-60">
                     {title}
                 </p>

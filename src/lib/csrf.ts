@@ -2,13 +2,16 @@
  * CSRF Protection Utilities
  */
 
-import { randomBytes, createHash } from 'crypto';
-
 /**
- * Generate a secure CSRF token
+ * Generate a secure CSRF token using Web Crypto API
+ * Compatible with Edge runtime
  */
 export function generateCsrfToken(): string {
-  return randomBytes(32).toString('hex');
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 /**
@@ -20,19 +23,29 @@ export function validateCsrfToken(token: string, expectedToken: string): boolean
     return false;
   }
 
-  const tokenBuffer = Buffer.from(token);
-  const expectedBuffer = Buffer.from(expectedToken);
+  const encoder = new TextEncoder();
+  const tokenBytes = encoder.encode(token);
+  const expectedBytes = encoder.encode(expectedToken);
 
-  if (tokenBuffer.length !== expectedBuffer.length) {
+  if (tokenBytes.length !== expectedBytes.length) {
     return false;
   }
 
-  return crypto.timingSafeEqual(tokenBuffer, expectedBuffer);
+  // Constant-time comparison for Edge runtime
+  let result = 0;
+  for (let i = 0; i < tokenBytes.length; i++) {
+    result |= tokenBytes[i] ^ expectedBytes[i];
+  }
+  return result === 0;
 }
 
 /**
- * Hash a CSRF token for secure storage
+ * Hash a CSRF token for secure storage using Web Crypto API
  */
-export function hashCsrfToken(token: string): string {
-  return createHash('sha256').update(token).digest('hex');
+export async function hashCsrfToken(token: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(token);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }

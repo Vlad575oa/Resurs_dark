@@ -4,8 +4,8 @@ export default function CaseStudies({ locale, dict }: { locale: string; dict: an
   const cases = dict.items;
 
   return (
-    <section className="py-24 px-6 md:px-10 lg:px-40 bg-[#0c1017] border-t border-[#1e2430]">
-      <div className="max-w-[1280px] mx-auto">
+    <section className="py-24 px-6 md:px-10 lg:px-40 2xl:px-32 bg-[#0c1017] border-t border-[#1e2430]">
+      <div className="max-w-[1280px] 2xl:max-w-[1700px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-4">

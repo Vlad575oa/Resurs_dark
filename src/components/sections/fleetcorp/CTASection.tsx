@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function CTASection({ dict, locale }: { dict: any; locale: string }) {
   return (
     <section className="py-20 px-6 bg-background-dark relative border-t border-border-dark/50">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl 2xl:max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
           {dict?.title || "Ready to scale your fleet operations?"}
         </h2>

@@ -1,7 +1,7 @@
 export default function EnterpriseImpactCTA({ locale }: { locale: string }) {
     return (
-        <section className="py-20 px-6 bg-background-dark">
-            <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 2xl:px-32 bg-background-dark">
+            <div className="max-w-6xl 2xl:max-w-[1700px] mx-auto">
                 <div className="relative rounded-2xl overflow-hidden bg-[#161b22] border border-[#282e39] shadow-2xl">
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent"></div>

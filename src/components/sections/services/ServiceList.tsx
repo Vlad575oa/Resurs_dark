@@ -31,7 +31,7 @@ interface ServiceListProps {
 
 export const ServiceList = ({ services, titles, locale }: { services: Service[]; titles: Titles; locale: string }) => {
     return (
-        <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <section className="py-24 px-6 md:px-12 lg:px-24 2xl:px-32 max-w-7xl 2xl:max-w-[1700px] mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                 <div>
                     <div className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] text-slate-300 uppercase mb-4">

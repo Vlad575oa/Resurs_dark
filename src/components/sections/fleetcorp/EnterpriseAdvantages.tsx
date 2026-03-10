@@ -23,8 +23,8 @@ export default function EnterpriseAdvantages({ locale }: { locale: string }) {
     ];
 
     return (
-        <section className="py-16 px-6 relative bg-background-dark">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-16 px-6 2xl:px-32 relative bg-background-dark">
+            <div className="max-w-7xl 2xl:max-w-[1700px] mx-auto">
                 <div className="mb-12">
                     <h2 className="text-white text-3xl font-bold mb-4">{locale === 'en' ? 'Enterprise Advantages' : 'Корпоративные Преимущества'}</h2>
                     <p className="text-slate-400 max-w-xl">

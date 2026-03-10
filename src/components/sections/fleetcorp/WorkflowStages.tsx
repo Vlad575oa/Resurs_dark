@@ -8,8 +8,8 @@ export default function WorkflowStages({ locale }: { locale: string }) {
     ];
 
     return (
-        <section className="py-20 px-6 bg-[#0b0d10] border-y border-[#282e39]">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-20 px-6 2xl:px-32 bg-[#0b0d10] border-y border-[#282e39]">
+            <div className="max-w-7xl 2xl:max-w-[1700px] mx-auto">
                 <div className="mb-16 text-center md:text-left">
                     <span className="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">{locale === 'en' ? 'Our Process' : 'Наш процесс'}</span>
                     <h2 className="text-white text-3xl md:text-4xl font-bold">{locale === 'en' ? 'Workflow Stages' : 'Этапы работы'}</h2>

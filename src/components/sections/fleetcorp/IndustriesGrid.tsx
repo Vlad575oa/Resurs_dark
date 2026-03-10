@@ -45,8 +45,8 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
     ];
 
     return (
-        <section className="w-full px-6 py-20 lg:px-20 bg-background-dark">
-            <div className="max-w-[1440px] mx-auto">
+        <section className="w-full px-6 py-20 lg:px-20 2xl:px-32 bg-background-dark">
+            <div className="max-w-[1440px] 2xl:max-w-[1700px] mx-auto">
                 <div className="mb-10 flex flex-col gap-2">
                     <h2 className="text-primary text-sm font-bold tracking-[0.15em] uppercase">
                         {dict?.badge || "Industry Leaders"}

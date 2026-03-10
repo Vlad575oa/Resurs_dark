@@ -5,8 +5,8 @@ export default function Footer({ locale, dict }: { locale: string, dict: any }) 
   const footerDict = dict.FooterNav || dict;
 
   return (
-    <footer className="bg-[#0b0d10] border-t border-[#282e39] pt-16 pb-8 px-6 md:px-10 lg:px-40">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-[#0b0d10] border-t border-[#282e39] pt-16 pb-8 px-6 md:px-10 lg:px-20 2xl:px-32">
+      <div className="max-w-7xl 2xl:max-w-[1700px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-sm">
           {/* Brand & Address */}
           <div className="space-y-6">

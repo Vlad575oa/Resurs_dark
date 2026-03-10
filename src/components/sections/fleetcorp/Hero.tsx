@@ -46,8 +46,8 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full px-6 md:px-10 lg:px-20 py-10">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 w-full px-6 md:px-10 lg:px-20 2xl:px-32 py-10">
+        <div className="max-w-[1280px] 2xl:max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Text & CTA */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             {/* Badge */}
