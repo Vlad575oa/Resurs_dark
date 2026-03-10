@@ -8,6 +8,7 @@ import {
     Phone, Image, LogOut, ChevronRight, Menu, X, Zap,
     Globe, Settings, ExternalLink
 } from 'lucide-react';
+import { getCsrfHeaders } from '@/hooks/useCsrfToken';
 
 const contentSections = [
     { slug: 'home', label: 'Главная', icon: Home, color: 'text-blue-400' },
@@ -25,11 +26,28 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     const locale = params?.locale || 'ru';
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [csrfToken, setCsrfToken] = useState('');
 
-    useEffect(() => { setMounted(true); }, []);
+    useEffect(() => {
+        setMounted(true);
+        // Get CSRF token from cookie
+        const getCookie = (name: string): string | null => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                return parts.pop()?.split(';').shift() || null;
+            }
+            return null;
+        };
+        const token = getCookie('csrf-token');
+        if (token) setCsrfToken(token);
+    }, []);
 
     async function handleLogout() {
-        await fetch('/api/admin/auth', { method: 'DELETE' });
+        await fetch('/api/admin/auth', {
+            method: 'DELETE',
+            headers: csrfToken ? getCsrfHeaders(csrfToken) : {},
+        });
         router.push(`/${locale}/admin/login`);
     }
 

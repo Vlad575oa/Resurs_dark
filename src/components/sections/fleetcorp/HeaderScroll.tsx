@@ -152,9 +152,12 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
               )}
             </div>
 
-            <button className="bg-primary hover:bg-blue-600 text-white text-xs font-black uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all shadow-[0_4px_15px_rgba(37,106,244,0.3)] hover:scale-105 active:scale-95">
+            <Link
+              href={`/${locale}/under-construction`}
+              className="bg-primary hover:bg-blue-600 text-white text-xs font-black uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all shadow-[0_4px_15px_rgba(37,106,244,0.3)] hover:scale-105 active:scale-95 inline-block"
+            >
               {headerDict.submitRequest}
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}

@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         {
           rel: 'preload',
           as: 'image',
-          imageSrcSet: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E 1920w',
-          imagesizes: '100vw',
-          type: 'image/webp'
+          href: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E',
+          fetchpriority: 'high',
+          type: 'image/webp' // Next.js Image component handles AVIF if browser supports it
         }
       ])
     }
@@ -82,7 +82,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <div className="relative flex min-h-screen w-full flex-col bg-background-dark text-slate-100 overflow-x-hidden">
       <HeaderScroll locale={locale} dict={messages} />
-      <Hero dict={messages.Hero} />
+      <Hero dict={messages.Hero} locale={locale} />
       <TrustedBy dict={messages.TrustedBy} />
       <IndustriesGrid dict={messages.Industries} locale={locale} />
       <ChallengesDark dict={messages.ChallengesSection} locale={locale} />

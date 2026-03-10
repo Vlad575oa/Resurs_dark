@@ -8,6 +8,7 @@ import {
     Home, Briefcase, Wrench, Users, Newspaper, Phone, HelpCircle,
     Image as ImageIcon, Upload
 } from 'lucide-react';
+import { getCsrfHeaders } from '@/hooks/useCsrfToken';
 
 // ─── deep setter ─────────────────────────────────────────────────────────────
 function setDeep(obj: any, path: (string | number)[], value: any): any {
@@ -44,6 +45,7 @@ function ImageField({ label, value, path, onChange }: {
         try {
             const res = await fetch('/api/admin/upload', {
                 method: 'POST',
+                headers: csrfToken ? { 'x-csrf-token': csrfToken } : {},
                 body: formData,
             });
             const result = await res.json();
@@ -261,6 +263,21 @@ export default function ContentEditor({ section }: { section: string }) {
     const [syncing, setSyncing] = useState(false);
     const [status, setStatus] = useState<'idle' | 'saved' | 'error' | 'synced'>('idle');
     const [error, setError] = useState('');
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+        // Get CSRF token from cookie
+        const getCookie = (name: string): string | null => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                return parts.pop()?.split(';').shift() || null;
+            }
+            return null;
+        };
+        const token = getCookie('csrf-token');
+        if (token) setCsrfToken(token);
+    }, []);
 
     const meta = PAGE_META[section] || { label: section, icon: HelpCircle, color: '#2564f4' };
     const Icon = meta.icon;
@@ -288,7 +305,7 @@ export default function ContentEditor({ section }: { section: string }) {
         try {
             const res = await fetch('/api/admin/content', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: csrfToken ? { ...getCsrfHeaders(csrfToken) } : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ section, data, locale }),
             });
             if (!res.ok) throw new Error();
@@ -301,7 +318,10 @@ export default function ContentEditor({ section }: { section: string }) {
     const handleSync = async () => {
         setSyncing(true); setStatus('idle');
         try {
-            const res = await fetch('/api/admin/git/sync', { method: 'POST' });
+            const res = await fetch('/api/admin/git/sync', {
+                method: 'POST',
+                headers: csrfToken ? getCsrfHeaders(csrfToken) : {},
+            });
             if (!res.ok) throw new Error();
             setStatus('synced');
             setTimeout(() => setStatus('idle'), 3000);

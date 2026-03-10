@@ -48,9 +48,45 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  // Add cache headers for static assets
+  // Security headers and cache configuration
   async headers() {
     return [
+      {
+        // Security headers for all routes
+        source: '/(.*)',
+        headers: [
+          // Content Security Policy - restrict resource loading
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' fonts.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; font-src 'self' fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://*.upstash.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+          },
+          // Prevent clickjacking
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          },
+          // Prevent MIME type sniffing
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          // Control referrer information
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          // Control browser features
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(self), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()'
+          },
+          // XSS Protection (legacy but still useful)
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+        ]
+      },
       {
         // Cache static assets (JS, CSS, images) for 1 year
         source: '/:path*.(js|css|png|jpg|jpeg|gif|webp|avif|svg|woff|woff2|ttf|eot)',

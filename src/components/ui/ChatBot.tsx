@@ -209,17 +209,26 @@ export default function ChatBot() {
                             className="fixed bottom-0 right-0 md:bottom-20 md:right-0 w-full md:w-[400px] h-full md:h-[600px] max-h-[100dvh] md:max-h-[80vh] bg-background-dark/95 backdrop-blur-2xl rounded-t-[2.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
                         >
                             {/* Header */}
-                            <div className="p-6 bg-gradient-to-r from-primary/20 to-transparent border-b border-white/5 flex items-center gap-4">
-                                <div className="size-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
-                                    <Bot size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="font-black text-white uppercase tracking-tight text-sm">Digital Assistant</h3>
-                                    <div className="flex items-center gap-1.5">
-                                        <span className="size-2 rounded-full bg-green-500 animate-pulse" />
-                                        <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Online</span>
+                            <div className="p-6 bg-gradient-to-r from-primary/20 to-transparent border-b border-white/5 flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="size-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                        <Bot size={24} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-black text-white uppercase tracking-tight text-sm">Digital Assistant</h3>
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="size-2 rounded-full bg-green-500 animate-pulse" />
+                                            <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Online</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-2 rounded-xl bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                                    aria-label="Close Chat"
+                                >
+                                    <X size={20} />
+                                </button>
                             </div>
 
                             {/* Messages Area */}

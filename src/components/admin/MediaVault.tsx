@@ -5,6 +5,7 @@ import {
     Upload, X, Image as ImageIcon, Trash2,
     Copy, Check, Plus, Loader2, FolderOpen, Film, FileText
 } from 'lucide-react';
+import { getCsrfHeaders } from '@/hooks/useCsrfToken';
 
 interface MediaFile {
     id: string;
@@ -27,7 +28,7 @@ function getIcon(name: string) {
     return 'file';
 }
 
-function MediaCard({ file, onDelete }: { file: MediaFile; onDelete: () => void }) {
+function MediaCard({ file, onDelete, csrfToken }: { file: MediaFile; onDelete: () => void; csrfToken: string }) {
     const [copied, setCopied] = useState(false);
     const [deleting, setDeleting] = useState(false);
     const type = getIcon(file.name);
@@ -41,7 +42,10 @@ function MediaCard({ file, onDelete }: { file: MediaFile; onDelete: () => void }
     async function handleDelete() {
         if (!confirm(`Удалить файл "${file.name}"?`)) return;
         setDeleting(true);
-        const res = await fetch(`/api/admin/media?id=${encodeURIComponent(file.id)}`, { method: 'DELETE' });
+        const res = await fetch(`/api/admin/media?id=${encodeURIComponent(file.id)}`, {
+            method: 'DELETE',
+            headers: csrfToken ? getCsrfHeaders(csrfToken) : {},
+        });
         if (res.ok) onDelete();
         else { alert('Ошибка удаления'); setDeleting(false); }
     }
@@ -96,7 +100,7 @@ function MediaCard({ file, onDelete }: { file: MediaFile; onDelete: () => void }
 
 // ─── Upload Modal ─────────────────────────────────────────────────────────────
 
-function UploadModal({ onClose, onUploaded }: { onClose: () => void; onUploaded: () => void }) {
+function UploadModal({ onClose, onUploaded, csrfToken }: { onClose: () => void; onUploaded: () => void; csrfToken: string }) {
     const [dragging, setDragging] = useState(false);
     const [files, setFiles] = useState<File[]>([]);
     const [uploading, setUploading] = useState(false);
@@ -125,7 +129,11 @@ function UploadModal({ onClose, onUploaded }: { onClose: () => void; onUploaded:
         const formData = new FormData();
         files.forEach(f => formData.append('files', f));
         try {
-            const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+            const res = await fetch('/api/admin/upload', {
+                method: 'POST',
+                headers: csrfToken ? { 'x-csrf-token': csrfToken } : {},
+                body: formData,
+            });
             if (!res.ok) throw new Error('Upload failed');
             setProgress('✓ Загружено!');
             setTimeout(() => { onUploaded(); onClose(); }, 800);
@@ -211,6 +219,21 @@ export default function MediaVault() {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [filter, setFilter] = useState('');
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+        // Get CSRF token from cookie
+        const getCookie = (name: string): string | null => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) {
+                return parts.pop()?.split(';').shift() || null;
+            }
+            return null;
+        };
+        const token = getCookie('csrf-token');
+        if (token) setCsrfToken(token);
+    }, []);
 
     const fetchMedia = useCallback(async () => {
         setLoading(true);
@@ -247,7 +270,7 @@ export default function MediaVault() {
                     placeholder="Поиск по названию..."
                     value={filter}
                     onChange={e => setFilter(e.target.value)}
-                    className="w-full max-w-xs bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all"
+                    className="w-full max-w-xs bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all"
                 />
             )}
 
@@ -279,6 +302,7 @@ export default function MediaVault() {
                         <MediaCard
                             key={file.id}
                             file={file}
+                            csrfToken={csrfToken}
                             onDelete={() => {
                                 setMedia(prev => prev.filter(f => f.id !== file.id));
                             }}
@@ -292,6 +316,7 @@ export default function MediaVault() {
                 <UploadModal
                     onClose={() => setShowModal(false)}
                     onUploaded={fetchMedia}
+                    csrfToken={csrfToken}
                 />
             )}
         </div>

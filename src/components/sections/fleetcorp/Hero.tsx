@@ -1,12 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
+import React from 'react';
 
-export default function Hero({ dict }: { dict: any }) {
+export default function Hero({ dict, locale }: { dict: any; locale: string }) {
   const title = dict?.title || "Advanced Fleet Management & Outsourcing";
-  const titleHtml = title
-    .replace('корпоративным', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">корпоративным</span>')
-    .replace('нового уровня', '<span class="text-primary text-glow">нового уровня</span>')
-    .replace('Corporate', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Corporate</span>')
-    .replace('Next-Level', '<span class="text-primary text-glow">Next-Level</span>');
+  const underConstructionUrl = `/${locale}/under-construction`;
+
+  // Safe rendering of title with highlighted spans
+  const renderTitle = (text: string) => {
+    const highlights: Record<string, string> = {
+      'корпоративным': 'text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400',
+      'нового уровня': 'text-primary text-glow',
+      'Corporate': 'text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400',
+      'Next-Level': 'text-primary text-glow'
+    };
+
+    const regex = new RegExp(`(${Object.keys(highlights).join('|')})`, 'g');
+    const parts = text.split(regex);
+
+    return parts.map((part, i) => {
+      const className = highlights[part];
+      if (className) {
+        return <span key={i} className={className}>{part}</span>;
+      }
+      return part;
+    });
+  };
 
   return (
     <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20 overflow-hidden">
@@ -19,7 +38,7 @@ export default function Hero({ dict }: { dict: any }) {
           priority
           className="object-cover object-center"
           sizes="100vw"
-          quality={90}
+          quality={85} // Optimized quality
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e1a] via-[#0a0e1a]/80 to-transparent"></div>
@@ -40,10 +59,9 @@ export default function Hero({ dict }: { dict: any }) {
             </div>
 
             {/* H1 - Critical ATF Content */}
-            <h1
-              className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight"
-              dangerouslySetInnerHTML={{ __html: titleHtml }}
-            />
+            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+              {renderTitle(title)}
+            </h1>
 
             {/* Description */}
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-xl max-w-2xl border-l-4 border-l-primary">
@@ -54,20 +72,26 @@ export default function Hero({ dict }: { dict: any }) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
-              <button className="w-full sm:w-auto relative overflow-hidden rounded-lg bg-primary px-8 py-4 text-white text-base font-bold shadow-[0_0_20px_rgba(37,106,244,0.4)] hover:shadow-[0_0_30px_rgba(37,106,244,0.6)] hover:bg-blue-600 transition-all duration-300 group">
+              <Link
+                href={underConstructionUrl}
+                className="w-full sm:w-auto relative overflow-hidden rounded-lg bg-primary px-8 py-4 text-white text-base font-bold shadow-[0_0_20px_rgba(37,106,244,0.4)] hover:shadow-[0_0_30px_rgba(37,106,244,0.6)] hover:bg-blue-600 transition-all duration-300 group inline-flex items-center justify-center"
+              >
                 <span className="flex items-center justify-center gap-2 relative z-10">
                   {dict.submitRequest || 'Получить коммерческое предложение'}
                   <span className="material-symbols-outlined text-xl">
                     arrow_forward
                   </span>
                 </span>
-              </button>
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300">
+              </Link>
+              <Link
+                href={underConstructionUrl}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+              >
                 <span className="material-symbols-outlined text-xl text-primary">
                   analytics
                 </span>
                 {dict.getAudit}
-              </button>
+              </Link>
             </div>
           </div>
 

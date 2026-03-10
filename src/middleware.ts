@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { generateCsrfToken } from "@/lib/csrf";
 
 export const locales = ["ru", "en", "hi"];
 export const defaultLocale = "ru";
@@ -17,6 +18,18 @@ export function middleware(request: NextRequest) {
 
     // Skip API routes — no locale prefix needed
     if (pathname.startsWith('/api/admin')) {
+        // CSRF protection for state-changing requests
+        if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
+            const csrfToken = request.cookies.get('csrf-token')?.value;
+            const headerToken = request.headers.get('x-csrf-token');
+
+            if (!csrfToken || !headerToken || csrfToken !== headerToken) {
+                return NextResponse.json(
+                    { error: 'Invalid CSRF token. Please refresh the page and try again.' },
+                    { status: 403 }
+                );
+            }
+        }
         return NextResponse.next();
     }
 
@@ -24,12 +37,14 @@ export function middleware(request: NextRequest) {
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
-    if (pathnameHasLocale) return;
+    if (pathnameHasLocale) return NextResponse.next();
 
     // Redirect if there is no locale
     const locale = request.cookies.get('NEXT_LOCALE')?.value || defaultLocale;
     request.nextUrl.pathname = `/${locale}${pathname}`;
-    return NextResponse.redirect(request.nextUrl);
+    const response = NextResponse.redirect(request.nextUrl);
+
+    return response;
 }
 
 export const config = {

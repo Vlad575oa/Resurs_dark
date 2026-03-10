@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Hammer, ArrowLeft, Send } from "lucide-react";
+import { Hammer, ArrowLeft, Send, FileText, ClipboardList, Calendar } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import TelegramConfirmLink from "@/components/ui/TelegramConfirmLink";
@@ -14,6 +14,8 @@ export default function UnderConstruction({ dict }: Props) {
     const params = useParams();
     const locale = params.locale as string;
     const t = dict.Placeholder;
+
+    const telegramUrl = "https://t.me/resurslogistica";
 
     return (
         <main className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#020617] font-sans selection:bg-primary/30">
@@ -76,31 +78,22 @@ export default function UnderConstruction({ dict }: Props) {
                             {t?.message || "We are working on bringing something amazing to this space."}
                         </motion.p>
 
-                        {/* Actions */}
+
+
+                        {/* Back to Home Button */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
+                            transition={{ delay: 0.5 }}
+                            className="pt-4"
                         >
                             <Link
                                 href={`/${locale}`}
-                                className="group w-full sm:w-auto px-8 py-5 rounded-2xl bg-white text-black font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-3 hover:bg-slate-200 transition-all duration-300 shadow-xl shadow-white/5 active:scale-95"
+                                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-slate-400 font-black uppercase text-[9px] tracking-widest hover:bg-white/10 hover:text-white transition-all duration-300 active:scale-95"
                             >
                                 <ArrowLeft size={16} />
                                 {t?.homeButton || "Back to Home"}
                             </Link>
-
-                            <TelegramConfirmLink
-                                url="https://t.me/resurslogistica"
-                                label={
-                                    <span className="group w-full sm:w-auto px-8 py-5 rounded-2xl bg-[#22c55e] text-white font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-3 hover:bg-[#16a34a] transition-all duration-300 shadow-xl shadow-green-500/20 active:scale-95">
-                                        <Send size={16} />
-                                        {t?.messengerButton || "Message Us"}
-                                    </span>
-                                }
-                                dict={dict}
-                            />
                         </motion.div>
                     </div>
 

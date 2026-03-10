@@ -1389,6 +1389,9 @@
     "message": "We are working on improving this page. Updated information will appear here soon. In the meantime, you can return to the home page or contact us via messenger.",
     "homeButton": "To Home",
     "messengerButton": "Message on Telegram",
-    "status": "Coming Soon"
+    "status": "Coming Soon",
+    "submitRequestButton": "Submit Request",
+    "getAuditButton": "Get Fleet Audit",
+    "scheduleConsultationButton": "Schedule Consultation"
   }
 }

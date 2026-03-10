@@ -2,11 +2,13 @@
 
 import { useState, FormEvent } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { useCsrfToken, getCsrfHeaders } from '@/hooks/useCsrfToken';
 
 export default function AdminLoginPage() {
     const router = useRouter();
     const params = useParams();
     const locale = params?.locale || 'ru';
+    const csrfToken = useCsrfToken();
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -19,11 +21,12 @@ export default function AdminLoginPage() {
         try {
             const res = await fetch('/api/admin/auth', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: getCsrfHeaders(csrfToken),
                 body: JSON.stringify({ password }),
             });
             if (!res.ok) {
-                setError('Неверный пароль. Попробуйте снова.');
+                const data = await res.json();
+                setError(data.error || 'Неверный пароль. Попробуйте снова.');
             } else {
                 router.push(`/${locale}/admin`);
             }
@@ -144,7 +147,7 @@ export default function AdminLoginPage() {
                     <p className="text-sm">
                         © 2026 ResursLogistics. All rights reserved.
                     </p>
-                    <p className="text-[10px] mt-2 uppercase tracking-tight font-medium">Пароль: 123456</p>
+                    <p className="text-[10px] mt-2 uppercase tracking-tight font-medium">Authorized personnel only</p>
                 </div>
             </div>
         </div>

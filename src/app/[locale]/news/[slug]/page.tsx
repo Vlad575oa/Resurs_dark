@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getServerTranslations } from "@/lib/server-intl";
 import { notFound } from "next/navigation";
 import { slugify, truncateContent } from "@/lib/utils";
+import DOMPurify from 'dompurify';
 
 interface Props {
     params: Promise<{ locale: string; slug: string }>;
@@ -70,11 +71,14 @@ export default async function NewsDetailPage({ params }: Props) {
                         )}
 
                         <div
-                            className="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed 
+                            className="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed
                                 prose-headings:text-white prose-headings:uppercase prose-headings:font-black
                                 prose-blockquote:border-primary prose-blockquote:bg-white/5 prose-blockquote:p-6 prose-blockquote:rounded-xl
                                 prose-li:marker:text-primary"
-                            dangerouslySetInnerHTML={{ __html: article.content }}
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content || '', {
+                                ALLOWED_TAGS: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'strong', 'em', 'blockquote', 'br', 'hr', 'img', 'span', 'div'],
+                                ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'target', 'rel'],
+                            }) }}
                         />
                     </article>
                 </div>
