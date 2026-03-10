@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 import Link from "next/link";
 
 import { slugify, truncateContent } from "@/lib/utils";
+
+import { SmartLink } from "@/components/ui/BackButton";
 
 interface NewsArticle {
     slug?: string;
@@ -43,16 +45,19 @@ export default function NewsGrid({ locale, articles }: { locale: string; article
                             transition={{ delay: idx * 0.1 }}
                             className="group bg-[#161b22]/70 backdrop-blur-md border border-[#282e39] rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 flex flex-col"
                         >
-                            <Link href={`/${locale}/news/${item.slug}`} className="relative h-60 w-full overflow-hidden block">
-                                <img
-                                    src={item.image}
+                            <SmartLink href={`/${locale}/news/${item.slug}`} sectionId="news" className="relative h-60 w-full overflow-hidden block">
+                                <Image
+                                    src={item.image || ''}
                                     alt={item.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-80"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-80"
+                                    loading="lazy"
                                 />
                                 <div className="absolute top-4 left-4 bg-primary px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
                                     {item.category}
                                 </div>
-                            </Link>
+                            </SmartLink>
                             <div className="p-8 flex-grow flex flex-col justify-between">
                                 <div>
                                     <span className="text-slate-500 text-xs font-mono mb-4 block">{item.date}</span>

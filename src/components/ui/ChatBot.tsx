@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import {
     MessageSquare,
     X,
@@ -170,139 +170,141 @@ export default function ChatBot() {
     };
 
     return (
-        <motion.div
-            initial={false}
-            animate={{
-                opacity: isVisible ? 1 : 0,
-                y: isVisible ? 0 : 100,
-                scale: isVisible ? 1 : 0.8,
-                pointerEvents: isVisible ? "auto" : "none"
-            }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed bottom-6 right-6 z-[999]"
-        >
-            {/* FAB Button */}
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsOpen(!isOpen)}
-                className={`size-16 rounded-full flex items-center justify-center shadow-2xl transition-colors ${isOpen ? 'bg-white text-background-dark' : 'bg-primary text-white'
-                    } relative`}
+        <LazyMotion features={domAnimation}>
+            <motion.div
+                initial={false}
+                animate={{
+                    opacity: isVisible ? 1 : 0,
+                    y: isVisible ? 0 : 100,
+                    scale: isVisible ? 1 : 0.8,
+                    pointerEvents: isVisible ? "auto" : "none"
+                }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="fixed bottom-6 right-6 z-[999]"
             >
-                {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
-                {!isOpen && (
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-orange-500"></span>
-                    </span>
-                )}
-            </motion.button>
+                {/* FAB Button */}
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setIsOpen(!isOpen)}
+                    className={`size-16 rounded-full flex items-center justify-center shadow-2xl transition-colors ${isOpen ? 'bg-white text-background-dark' : 'bg-primary text-white'
+                        } relative`}
+                >
+                    {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
+                    {!isOpen && (
+                        <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-4 w-4 bg-orange-500"></span>
+                        </span>
+                    )}
+                </motion.button>
 
-            {/* Chat Window */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="fixed bottom-0 right-0 md:bottom-20 md:right-0 w-full md:w-[400px] h-full md:h-[600px] max-h-[100dvh] md:max-h-[80vh] bg-background-dark/95 backdrop-blur-2xl rounded-t-[2.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
-                    >
-                        {/* Header */}
-                        <div className="p-6 bg-gradient-to-r from-primary/20 to-transparent border-b border-white/5 flex items-center gap-4">
-                            <div className="size-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
-                                <Bot size={24} />
-                            </div>
-                            <div>
-                                <h3 className="font-black text-white uppercase tracking-tight text-sm">Digital Assistant</h3>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="size-2 rounded-full bg-green-500 animate-pulse" />
-                                    <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Online</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Messages Area */}
-                        <div
-                            ref={scrollRef}
-                            className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide"
+                {/* Chat Window */}
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                            className="fixed bottom-0 right-0 md:bottom-20 md:right-0 w-full md:w-[400px] h-full md:h-[600px] max-h-[100dvh] md:max-h-[80vh] bg-background-dark/95 backdrop-blur-2xl rounded-t-[2.5rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
                         >
-                            {messages.map((msg) => (
-                                <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[85%] space-y-3 ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
-                                        <div className={`p-4 rounded-3xl text-sm leading-relaxed ${msg.type === 'user'
-                                            ? 'bg-primary text-white rounded-tr-none shadow-lg shadow-primary/10'
-                                            : 'bg-white/5 text-slate-200 border border-white/5 rounded-tl-none'
-                                            }`}>
-                                            {msg.text}
-                                        </div>
-
-                                        {msg.options && !isTyping && currentStep !== 'transfer_to_manager' && (
-                                            <div className="flex flex-wrap gap-2 mt-4">
-                                                {msg.options.map((opt, idx) => (
-                                                    <button
-                                                        key={idx}
-                                                        onClick={() => handleOptionClick(opt.label, opt.nextStep)}
-                                                        className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 hover:bg-primary/20 hover:border-primary hover:text-white transition-all uppercase tracking-wider"
-                                                    >
-                                                        {opt.label}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {msg.isFinal && !isSubmitted && (
-                                            <form onSubmit={handleFinalSubmit} className="mt-4 space-y-3 bg-white/5 p-4 rounded-3xl border border-white/5">
-                                                <div className="relative">
-                                                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 size-4" />
-                                                    <input
-                                                        required
-                                                        type="text"
-                                                        placeholder="+7 (___) ___-__-__"
-                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-[16px] md:text-xs text-white focus:outline-none focus:border-primary transition-colors"
-                                                    />
-                                                </div>
-                                                <button className="w-full bg-primary hover:bg-white text-background-dark py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">
-                                                    Отправить заявку
-                                                </button>
-                                            </form>
-                                        )}
+                            {/* Header */}
+                            <div className="p-6 bg-gradient-to-r from-primary/20 to-transparent border-b border-white/5 flex items-center gap-4">
+                                <div className="size-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                    <Bot size={24} />
+                                </div>
+                                <div>
+                                    <h3 className="font-black text-white uppercase tracking-tight text-sm">Digital Assistant</h3>
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="size-2 rounded-full bg-green-500 animate-pulse" />
+                                        <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Online</span>
                                     </div>
                                 </div>
-                            ))}
-                            {isTyping && (
-                                <div className="flex justify-start">
-                                    <div className="bg-white/5 p-4 rounded-3xl rounded-tl-none border border-white/5 flex gap-1">
-                                        <span className="size-1.5 bg-slate-500 rounded-full animate-bounce" />
-                                        <span className="size-1.5 bg-slate-500 rounded-full animate-bounce delay-100" />
-                                        <span className="size-1.5 bg-slate-500 rounded-full animate-bounce delay-200" />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Input Area */}
-                        <div className="p-4 border-t border-white/5 bg-white/5">
-                            <div className="relative flex items-center gap-2">
-                                <input
-                                    type="text"
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                                    placeholder="Задайте свой вопрос..."
-                                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-12 text-[16px] md:text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-primary/50 transition-all"
-                                />
-                                <button
-                                    onClick={handleSend}
-                                    disabled={!inputValue.trim()}
-                                    className="absolute right-2 p-2.5 rounded-xl bg-primary text-white disabled:opacity-50 disabled:bg-slate-700 transition-all"
-                                >
-                                    <Send size={16} />
-                                </button>
                             </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.div>
+
+                            {/* Messages Area */}
+                            <div
+                                ref={scrollRef}
+                                className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide"
+                            >
+                                {messages.map((msg) => (
+                                    <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                        <div className={`max-w-[85%] space-y-3 ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
+                                            <div className={`p-4 rounded-3xl text-sm leading-relaxed ${msg.type === 'user'
+                                                ? 'bg-primary text-white rounded-tr-none shadow-lg shadow-primary/10'
+                                                : 'bg-white/5 text-slate-200 border border-white/5 rounded-tl-none'
+                                                }`}>
+                                                {msg.text}
+                                            </div>
+
+                                            {msg.options && !isTyping && currentStep !== 'transfer_to_manager' && (
+                                                <div className="flex flex-wrap gap-2 mt-4">
+                                                    {msg.options.map((opt, idx) => (
+                                                        <button
+                                                            key={idx}
+                                                            onClick={() => handleOptionClick(opt.label, opt.nextStep)}
+                                                            className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 hover:bg-primary/20 hover:border-primary hover:text-white transition-all uppercase tracking-wider"
+                                                        >
+                                                            {opt.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {msg.isFinal && !isSubmitted && (
+                                                <form onSubmit={handleFinalSubmit} className="mt-4 space-y-3 bg-white/5 p-4 rounded-3xl border border-white/5">
+                                                    <div className="relative">
+                                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 size-4" />
+                                                        <input
+                                                            required
+                                                            type="text"
+                                                            placeholder="+7 (___) ___-__-__"
+                                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-[16px] md:text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                                                        />
+                                                    </div>
+                                                    <button className="w-full bg-primary hover:bg-white text-background-dark py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">
+                                                        Отправить заявку
+                                                    </button>
+                                                </form>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                                {isTyping && (
+                                    <div className="flex justify-start">
+                                        <div className="bg-white/5 p-4 rounded-3xl rounded-tl-none border border-white/5 flex gap-1">
+                                            <span className="size-1.5 bg-slate-500 rounded-full animate-bounce" />
+                                            <span className="size-1.5 bg-slate-500 rounded-full animate-bounce delay-100" />
+                                            <span className="size-1.5 bg-slate-500 rounded-full animate-bounce delay-200" />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Input Area */}
+                            <div className="p-4 border-t border-white/5 bg-white/5">
+                                <div className="relative flex items-center gap-2">
+                                    <input
+                                        type="text"
+                                        value={inputValue}
+                                        onChange={(e) => setInputValue(e.target.value)}
+                                        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                        placeholder="Задайте свой вопрос..."
+                                        className="flex-1 bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-12 text-[16px] md:text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-primary/50 transition-all"
+                                    />
+                                    <button
+                                        onClick={handleSend}
+                                        disabled={!inputValue.trim()}
+                                        className="absolute right-2 p-2.5 rounded-xl bg-primary text-white disabled:opacity-50 disabled:bg-slate-700 transition-all"
+                                    >
+                                        <Send size={16} />
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
+        </LazyMotion>
     );
 }

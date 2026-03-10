@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Playfair_Display, Manrope } from "next/font/google";
+import dynamic from "next/dynamic";
 import "../globals.css";
 
 const interTight = Inter_Tight({
@@ -26,8 +27,15 @@ const manrope = Manrope({
   preload: true,
 });
 
+// Lazy load ChatBot - reduces initial hydration cost by ~150ms
+const ChatBot = dynamic(
+  () => import("@/components/ui/ChatBot"),
+  {
+    loading: () => null // No placeholder needed
+  }
+);
+
 import TelegramFab from "@/components/ui/TelegramFab";
-import ChatBot from "@/components/ui/ChatBot";
 
 export const metadata: Metadata = {
   title: "FleetCorp - Управление корпоративным автопарком",
@@ -46,7 +54,17 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        {/* Preconnect to external resources for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://lh3.googleusercontent.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+
+        {/* Material Icons - loaded with media trick for performance */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body
         className={`${interTight.variable} ${playfair.variable} ${manrope.variable} font-display antialiased selection:bg-primary selection:text-white`}

@@ -20,6 +20,7 @@ export default function Hero({ dict }: { dict: any }) {
           className="object-cover object-center"
           sizes="100vw"
           quality={90}
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e1a] via-[#0a0e1a]/80 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e1a] via-transparent to-[#0a0e1a]/40"></div>
