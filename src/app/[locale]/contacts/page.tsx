@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
+import { getServerTranslations } from "@/lib/server-intl";
+import RegionalBranches from "./RegionalBranches";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
     const { messages } = await getServerTranslations(locale);
-    const { heroTitle } = (messages as any).ContactPage;
+    const { pageTitle } = (messages as any).ContactsPage;
 
     return {
-        title: `${heroTitle} | РесурсЛогистика`,
-        description: locale === 'en'
-            ? "Get in touch with our team for consultations, audits, and partnership opportunities."
-            : "Свяжитесь с нашей командой для консультаций, аудита и партнерства.",
+        title: `${pageTitle} | РесурсЛогистика`,
+        description: (messages as any).ContactsPage.description,
         alternates: {
             canonical: `/${locale}/contacts`,
         }
@@ -20,121 +21,147 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const Footer = dynamic(() => import("@/components/sections/fleetcorp/Footer"));
 
-import { getServerTranslations } from "@/lib/server-intl";
-
 export default async function ContactsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const { messages } = await getServerTranslations(locale);
-    const dict = messages.ContactPage;
+    const dict = messages.ContactsPage;
+
     return (
-        <div className="bg-background-dark min-h-screen flex flex-col">
+        <div className="bg-background-dark min-h-screen flex flex-col relative overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-x-0 top-0 h-screen z-0 opacity-40 pointer-events-none">
+                <Image
+                    src="/images/world_map_background.png"
+                    alt="World Map Background"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0b0d10] via-transparent to-[#0b0d10]"></div>
+            </div>
+
             <HeaderScroll locale={locale} dict={messages} />
-            <main className="flex-grow pt-20">
-                <section className="py-20 px-6 md:px-10 lg:px-20">
-                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-                        {/* Contact Info */}
-                        <div className="flex flex-col gap-10">
+
+            <main className="flex-grow pt-32 relative z-10 pb-20">
+                <section className="px-6 md:px-10 lg:px-20 mb-20">
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+                        {/* Contact Info Side */}
+                        <div className="flex flex-col gap-12">
                             <div>
-                                <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">
-                                    {dict.badge}
-                                </span>
-                                <h1 className="text-3xl md:text-4xl font-black text-white uppercase mb-6">
-                                    {dict.heroTitle}<span className="text-primary">{dict.heroAccent}</span>
+                                <h1 className="text-4xl md:text-5xl font-black text-white uppercase mb-6 tracking-tight">
+                                    {dict.pageTitle}
                                 </h1>
-                                <p className="text-slate-400 text-lg max-w-md">
-                                    {dict.heroDescription}
+                                <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
+                                    {dict.description}
                                 </p>
                             </div>
 
-                            <div className="grid gap-8">
-                                <div className="flex items-start gap-6 group">
-                                    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-glow">
-                                        <span className="material-symbols-outlined">alternate_email</span>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-white font-bold mb-1">{dict.info.email.label}</h3>
-                                        <p className="text-slate-400">{dict.info.email.value}</p>
+                            <div className="space-y-10">
+                                {/* Head Office */}
+                                <div className="space-y-6">
+                                    <h2 className="text-xl font-bold text-white flex items-center gap-3">
+                                        <span className="w-8 h-[2px] bg-primary"></span>
+                                        {dict.headOffice}
+                                    </h2>
+                                    <div className="grid gap-6">
+                                        <div className="flex items-start gap-4">
+                                            <span className="material-symbols-outlined text-primary mt-1">location_on</span>
+                                            <div>
+                                                <p className="text-slate-500 text-xs uppercase font-bold tracking-wider mb-1">{dict.address}</p>
+                                                <p className="text-white text-sm md:text-base">{dict.addressValue}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-4">
+                                            <span className="material-symbols-outlined text-primary mt-1">call</span>
+                                            <div>
+                                                <p className="text-slate-500 text-xs uppercase font-bold tracking-wider mb-1">{dict.phone}</p>
+                                                <p className="text-white text-sm md:text-base">{dict.phoneValue}</p>
+                                                <p className="text-slate-500 text-xs mt-1">{dict.hours}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-4">
+                                            <span className="material-symbols-outlined text-primary mt-1">mail</span>
+                                            <div>
+                                                <p className="text-slate-500 text-xs uppercase font-bold tracking-wider mb-1">{dict.email}</p>
+                                                <p className="text-white text-sm md:text-base">{dict.emailValue}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-6 group">
-                                    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-glow">
-                                        <span className="material-symbols-outlined">call</span>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-white font-bold mb-1">{dict.info.phone.label}</h3>
-                                        <p className="text-slate-400">{dict.info.phone.value}</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-6 group">
-                                    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-glow">
-                                        <span className="material-symbols-outlined">location_on</span>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-white font-bold mb-1">{dict.info.office.label}</h3>
-                                        <p className="text-slate-400">{dict.info.office.value}</p>
+
+                                {/* How to get there */}
+                                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                                    <h3 className="text-white font-bold mb-4 flex items-center gap-2">
+                                        <span className="material-symbols-outlined text-primary">directions_walk</span>
+                                        {dict.howToGet}
+                                    </h3>
+                                    <div className="space-y-3">
+                                        {dict.howToGetSteps.map((step: string, idx: number) => (
+                                            <p key={idx} className="text-slate-400 text-sm leading-relaxed">
+                                                {step}
+                                            </p>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Contact Form */}
-                        <div className="bg-[#161b22]/70 backdrop-blur-md border border-[#282e39] rounded-2xl p-8 md:p-12 relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
-                            <form className="relative z-10 space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold text-slate-500 uppercase">{dict.form.name}</label>
-                                        <input type="text" className="w-full bg-[#0c1017] border border-[#282e39] rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder={dict.form.namePlaceholder} />
+                        {/* Contact Form Side */}
+                        <div className="sticky top-32">
+                            <div className="bg-[#161b22]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+                                <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+
+                                <h2 className="text-2xl font-bold text-white mb-8 relative z-10">{dict.writeUs}</h2>
+
+                                <form className="relative z-10 space-y-5">
+                                    <div className="grid md:grid-cols-2 gap-5">
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">{dict.name}</label>
+                                            <input type="text" className="w-full bg-[#0c1017]/80 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder={dict.namePlaceholder} />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">{dict.emailLabel}</label>
+                                            <input type="email" className="w-full bg-[#0c1017]/80 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder={dict.emailPlaceholder} />
+                                        </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold text-slate-500 uppercase">{dict.form.company}</label>
-                                        <input type="text" className="w-full bg-[#0c1017] border border-[#282e39] rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder={dict.form.companyPlaceholder} />
+
+                                    <div className="space-y-1.5">
+                                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">{dict.message}</label>
+                                        <textarea rows={5} className="w-full bg-[#0c1017]/80 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none resize-none" placeholder={dict.messagePlaceholder}></textarea>
                                     </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-slate-500 uppercase">{dict.form.emailPhone}</label>
-                                    <input type="text" className="w-full bg-[#0c1017] border border-[#282e39] rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder="+7 (___) ___-__-__" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold text-slate-500 uppercase">{dict.form.message}</label>
-                                    <textarea rows={4} className="w-full bg-[#0c1017] border border-[#282e39] rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none resize-none" placeholder={dict.form.messagePlaceholder}></textarea>
-                                </div>
-                                <div className="flex items-start gap-3 py-2">
-                                    <input
-                                        type="checkbox"
-                                        id="consent"
-                                        required
-                                        className="mt-1 w-4 h-4 rounded border-[#282e39] bg-[#0c1017] text-primary focus:ring-primary focus:ring-offset-[#0c1017]"
-                                    />
-                                    <label htmlFor="consent" className="text-[10px] md:text-xs text-slate-500 leading-relaxed italic">
-                                        {dict.form.consent}
-                                        <a href={`/${locale}/privacy`} className="text-primary hover:underline not-italic">
-                                            {dict.form.privacyPolicy}
-                                        </a>
-                                    </label>
-                                </div>
-                                <button type="submit" className="w-full bg-primary hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-glow transition-all">
-                                    {dict.form.submit}
-                                </button>
-                            </form>
+
+                                    <div className="flex items-start gap-3 py-2">
+                                        <input
+                                            type="checkbox"
+                                            id="consent"
+                                            required
+                                            className="mt-1 w-4 h-4 rounded-lg border-white/10 bg-[#0c1017] text-primary focus:ring-primary focus:ring-offset-[#0c1017]"
+                                        />
+                                        <label htmlFor="consent" className="text-[11px] text-slate-500 leading-relaxed italic">
+                                            {dict.consentText}
+                                            <a href={`/${locale}/privacy`} className="text-primary hover:underline not-italic ml-1">
+                                                {dict.consentLink}
+                                            </a>
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" className="w-full bg-primary hover:bg-blue-600 text-white font-bold py-5 rounded-2xl shadow-glow transition-all active:scale-[0.98]">
+                                        {dict.sendMessage}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Map Section */}
-                <section className="h-[500px] w-full relative bg-[#0c1017]">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-[#161b22] border border-[#282e39] p-4 rounded-xl shadow-2xl flex items-center gap-4">
-                            <span className="material-symbols-outlined text-primary text-3xl">meeting_room</span>
-                            <div>
-                                <p className="text-white font-bold">{dict.map.title}</p>
-                                <p className="text-slate-400 text-xs text-nowrap">{dict.map.schedule}</p>
-                            </div>
-                        </div>
+                {/* Regional Branches Section */}
+                <section className="px-6 md:px-10 lg:px-20">
+                    <div className="max-w-7xl mx-auto">
+                        <RegionalBranches dict={dict} />
                     </div>
                 </section>
             </main>
+
             <Footer locale={locale} dict={messages} />
         </div>
     );

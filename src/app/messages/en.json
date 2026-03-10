@@ -754,72 +754,72 @@
     "regionalBranches": [
       {
         "name": "ResursLogistics Branch in Moscow",
-        "address": "127276, Moscow, Botanicheskaya st., 10 D, bld. 1",
+        "address": "127273, Moscow, Otradnaya st., 2B, bld. 6",
         "phone": "+7 (495) 150-00-59"
       },
       {
         "name": "ResursLogistics Branch in Khabarovsk",
-        "address": "680000, Khabarovsk, Pushkina st., 50",
+        "address": "680031, Khabarovsk, Karla Marksa st., 144G",
         "phone": "+7 (421) 259-89-95"
       },
       {
         "name": "ResursLogistics Branch in Irkutsk",
-        "address": "664025 Irkutsk, Lenina st. 6, of.421",
+        "address": "664007, Irkutsk, Oktyabrskoy Revolyutsii st., 1, off. 302",
         "phone": "+7 (395) 248-28-23"
       },
       {
         "name": "ResursLogistics Branch in St. Petersburg",
-        "address": "191144, St. Petersburg, Bakunina ave., 5",
+        "address": "196084, St. Petersburg, Tsvetochnaya st., 16, bld. P",
         "phone": "+7 (812) 317-11-36"
       },
       {
         "name": "ResursLogistics Branch in Chita",
-        "address": "672012, Chita, Podgorbunskogo st. 62",
+        "address": "672000, Chita, Chkalova st., 129",
         "phone": "+7 (302) 228-41-76"
       },
       {
         "name": "ResursLogistics Branch in Novosibirsk",
-        "address": "630099, Novosibirsk, Vokzalnaya magistral st., 16, of.708",
+        "address": "630108, Novosibirsk, Stantsionnaya st., 30A, off. 405",
         "phone": "+7 (383) 227-84-40"
       },
       {
         "name": "ResursLogistics Branch in Chelyabinsk",
-        "address": "454091, Chelyabinsk, Elkina st. 45 A, 15th floor",
+        "address": "454008, Chelyabinsk, Sverdlovsky tract, 5, bld. 2",
         "phone": "+7 (351) 242-00-51"
       },
       {
         "name": "ResursLogistics Branch in Yekaterinburg",
-        "address": "620107, Yekaterinburg, Vyezdnoy lane, 1",
+        "address": "620026, Yekaterinburg, Kuybysheva st., 44D, Panorama BC",
         "phone": "+7 (343) 311-12-22"
       },
       {
         "name": "ResursLogistics Branch in Samara",
-        "address": "443082, Samara, Rechnaya st., 46",
+        "address": "443022, Samara, 22 Partsezda st., 7A",
         "phone": "+7 (846) 300-44-97"
       },
       {
         "name": "ResursLogistics Branch in Saratov",
-        "address": "410012, Saratov, Teatralnaya sq., 11a, off.1",
+        "address": "410012, Saratov, Astrakhanskaya st., 88",
         "phone": "+7 (845) 233-85-84"
       },
       {
         "name": "ResursLogistics Branch in N. Novgorod",
-        "address": "603108, Nizhny Novgorod, st. Kostarikha - 2",
+        "address": "603116, Nizhny Novgorod, Gordeevskaya st., 59A",
         "phone": "+7 (831) 262-16-58"
       },
       {
         "name": "ResursLogistics Separate Division in Balakovo",
-        "address": "413840, Saratov region, Balakovo, Dorozhnaya st., 4/10",
+        "address": "413840, Saratov region, Balakovo, Proektiruyemyy pr-d, 12",
         "phone": "+7 (845) 354-49-00"
       },
       {
         "name": "ResursLogistics Separate Division in Vladimir",
-        "address": "600001, Vladimir, Dvoryanskaya st., 27A, bldg. 7",
+        "address": "600035, Vladimir, Kuybysheva st., 26Zh",
         "phone": "+7 (495) 477-56-05"
       },
       {
         "name": "ResursLogistics Branch in Kaliningrad",
-        "address": "236011, Kaliningrad, Tikhoretsky dead end, 2B",
+        "address": "236006, Kaliningrad, Moskovskiy ave., 40",
         "phone": "+7 (4012) 720-388"
       }
     ]
@@ -1316,6 +1316,14 @@
         {
           "label": "Cases",
           "href": "/cases"
+        },
+        {
+          "label": "Calculator",
+          "href": "/calculator"
+        },
+        {
+          "label": "Admin Panel",
+          "href": "/admin"
         }
       ]
     },
@@ -1325,6 +1333,12 @@
       "cookies": "Cookie Settings"
     },
     "presence": "Global Presence",
+    "TelegramModal": {
+      "title": "Transition to Telegram",
+      "message": "You are leaving the ResursLogistics website and going to a third-party application. Please note that when you transition, your phone number and profile data will become available to the messenger platform.",
+      "confirm": "Proceed",
+      "cancel": "Cancel"
+    },
     "copyright": "© 2026 ResursLogistics. All rights reserved."
   },
   "ContactPage": {

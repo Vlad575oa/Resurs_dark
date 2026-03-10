@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, X, ShieldAlert, ArrowRight } from "lucide-react";
+import { X, ShieldAlert, ArrowRight } from "lucide-react";
 
 interface Props {
     url: string;
@@ -12,7 +12,7 @@ interface Props {
 
 export default function TelegramConfirmLink({ url, label, dict }: Props) {
     const [isOpen, setIsOpen] = useState(false);
-    const ext = dict.externalLink;
+    const modalDict = dict.TelegramModal;
 
     const handleConfirm = () => {
         window.open(url, "_blank", "noopener,noreferrer");
@@ -54,27 +54,27 @@ export default function TelegramConfirmLink({ url, label, dict }: Props) {
                                     <ShieldAlert size={32} />
                                 </div>
 
-                                <div className="space-y-2">
-                                    <div className="text-xl font-black text-white uppercase tracking-tight italic">
-                                        {dict.FooterNav?.legal?.privacy || "Security Check"}
-                                    </div>
-                                    <p className="text-sm text-slate-400 leading-relaxed px-4">
-                                        {ext?.warning || "You are leaving the site."}
+                                <div className="space-y-3">
+                                    <h2 className="text-xl font-black text-white uppercase tracking-tight">
+                                        {modalDict?.title || "Security Check"}
+                                    </h2>
+                                    <p className="text-sm text-slate-400 leading-relaxed px-2">
+                                        {modalDict?.message || "You are leaving the site."}
                                     </p>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4 w-full pt-4">
                                     <button
                                         onClick={() => setIsOpen(false)}
-                                        className="py-4 px-6 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-white/10 transition-all"
+                                        className="py-4 px-6 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-white/10 transition-all font-sans"
                                     >
-                                        {ext?.cancel || "Cancel"}
+                                        {modalDict?.cancel || "Cancel"}
                                     </button>
                                     <button
                                         onClick={handleConfirm}
-                                        className="py-4 px-6 rounded-2xl bg-primary text-background-dark text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white transition-all shadow-xl shadow-primary/20"
+                                        className="py-4 px-6 rounded-2xl bg-primary text-white text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-blue-600 transition-all shadow-xl shadow-primary/20 font-sans"
                                     >
-                                        {ext?.confirm || "Proceed"}
+                                        {modalDict?.confirm || "Proceed"}
                                         <ArrowRight size={14} />
                                     </button>
                                 </div>

@@ -32,7 +32,7 @@ export default function Footer({ locale, dict }: { locale: string, dict: any }) 
                 <TelegramConfirmLink
                   url="https://t.me/resurslogistics"
                   label="Telegram Channel"
-                  dict={dict}
+                  dict={footerDict}
                 />
               </div>
               <div className="pt-4 border-t border-white/5 space-y-1 text-[11px] uppercase tracking-wider opacity-60">
@@ -65,7 +65,7 @@ export default function Footer({ locale, dict }: { locale: string, dict: any }) 
 
           {/* Map / Presence */}
           <Link
-            href={`/${locale}/map`}
+            href={`/${locale}/contacts`}
             className="relative h-48 rounded-lg overflow-hidden bg-[#161b22] border border-[#282e39] group block cursor-pointer"
           >
             <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
