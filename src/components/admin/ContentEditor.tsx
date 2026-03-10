@@ -24,10 +24,11 @@ function setDeep(obj: any, path: (string | number)[], value: any): any {
 
 // ─── Field components ─────────────────────────────────────────────────────────
 
-function ImageField({ label, value, path, onChange }: {
+function ImageField({ label, value, path, onChange, csrfToken }: {
     label: string; value: string;
     path: (string | number)[];
     onChange: (p: (string | number)[], v: string) => void;
+    csrfToken?: string;
 }) {
     const [uploading, setUploading] = useState(false);
     const [preview, setPreview] = useState(value);
@@ -158,7 +159,7 @@ function ObjectBlock({ label, value, path, onChange, onDelete, section }: {
             </div>
             {open && (
                 <div className="p-4 space-y-4 bg-[#0d1117]/30">
-                    {renderFields(value, path, onChange, section)}
+                    {renderFields(value, path, onChange, section, (value as any).csrfToken)}
                 </div>
             )}
         </div>
@@ -219,7 +220,7 @@ function ArrayBlock({ label, value, path, onChange, section }: {
     );
 }
 
-function renderFields(data: any, path: (string | number)[], onChange: (path: (string | number)[], value: any) => void, section?: string): React.ReactNode {
+function renderFields(data: any, path: (string | number)[], onChange: (path: (string | number)[], value: any) => void, section?: string, csrfToken?: string): React.ReactNode {
     if (!data || typeof data !== 'object') return null;
     return Object.entries(data).map(([key, value]) => {
         const currentPath = [...path, key];
@@ -231,7 +232,7 @@ function renderFields(data: any, path: (string | number)[], onChange: (path: (st
         const isImageField = /image|img|icon|logo|poster|avatar|preview/i.test(key) && typeof value === 'string';
 
         if (isImageField)
-            return <ImageField key={key} label={key} value={String(value)} path={currentPath} onChange={onChange} />;
+            return <ImageField key={key} label={key} value={String(value)} path={currentPath} onChange={onChange} csrfToken={(data as any).csrfToken} />;
 
         if (typeof value === 'string' || typeof value === 'number')
             return <StringField key={key} label={key} value={String(value)} path={currentPath} onChange={onChange} />;
@@ -415,7 +416,7 @@ export default function ContentEditor({ section }: { section: string }) {
                 </div>
             ) : data ? (
                 <div className="bg-[#161b22]/70 backdrop-blur-md border border-white/[0.07] rounded-2xl p-6 space-y-5">
-                    {renderFields(data, [], handleChange, section)}
+                    {renderFields(data, [], handleChange, section, csrfToken)}
                 </div>
             ) : null}
 

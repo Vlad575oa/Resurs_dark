@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { randomBytes } from 'crypto';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import crypto from 'node:crypto';
 import { logSecurityEvent, getEventSeverity } from '@/lib/security-logger';
 
 // Initialize rate limiter (5 attempts per minute per IP)
@@ -20,7 +21,9 @@ if (!ADMIN_PASSWORD) {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.ip ?? req.headers.get('x-forwarded-for') ?? 'unknown';
+  // Safe way to get IP in Next.js 15+ App Router
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
   
   // Rate limiting check
   const { success, limit, reset, remaining } = await ratelimit.limit(ip);

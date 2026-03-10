@@ -69,7 +69,9 @@ function sanitizeFilename(filename: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.ip ?? req.headers.get('x-forwarded-for') ?? 'unknown';
+  // Safe way to get IP in Next.js 15+ App Router
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
 
   try {
     if (!fs.existsSync(UPLOADS_DIR)) {
