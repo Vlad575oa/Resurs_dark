@@ -43,8 +43,19 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
   }, [isLangOpen]);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 50;
+          setIsScrolled(prev => {
+            if (prev !== scrolled) return scrolled;
+            return prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -182,7 +193,10 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
 
       {/* Mobile Navigation Drawer */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 pb-6 overflow-y-auto">
+        <div 
+          suppressHydrationWarning
+          className="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 pb-6 overflow-y-auto"
+        >
           <nav className="flex flex-col gap-6">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || pathname === link.href + "/";

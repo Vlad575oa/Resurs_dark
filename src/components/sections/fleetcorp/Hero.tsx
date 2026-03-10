@@ -28,7 +28,10 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
   };
 
   return (
-    <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20 overflow-hidden">
+    <section 
+      suppressHydrationWarning
+      className="flex-grow relative flex flex-col justify-center min-h-screen pt-20 overflow-hidden"
+    >
       {/* Background Image - Optimized with next/image */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Image

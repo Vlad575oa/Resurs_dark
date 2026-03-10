@@ -7,11 +7,19 @@ import crypto from 'node:crypto';
 import { logSecurityEvent, getEventSeverity } from '@/lib/security-logger';
 
 // Initialize rate limiter (5 attempts per minute per IP)
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(5, '1 m'),
-  analytics: true,
-});
+// Only initialize if environment variables are present to avoid crashing in local dev
+let ratelimit: Ratelimit | null = null;
+try {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    ratelimit = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, '1 m'),
+      analytics: true,
+    });
+  }
+} catch (e) {
+  console.warn('[SECURITY] Failed to initialize rate limiter:', e);
+}
 
 // Require ADMIN_PASSWORD environment variable - no fallback
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
@@ -25,28 +33,30 @@ export async function POST(req: NextRequest) {
   const forwardedFor = req.headers.get('x-forwarded-for');
   const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
   
-  // Rate limiting check
-  const { success, limit, reset, remaining } = await ratelimit.limit(ip);
-  
-  if (!success) {
-    logSecurityEvent({
-      type: 'RATE_LIMIT_EXCEEDED',
-      severity: getEventSeverity('RATE_LIMIT_EXCEEDED'),
-      ip,
-      details: `Rate limit exceeded. Limit: ${limit}, Reset: ${reset}, Remaining: ${remaining}`,
-    });
+  // Rate limiting check (optional in local development)
+  if (ratelimit) {
+    const { success, limit, reset, remaining } = await ratelimit.limit(ip);
     
-    return NextResponse.json(
-      { error: 'Too many attempts. Please try again later.' },
-      { 
-        status: 429,
-        headers: {
-          'X-RateLimit-Limit': limit.toString(),
-          'X-RateLimit-Remaining': remaining.toString(),
-          'X-RateLimit-Reset': reset.toString(),
+    if (!success) {
+      logSecurityEvent({
+        type: 'RATE_LIMIT_EXCEEDED',
+        severity: getEventSeverity('RATE_LIMIT_EXCEEDED'),
+        ip,
+        details: `Rate limit exceeded. Limit: ${limit}, Reset: ${reset}, Remaining: ${remaining}`,
+      });
+      
+      return NextResponse.json(
+        { error: 'Too many attempts. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': reset.toString(),
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   // Validate ADMIN_PASSWORD is set
@@ -110,8 +120,8 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 60 * 60 * 2, // 2 hours (reduced from 7 days)
-      path: '/admin',
+      maxAge: 60 * 60 * 2, // 2 hours
+      path: '/',
     });
 
     logSecurityEvent({

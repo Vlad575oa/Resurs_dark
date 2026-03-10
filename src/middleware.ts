@@ -8,48 +8,7 @@ export const defaultLocale = "ru";
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Admin panel redirect to involve locale
-    if (pathname === '/admin') {
-        const response = NextResponse.redirect(new URL(`/${defaultLocale}/admin`, request.url));
-        if (!request.cookies.has('csrf-token')) {
-            response.cookies.set('csrf-token', generateCsrfToken(), {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                path: '/admin',
-                maxAge: 60 * 60 * 24,
-            });
-        }
-        return response;
-    }
-    if (pathname.startsWith('/admin/')) {
-        const response = NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
-        if (!request.cookies.has('csrf-token')) {
-            response.cookies.set('csrf-token', generateCsrfToken(), {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                path: '/admin',
-                maxAge: 60 * 60 * 24,
-            });
-        }
-        return response;
-    }
-
-    // Set CSRF token for actual localized admin routes if missing
-    if (pathname.includes('/admin') && !request.cookies.has('csrf-token')) {
-        const response = NextResponse.next();
-        response.cookies.set('csrf-token', generateCsrfToken(), {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            path: '/admin',
-            maxAge: 60 * 60 * 24,
-        });
-        return response;
-    }
-
-    // Skip API routes — no locale prefix needed
+    // 1. API routes — MUST be handled first to avoid overlapping with /admin checks
     if (pathname.startsWith('/api/admin')) {
         // CSRF protection for state-changing requests
         if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
@@ -64,6 +23,48 @@ export function middleware(request: NextRequest) {
             }
         }
         return NextResponse.next();
+    }
+
+    // 2. Admin panel redirect to involve locale
+    if (pathname === '/admin' || pathname === '/admin/') {
+        const response = NextResponse.redirect(new URL(`/${defaultLocale}/admin`, request.url));
+        if (!request.cookies.has('csrf-token')) {
+            response.cookies.set('csrf-token', generateCsrfToken(), {
+                httpOnly: false, // Changed to false so client JS can read it for header
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                path: '/',
+                maxAge: 60 * 60 * 24,
+            });
+        }
+        return response;
+    }
+
+    if (pathname.startsWith('/admin/')) {
+        const response = NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
+        if (!request.cookies.has('csrf-token')) {
+            response.cookies.set('csrf-token', generateCsrfToken(), {
+                httpOnly: false, // Changed to false so client JS can read it for header
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                path: '/',
+                maxAge: 60 * 60 * 24,
+            });
+        }
+        return response;
+    }
+
+    // 3. Set CSRF token for actual localized admin routes if missing
+    if (pathname.includes('/admin') && !pathname.startsWith('/api') && !request.cookies.has('csrf-token')) {
+        const response = NextResponse.next();
+        response.cookies.set('csrf-token', generateCsrfToken(), {
+            httpOnly: false, // Changed to false so client JS can read it for header
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            path: '/',
+            maxAge: 60 * 60 * 24,
+        });
+        return response;
     }
 
     const pathnameHasLocale = locales.some(
@@ -83,6 +84,6 @@ export function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         // Skip all internal paths (_next) and public/static files
-        '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+        '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|txt|xml)).*)',
     ],
 };

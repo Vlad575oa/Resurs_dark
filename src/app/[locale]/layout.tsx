@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],
-  display: "optional",
+  display: "swap",
   preload: true,
 });
 
@@ -46,8 +46,61 @@ const CookieConsent = dynamic(
 import TelegramFab from "@/components/ui/TelegramFab";
 
 export const metadata: Metadata = {
-  title: "FleetCorp - Управление корпоративным автопарком",
+  metadataBase: new URL('https://resurs-logistics.ru'),
+  title: {
+    default: "РесурсЛогистика | Управление автопарком и аутсорсинг логистики",
+    template: "%s | РесурсЛогистика"
+  },
   description: "Полный аутсорсинг транспортной функции: контроль, эффективность, снижение затрат и прозрачность процессов.",
+  keywords: ["логистика", "аутсорсинг", "управление автопарком", "транспорт", "fleet management"],
+  authors: [{ name: "ResursLogistics" }],
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    url: 'https://resurs-logistics.ru',
+    siteName: 'РесурсЛогистика',
+    images: [{
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'РесурсЛогистика - Управление автопарком'
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'РесурсЛогистика | Управление автопарком',
+    description: 'Полный аутсорсинг транспортной функции.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'РесурсЛогистика',
+  url: 'https://resurs-logistics.ru',
+  logo: 'https://resurs-logistics.ru/logo.png',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+7-800-123-45-67',
+    contactType: 'customer service',
+    areaServed: 'RU',
+    availableLanguage: ['Russian', 'English']
+  },
+  sameAs: [
+    'https://t.me/resurslogistics'
+  ]
 };
 
 export default async function RootLayout({
@@ -65,16 +118,13 @@ export default async function RootLayout({
         {/* Preconnect to external resources for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://lh3.googleusercontent.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
 
         {/* Critical CSS Inlining - Static content only, no user input */}
         <style dangerouslySetInnerHTML={{
           __html: `
-          :root {
             --background: #F0EDE9;
             --foreground: #2D2E30;
-            --font-sans: var(--font- Geist-Sans), ui-sans-serif, system-ui, sans-serif;
+            --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
             --primary: #f57a00;
           }
           @media (prefers-color-scheme: dark) {
@@ -103,13 +153,17 @@ export default async function RootLayout({
 
         {/* Material Symbols - loaded normally to avoid hydration error in Server Component */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
       <body
         className={`${interTight.variable} ${playfair.variable} ${manrope.variable} font-display antialiased selection:bg-primary selection:text-white`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <ChatBot />
         <CookieConsent />

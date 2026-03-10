@@ -42,6 +42,22 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
     return (
         <main className="min-h-screen bg-[#0a0e1a] text-white selection:bg-primary selection:text-white flex flex-col">
             <HeaderScroll locale={locale} dict={messages} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "serviceType": "Logistics Outsourcing & Fleet Management",
+                        "provider": {
+                            "@type": "Organization",
+                            "name": "ResursLogistics"
+                        },
+                        "areaServed": "RU",
+                        "description": "Enterprise-grade fleet management solutions and strategic logistics outsourcing."
+                    })
+                }}
+            />
             <div className="pt-20 flex-grow">
                 <ServiceList services={services} titles={titles} locale={locale} />
             </div>

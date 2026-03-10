@@ -36,6 +36,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
                     fill
                     className="object-cover"
                     priority
+                    fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0b0d10] via-transparent to-[#0b0d10]"></div>
             </div>

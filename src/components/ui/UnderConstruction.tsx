@@ -78,7 +78,38 @@ export default function UnderConstruction({ dict }: Props) {
                             {t?.message || "We are working on bringing something amazing to this space."}
                         </motion.p>
 
-
+                        {/* Lead Capture Form */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="max-w-md mx-auto bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl mt-8"
+                        >
+                            <h3 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">
+                                {locale === 'en' ? 'Quick Inquiry' : 'Быстрый запрос'}
+                            </h3>
+                            <form className="space-y-4">
+                                <input 
+                                    type="text" 
+                                    placeholder={locale === 'en' ? 'Your Name' : 'Ваше имя'} 
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary outline-none transition-all text-sm"
+                                />
+                                <input 
+                                    type="email" 
+                                    placeholder={locale === 'en' ? 'Email / Phone' : 'Email / Телефон'} 
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary outline-none transition-all text-sm"
+                                />
+                                <button 
+                                    type="submit" 
+                                    className="w-full bg-primary py-3 rounded-xl font-bold text-white shadow-glow hover:bg-blue-600 transition-all text-sm uppercase tracking-wider"
+                                >
+                                    {locale === 'en' ? 'Send' : 'Отправить'}
+                                </button>
+                                <p className="text-[10px] text-slate-500 italic">
+                                    {locale === 'en' ? 'By clicking "Send", you agree to our data processing policy.' : 'Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.'}
+                                </p>
+                            </form>
+                        </motion.div>
 
                         {/* Back to Home Button */}
                         <motion.div

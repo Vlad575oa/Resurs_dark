@@ -25,18 +25,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `/${locale}`,
     },
-    // Preload LCP image (hero background) for faster LCP
-    other: {
-      'link': JSON.stringify([
-        {
-          rel: 'preload',
-          as: 'image',
-          href: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E',
-          fetchpriority: 'high',
-          type: 'image/webp' // Next.js Image component handles AVIF if browser supports it
-        }
-      ])
-    }
+    openGraph: {
+      title: titles[locale] || titles.ru,
+      description: descriptions[locale] || descriptions.ru,
+      url: `https://resurs-logistics.ru/${locale}`,
+      images: [{
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: titles[locale] || titles.ru,
+      }],
+    },
   };
 }
 
