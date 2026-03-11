@@ -265,6 +265,18 @@ export default function ContentEditor({ section }: { section: string }) {
     const [status, setStatus] = useState<'idle' | 'saved' | 'error' | 'synced'>('idle');
     const [error, setError] = useState('');
     const [csrfToken, setCsrfToken] = useState('');
+    const [hasDraft, setHasDraft] = useState(false);
+    
+    // Memoize isProduction to avoid recalculation, but evaluate on client
+    const [isProduction, setIsProduction] = useState(false);
+
+    useEffect(() => {
+        setIsProduction(
+            typeof window !== 'undefined' && 
+            (window.location.hostname.includes('vercel.app') || 
+             window.location.hostname.includes('resurs-logistics.ru'))
+        );
+    }, []);
 
     useEffect(() => {
         // Get CSRF token from cookie
@@ -284,12 +296,27 @@ export default function ContentEditor({ section }: { section: string }) {
     const Icon = meta.icon;
 
     const fetchData = useCallback(async () => {
-        setLoading(true); setError('');
+        setLoading(true); setError(''); setHasDraft(false);
         try {
             const res = await fetch(`/api/admin/content?section=${section}&locale=${locale}`);
             if (!res.ok) throw new Error('Раздел не найден');
             const json = await res.json();
-            setData(json.data);
+            
+            // Check for local draft
+            const draftKey = `cms_draft_${locale}_${section}`;
+            const draftStr = localStorage?.getItem(draftKey);
+            
+            if (draftStr) {
+                try {
+                    const parsedDraft = JSON.parse(draftStr);
+                    setData(parsedDraft);
+                    setHasDraft(true);
+                } catch {
+                    setData(json.data);
+                }
+            } else {
+                setData(json.data);
+            }
         } catch (e: any) { setError(e.message); }
         finally { setLoading(false); }
     }, [section, locale]);
@@ -303,6 +330,22 @@ export default function ContentEditor({ section }: { section: string }) {
 
     const handleSave = async () => {
         setSaving(true); setStatus('idle');
+        const draftKey = `cms_draft_${locale}_${section}`;
+
+        if (isProduction) {
+            try {
+                localStorage.setItem(draftKey, JSON.stringify(data));
+                setHasDraft(true);
+                setStatus('saved');
+                setTimeout(() => setStatus('idle'), 3000);
+            } catch (e: any) {
+                setStatus('error');
+                setError('Не удалось сохранить черновик в браузере');
+            }
+            setSaving(false);
+            return;
+        }
+
         try {
             const res = await fetch('/api/admin/content', {
                 method: 'POST',
@@ -324,6 +367,56 @@ export default function ContentEditor({ section }: { section: string }) {
 
     const handleSync = async () => {
         setSyncing(true); setStatus('idle');
+        
+        if (isProduction) {
+            const drafts: { section: string; locale: string; data: any }[] = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('cms_draft_')) {
+                    const [, , draftLocale, draftSection] = key.split('_');
+                    try {
+                        const parsed = JSON.parse(localStorage.getItem(key) || '{}');
+                        drafts.push({ section: draftSection, locale: draftLocale, data: parsed });
+                    } catch {}
+                }
+            }
+            
+            if (drafts.length === 0) {
+                setSyncing(false);
+                alert("Нет несохраненных черновиков для синхронизации.");
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/admin/git/sync-direct', {
+                    method: 'POST',
+                    headers: csrfToken ? { ...getCsrfHeaders(csrfToken), 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ drafts })
+                });
+                if (!res.ok) {
+                    const errStr = await res.json();
+                    throw new Error(errStr.error || 'Ошибка синхронизации');
+                }
+                
+                // clear drafts on success
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('cms_draft_')) keysToRemove.push(key);
+                }
+                keysToRemove.forEach(k => localStorage.removeItem(k));
+                setHasDraft(false);
+
+                setStatus('synced');
+                setTimeout(() => setStatus('idle'), 3000);
+            } catch (e: any) {
+                setStatus('error');
+                setError(e.message);
+            }
+            setSyncing(false);
+            return;
+        }
+
         try {
             const res = await fetch('/api/admin/git/sync', {
                 method: 'POST',
@@ -336,10 +429,6 @@ export default function ContentEditor({ section }: { section: string }) {
         finally { setSyncing(false); }
     };
 
-    const isProduction = typeof window !== 'undefined' && 
-                        (window.location.hostname.includes('vercel.app') || 
-                         window.location.hostname.includes('resurs-logistics.ru'));
-
     return (
         <div className="max-w-3xl mx-auto space-y-6">
             {/* Environment Warning */}
@@ -347,12 +436,19 @@ export default function ContentEditor({ section }: { section: string }) {
                 <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 flex gap-3 items-start animate-in fade-in slide-in-from-top-2">
                     <AlertCircle className="size-5 text-amber-500 flex-shrink-0 mt-0.5" />
                     <div>
-                        <p className="text-sm font-bold text-amber-200">Режим просмотра (Vercel)</p>
+                        <p className="text-sm font-bold text-amber-200">Режим черновиков (Vercel)</p>
                         <p className="text-xs text-amber-200/70 mt-1 leading-relaxed">
-                            Сохранение контента на работающем сайте недоступно из-за ограничений Vercel. 
-                            Пожалуйста, используйте <strong>localhost</strong> на вашем компьютере для редактирования и синхронизации с GitHub.
+                            Из-за ограничений хостинга изменения временно сохраняются в браузере. Вы можете редактировать несколько страниц подряд. Затем <strong>обязательно</strong> нажмите кнопку <strong>GITHUB</strong> для публикации всех черновиков на сайт.
                         </p>
                     </div>
+                </div>
+            )}
+
+            {/* Draft Warning */}
+            {hasDraft && (
+                <div className="flex items-center gap-2.5 px-4 py-3 bg-blue-500/8 border border-blue-500/20 rounded-xl text-sm text-blue-400 animate-in fade-in">
+                    <Save className="size-4 flex-shrink-0" />
+                    На этой странице есть несохраненные изменения (в браузере).
                 </div>
             )}
 
