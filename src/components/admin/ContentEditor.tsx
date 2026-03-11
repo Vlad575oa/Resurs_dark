@@ -272,7 +272,6 @@ export default function ContentEditor({ section }: { section: string }) {
 
     useEffect(() => {
         setIsProduction(
-        setIsProduction(
             typeof window !== 'undefined' && 
             window.location.hostname !== 'localhost' &&
             window.location.hostname !== '127.0.0.1'
