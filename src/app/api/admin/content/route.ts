@@ -35,7 +35,19 @@ export async function POST(req: NextRequest) {
     }
 
     const filePath = path.join(dirPath, `${section}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    
+    try {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (error: any) {
+        console.error('File write error:', error);
+        if (error.code === 'EROFS' || error.message.includes('read-only')) {
+            return NextResponse.json({ 
+                error: 'Файловая система доступна только для чтения (Vercel). Пожалуйста, используйте localhost для редактирования контента.',
+                code: 'READ_ONLY_FILESYSTEM'
+            }, { status: 403 });
+        }
+        return NextResponse.json({ error: 'Не удалось сохранить файл на диск' }, { status: 500 });
+    }
 
     return NextResponse.json({ success: true, section, locale });
 }

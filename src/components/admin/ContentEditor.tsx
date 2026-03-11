@@ -309,10 +309,16 @@ export default function ContentEditor({ section }: { section: string }) {
                 headers: csrfToken ? { ...getCsrfHeaders(csrfToken) } : { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ section, data, locale }),
             });
-            if (!res.ok) throw new Error();
+            if (!res.ok) {
+                const errorData = await res.json();
+                throw new Error(errorData.error || 'Ошибка сохранения');
+            }
             setStatus('saved');
             setTimeout(() => setStatus('idle'), 3000);
-        } catch { setStatus('error'); }
+        } catch (e: any) { 
+            setStatus('error');
+            setError(e.message);
+        }
         finally { setSaving(false); }
     };
 
@@ -330,8 +336,26 @@ export default function ContentEditor({ section }: { section: string }) {
         finally { setSyncing(false); }
     };
 
+    const isProduction = typeof window !== 'undefined' && 
+                        (window.location.hostname.includes('vercel.app') || 
+                         window.location.hostname.includes('resurs-logistics.ru'));
+
     return (
         <div className="max-w-3xl mx-auto space-y-6">
+            {/* Environment Warning */}
+            {isProduction && (
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 flex gap-3 items-start animate-in fade-in slide-in-from-top-2">
+                    <AlertCircle className="size-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                        <p className="text-sm font-bold text-amber-200">Режим просмотра (Vercel)</p>
+                        <p className="text-xs text-amber-200/70 mt-1 leading-relaxed">
+                            Сохранение контента на работающем сайте недоступно из-за ограничений Vercel. 
+                            Пожалуйста, используйте <strong>localhost</strong> на вашем компьютере для редактирования и синхронизации с GitHub.
+                        </p>
+                    </div>
+                </div>
+            )}
+
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                 <div className="flex items-center gap-4">
