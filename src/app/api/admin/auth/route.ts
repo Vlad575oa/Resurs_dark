@@ -100,8 +100,12 @@ export async function POST(req: NextRequest) {
     }
 
     // Constant-time comparison to prevent timing attacks
-    const passwordBuffer = Buffer.from(password);
-    const expectedBuffer = Buffer.from(ADMIN_PASSWORD);
+    // We trim() both to handle accidental spaces copied into Netlify environment variables
+    const cleanPassword = password.trim();
+    const cleanExpected = ADMIN_PASSWORD.trim();
+    
+    const passwordBuffer = Buffer.from(cleanPassword);
+    const expectedBuffer = Buffer.from(cleanExpected);
     
     if (passwordBuffer.length !== expectedBuffer.length || 
         !crypto.timingSafeEqual(passwordBuffer, expectedBuffer)) {
