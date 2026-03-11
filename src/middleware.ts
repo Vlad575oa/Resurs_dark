@@ -10,6 +10,14 @@ export function middleware(request: NextRequest) {
 
     // 1. API routes — MUST be handled first to avoid overlapping with /admin checks
     if (pathname.startsWith('/api/admin')) {
+        // Exclude the login route from auth check
+        if (pathname !== '/api/admin/auth') {
+            const authToken = request.cookies.get('auth-token')?.value;
+            if (!authToken) {
+                return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            }
+        }
+
         // CSRF protection for state-changing requests
         if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
             const csrfToken = request.cookies.get('csrf-token')?.value;
@@ -55,16 +63,28 @@ export function middleware(request: NextRequest) {
     }
 
     // 3. Set CSRF token for actual localized admin routes if missing
-    if (pathname.includes('/admin') && !pathname.startsWith('/api') && !request.cookies.has('csrf-token')) {
-        const response = NextResponse.next();
-        response.cookies.set('csrf-token', generateCsrfToken(), {
-            httpOnly: false, // Changed to false so client JS can read it for header
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            path: '/',
-            maxAge: 60 * 60 * 24,
-        });
-        return response;
+    if (pathname.includes('/admin') && !pathname.startsWith('/api')) {
+        // Check for auth-token on admin pages (except login)
+        const isLoginPage = pathname.endsWith('/admin/login');
+        const authToken = request.cookies.get('auth-token')?.value;
+
+        if (!isLoginPage && !authToken) {
+            // Get locale from path to redirect back to correct login page
+            const currentLocale = locales.find(l => pathname.startsWith(`/${l}/`)) || defaultLocale;
+            return NextResponse.redirect(new URL(`/${currentLocale}/admin/login`, request.url));
+        }
+
+        if (!request.cookies.has('csrf-token')) {
+            const response = NextResponse.next();
+            response.cookies.set('csrf-token', generateCsrfToken(), {
+                httpOnly: false, // Changed to false so client JS can read it for header
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                path: '/',
+                maxAge: 60 * 60 * 24,
+            });
+            return response;
+        }
     }
 
     const pathnameHasLocale = locales.some(
