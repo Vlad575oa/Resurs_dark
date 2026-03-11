@@ -35,11 +35,10 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
       {/* Background Image - Optimized with next/image */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Image
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E"
+          src="/hero-bg.jpg"
           alt="Fleet Management Background"
           fill
           priority
-          unoptimized
           className="object-cover object-center"
           sizes="100vw"
           quality={85} // Optimized quality
