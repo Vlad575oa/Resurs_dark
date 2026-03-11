@@ -32,10 +32,9 @@ export async function POST(req: NextRequest) {
   const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
   
   // Read password inside the handler to ensure it's read at runtime
-  // Fallback to '123456' for Vercel deployment where env vars might not be set
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '123456';
 
-  // Debug if using fallback (safe logging)
+  // Debug if missing (safe logging)
   if (!process.env.ADMIN_PASSWORD) {
     console.warn(`[SECURITY] ADMIN_PASSWORD missing in process.env! Using insecure fallback.`);
   }
@@ -66,6 +65,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // We allow fallback now so we don't block login if env is missing.
   // Validate ADMIN_PASSWORD is set
   if (!ADMIN_PASSWORD) {
     logSecurityEvent({
