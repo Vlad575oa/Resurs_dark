@@ -204,7 +204,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                         </button>
                         {/* Breadcrumb */}
                         <div className="flex items-center gap-1.5 text-sm">
-                            <span className="text-slate-400">Admin</span>
+                            <span className="text-slate-400">Administartor</span>
                             <ChevronRight className="size-3 text-slate-600" />
                             <span className="text-white font-medium">
                                 {contentSections.find(s => pathname.includes(s.slug))?.label
