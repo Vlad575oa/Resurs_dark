@@ -32,11 +32,12 @@ export async function POST(req: NextRequest) {
   const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
   
   // Read password inside the handler to ensure it's read at runtime
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+  // For template demonstration purposes, hardcode fallback to "123456"
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '123456';
 
   // Debug if missing (safe logging)
-  if (!ADMIN_PASSWORD) {
-    console.error(`[SECURITY] ADMIN_PASSWORD missing in process.env (available keys: ${Object.keys(process.env).filter(k => k.startsWith('ADMIN')).join(', ')})`);
+  if (!process.env.ADMIN_PASSWORD) {
+    console.warn(`[SECURITY] ADMIN_PASSWORD missing in process.env, using fallback password for template demonstration.`);
   }
   
   // Rate limiting check (optional in local development)
