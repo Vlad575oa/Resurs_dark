@@ -1,0 +1,16 @@
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:47:02.387Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:47:11.139Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:47:19.342Z"}
+{"type":"LOGOUT","severity":"low","user":"admin","details":"Admin logout","timestamp":"2026-03-10T12:47:48.145Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:47:53.199Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:48:10.456Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:52:12.909Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:53:40.461Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:53:51.170Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:54:37.879Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:55:38.257Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T12:56:34.681Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T13:25:25.997Z"}
+{"type":"LOGOUT","severity":"low","user":"admin","details":"Admin logout","timestamp":"2026-03-10T13:25:35.403Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-10T18:09:13.614Z"}
+{"type":"SUCCESSFUL_LOGIN","severity":"low","ip":"::1","user":"admin","details":"Successful admin authentication","timestamp":"2026-03-11T04:36:11.967Z"}

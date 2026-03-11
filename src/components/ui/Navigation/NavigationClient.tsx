@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 
 interface NavItem {
     name: string;
@@ -22,9 +23,9 @@ export const NavigationClient = ({ items }: { items: NavItem[] }) => {
                 aria-label="Toggle menu"
             >
                 {isOpen ? (
-                    <span className="material-symbols-outlined text-3xl">close</span>
+                    <Icon name="close" size={32} />
                 ) : (
-                    <span className="material-symbols-outlined text-3xl">menu</span>
+                    <Icon name="menu" size={32} />
                 )}
             </button>
 

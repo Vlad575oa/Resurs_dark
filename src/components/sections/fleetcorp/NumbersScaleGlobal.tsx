@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 
 export default function NumbersScaleGlobal({ dict, locale }: { dict: any; locale: string }) {
     const stats = dict?.items || [
@@ -25,7 +26,7 @@ export default function NumbersScaleGlobal({ dict, locale }: { dict: any; locale
                     </div>
                     <Link href={`/${locale}/report`} className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition-all border border-slate-700 hover:border-primary flex items-center gap-2">
                         <span>{dict?.reportButton || "Annual Report"}</span>
-                        <span className="material-symbols-outlined text-sm">download</span>
+                        <Icon name="download" className="size-4" />
                     </Link>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">

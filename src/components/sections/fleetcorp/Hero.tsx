@@ -39,6 +39,7 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
           alt="Fleet Management Background"
           fill
           priority
+          unoptimized
           className="object-cover object-center"
           sizes="100vw"
           quality={85} // Optimized quality
@@ -81,18 +82,14 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
               >
                 <span className="flex items-center justify-center gap-2 relative z-10">
                   {dict.submitRequest || 'Получить коммерческое предложение'}
-                  <span suppressHydrationWarning className="material-symbols-outlined text-xl">
-                    arrow_forward
-                  </span>
+                  <svg viewBox="0 0 24 24" className="size-5 fill-current"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
                 </span>
               </Link>
               <Link
                 href={underConstructionUrl}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300"
               >
-                <span suppressHydrationWarning className="material-symbols-outlined text-xl text-primary">
-                  analytics
-                </span>
+                <svg viewBox="0 0 24 24" className="size-5 fill-current text-primary"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
                 {dict.getAudit}
               </Link>
             </div>
@@ -119,9 +116,7 @@ export default function Hero({ dict, locale }: { dict: any; locale: string }) {
               </div>
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/20 rounded-lg text-primary">
-                  <span suppressHydrationWarning className="material-symbols-outlined text-lg">
-                    trending_up
-                  </span>
+                  <svg viewBox="0 0 24 24" className="size-5 fill-current"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
                 </div>
                 <div>
                   <p className="text-white text-sm font-bold">{dict.visuals?.optimization || 'Оптимизация'}</p>

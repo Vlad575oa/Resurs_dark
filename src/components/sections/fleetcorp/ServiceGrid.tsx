@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 
 export default function ServiceGrid({ dict, locale }: { dict: any; locale: string }) {
     const services = [
@@ -66,15 +67,15 @@ export default function ServiceGrid({ dict, locale }: { dict: any; locale: strin
                 {services.map((s) => (
                     <div key={s.title} className="group relative bg-[#151b26] border border-slate-800 rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 overflow-hidden">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <span className="material-symbols-outlined text-[100px] text-primary">{s.icon}</span>
+                            <Icon name={s.icon} className="text-primary" size={100} />
                         </div>
                         <div className="w-12 h-12 rounded-lg bg-[#1e2736] flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300 border border-slate-700 group-hover:border-primary">
-                            <span className="material-symbols-outlined">{s.icon}</span>
+                            <Icon name={s.icon} className="size-6" />
                         </div>
                         <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-primary transition-colors">{s.title}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">{s.desc}</p>
                         <Link className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href={`/${locale}/services/${s.slug}`}>
-                            {dict?.learnMore || "Learn More"} <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                            {dict?.learnMore || "Learn More"} <Icon name="arrow_forward" className="size-4 group-hover/link:translate-x-1 transition-transform" />
                         </Link>
                     </div>
                 ))}

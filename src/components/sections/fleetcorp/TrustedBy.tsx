@@ -1,4 +1,6 @@
-const FALLBACK_CLIENTS = [
+import { Icon, IconType } from "@/components/ui/Icon";
+
+const FALLBACK_CLIENTS: { name: string; nameRu: string; icon: IconType }[] = [
     { name: "GE", nameRu: "GE", icon: "electric_bolt" },
     { name: "Nike", nameRu: "Найк", icon: "checkroom" },
     { name: "Adidas", nameRu: "Адидас", icon: "sports_soccer" },
@@ -28,9 +30,10 @@ export default function TrustedBy({ dict }: { dict: any }) {
                             {clients.map((client: any) => (
                                 <li key={client.name} className="flex flex-col items-center gap-3 group shrink-0">
                                     <div className="size-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary/50 group-hover:bg-white/10 transition-all duration-500 shadow-sm group-hover:shadow-[0_0_20px_rgba(37,106,244,0.2)]">
-                                        <span className="material-symbols-outlined text-2xl text-slate-400 group-hover:text-primary transition-colors duration-500">
-                                            {client.icon}
-                                        </span>
+                                        <Icon 
+                                            name={client.icon} 
+                                            className="size-6 text-slate-400 group-hover:text-primary transition-colors duration-500" 
+                                        />
                                     </div>
                                     <span className="text-[10px] font-bold text-slate-500 group-hover:text-white uppercase tracking-[0.2em] transition-colors duration-500">
                                         {client.name}

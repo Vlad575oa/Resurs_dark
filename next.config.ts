@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    qualities: [75, 85, 90], // Added 85 to match Hero usage
     remotePatterns: [
       {
         protocol: 'https',
@@ -23,11 +24,9 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'clsx', 'tailwind-merge'],
     // Enable webpack build worker for faster builds
     webpackBuildWorker: true,
-    // Disable CSS optimization (requires 'critters' package)
-    optimizeCss: false,
   },
   // Silence Turbopack error while keeping webpack config for analysis
   turbopack: {},

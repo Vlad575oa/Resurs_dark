@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TelegramConfirmLink from "@/components/ui/TelegramConfirmLink";
+import { Icon } from "@/components/ui/Icon";
 
 export default function Footer({ locale, dict }: { locale: string, dict: any }) {
   const footerDict = dict.FooterNav || dict;
@@ -11,18 +12,18 @@ export default function Footer({ locale, dict }: { locale: string, dict: any }) 
           {/* Brand & Address */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-6 h-6 text-primary">
-                <span className="material-symbols-outlined text-2xl">local_shipping</span>
+              <div className="w-6 h-6 text-primary flex items-center justify-center">
+                <Icon name="local_shipping" size={24} />
               </div>
               <h2 className="text-white text-lg font-bold">РесурсЛогистика</h2>
             </div>
             <div className="text-slate-400 space-y-3">
               <div className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-sm mt-1">location_on</span>
+                <Icon name="location_on" className="size-4 mt-1" />
                 <span>{locale === 'en' ? '125047, 5 Lesnaya St, Bldg S, Moscow, Russia' : locale === 'hi' ? '125047, 5 Lesnaya St, Bldg S, Moscow, Russia' : '125047, г. Москва, ул. Лесная, д. 5, стр. С'}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">call</span>
+                <Icon name="call" className="size-4" />
                 <a href="tel:88001234567" className="hover:text-primary transition-colors">8 800 123-45-67</a>
               </div>
               <div className="flex items-center gap-2">

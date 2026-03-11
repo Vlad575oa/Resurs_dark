@@ -72,11 +72,16 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                priority={industries.indexOf(item) < 2}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                             <div className="absolute bottom-0 left-0 p-6 w-full">
                                 <div className="mb-2 text-primary">
-                                    <span suppressHydrationWarning className="material-symbols-outlined text-3xl">{item.icon}</span>
+                                    {item.icon === 'factory' && <svg viewBox="0 0 24 24" className="size-8 fill-current"><path d="M22 10V6l-8 4V6l-8 4V4H2v16h20v-10zM7 18H5v-2h2v2zm0-4H5v-2h2v2zm4 4H9v-2h2v2zm0-4H9v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>}
+                                    {item.icon === 'oil_barrel' && <svg viewBox="0 0 24 24" className="size-8 fill-current"><path d="M12 2c3.31 0 6 2.69 6 6v1H6V8c0-3.31 2.69-6 6-6zm0 14c-3.31 0-6-2.69-6-6v-1h12v1c0 3.31-2.69 6-6 6zm0 2c3.87 0 7-3.13 7-7v-1h-2v1c0 2.76-2.24 5-5 5s-5-2.24-5-5v-1H5v1c0 3.87 3.13 7 7 7z"/></svg>}
+                                    {item.icon === 'construction' && <svg viewBox="0 0 24 24" className="size-8 fill-current"><path d="M13 10V3h-2v7H4v2h7v7h2v-7h7v-2h-7z"/></svg>}
+                                    {item.icon === 'account_balance' && <svg viewBox="0 0 24 24" className="size-8 fill-current"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zM14 10v7h3v-7h-3zm1-6.1L4.44 9h15.12L15 3.9zM2 9h19V7H2v2z"/></svg>}
+                                    {item.icon === 'local_shipping' && <svg viewBox="0 0 24 24" className="size-8 fill-current"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>}
                                 </div>
                                 <h4 className="text-white text-xl font-bold mb-1">{item.name}</h4>
                                 <p className="text-slate-300 text-sm leading-relaxed max-w-md">{item.description}</p>

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { NavigationClient } from "./Navigation/NavigationClient";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 
 const NAV_ITEMS = [
     { name: "Услуги", href: "/#services" },
@@ -20,7 +22,7 @@ export const Navigation = () => {
                     {/* Logo - Server Rendered */}
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="h-10 w-10 flex items-center justify-center bg-primary-main/10 text-primary-main rounded-lg group-hover:scale-110 transition-transform">
-                            <span className="material-symbols-outlined text-2xl">local_shipping</span>
+                            <Icon name="local_shipping" size={24} />
                         </div>
                         <h2 className="text-navy text-xl font-bold tracking-tight">РесурсЛогистика</h2>
                     </Link>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 
 export default function ChallengesDark({ dict, locale }: { dict: any; locale: string }) {
     const challenges = [
@@ -31,7 +32,7 @@ export default function ChallengesDark({ dict, locale }: { dict: any; locale: st
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-2 text-primary">
-                            <span className="material-symbols-outlined">warning</span>
+                            <Icon name="warning" className="size-5" />
                             <span className="text-xs font-bold tracking-[0.15em] uppercase">
                                 {dict?.badge || "Industry Challenges"}
                             </span>
@@ -47,7 +48,7 @@ export default function ChallengesDark({ dict, locale }: { dict: any; locale: st
                         {challenges.map((item) => (
                             <div key={item.title} className="flex gap-5 group">
                                 <div className="shrink-0 size-12 rounded-lg bg-[#282e39]/50 flex items-center justify-center text-primary border border-primary/20 group-hover:border-primary/50 transition-colors">
-                                    <span className="material-symbols-outlined">{item.icon}</span>
+                                    <Icon name={item.icon} className="size-6" />
                                 </div>
                                 <div>
                                     <h4 className="text-white text-lg font-bold mb-1 group-hover:text-primary transition-colors">{item.title}</h4>
@@ -62,7 +63,7 @@ export default function ChallengesDark({ dict, locale }: { dict: any; locale: st
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
                         <div className="relative z-10 flex flex-col gap-6">
                             <div className="size-16 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/30">
-                                <span className="material-symbols-outlined text-white text-4xl">hub</span>
+                                <Icon name="hub" className="text-white size-10" />
                             </div>
                             <div>
                                 <h3 className="text-white text-2xl md:text-3xl font-bold mb-3 tracking-tight">
@@ -75,14 +76,14 @@ export default function ChallengesDark({ dict, locale }: { dict: any; locale: st
                             <div className="flex flex-col gap-3 border-t border-white/10 pt-6">
                                 {(dict?.fullCycle?.points || ["Predictive monitoring", "Real-time dispatch", "Financial transparency"]).map((s: string) => (
                                     <div key={s} className="flex items-center gap-3">
-                                        <span className="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                        <Icon name="check_circle" className="text-primary size-5" />
                                         <span className="text-slate-200 text-sm font-medium">{s}</span>
                                     </div>
                                 ))}
                             </div>
                             <Link href={`/${locale}/services/strategic-outsourcing`} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-4 px-6 text-white font-bold tracking-wide hover:bg-orange-600 transition-all shadow-lg hover:shadow-primary/25 pointer-events-auto">
                                 <span>{dict?.fullCycle?.button || "Get Solution"}</span>
-                                <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                                <Icon name="arrow_forward" className="size-5" />
                             </Link>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function HeaderScroll({ locale, dict }: { locale: string; dict: any }) {
@@ -89,10 +90,12 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
         <div className="relative flex items-center justify-between md:justify-center h-12">
           {/* Logo */}
           <div className="md:absolute md:left-0 flex items-center gap-3 text-white">
-            <div className="flex items-center justify-center size-9 rounded bg-gradient-to-br from-primary to-blue-700 text-white shadow-[0_0_15px_rgba(37,106,244,0.3)]">
-              <span suppressHydrationWarning className="material-symbols-outlined text-xl">local_shipping</span>
+            <div className="flex items-center gap-3">
+              <Icon name="local_shipping" className="text-primary size-6" />
+              <span className="text-white font-bold tracking-tight text-lg">
+                РесурсЛогистика
+              </span>
             </div>
-            <h2 className="text-white text-lg font-bold tracking-tight">РесурсЛогистика</h2>
           </div>
 
           {/* Desktop Navigation */}
@@ -130,9 +133,7 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
                 <span className="text-[10px] font-black tracking-widest text-slate-300 group-hover:text-white uppercase">
                   {currentLang.code}
                 </span>
-                <span suppressHydrationWarning className={`material-symbols-outlined text-xs text-slate-500 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`}>
-                  expand_more
-                </span>
+                <Icon name="expand_more" className={`size-4 fill-current text-slate-500 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isLangOpen && (
@@ -162,7 +163,7 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
                           <span className="text-[8px] text-slate-500 font-bold mt-1">{l.label}</span>
                         </div>
                         {locale === l.code && (
-                          <span suppressHydrationWarning className="material-symbols-outlined text-xs ml-auto">check</span>
+                          <Icon name="check" className="size-3 fill-current ml-auto" />
                         )}
                       </Link>
                     ))}
@@ -185,9 +186,11 @@ export default function HeaderScroll({ locale, dict }: { locale: string; dict: a
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <span suppressHydrationWarning className="material-symbols-outlined text-2xl">
-              {isMenuOpen ? "close" : "menu"}
-            </span>
+            {isMenuOpen ? (
+              <svg viewBox="0 0 24 24" className="size-6 fill-current"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="size-6 fill-current"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            )}
           </button>
         </div>
       </div>
