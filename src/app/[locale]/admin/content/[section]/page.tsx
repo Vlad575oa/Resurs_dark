@@ -11,7 +11,7 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
 
     return (
         <AdminShell>
-            <ContentEditor section={section} />
+            <ContentEditor key={section} section={section} />
         </AdminShell>
     );
 }
