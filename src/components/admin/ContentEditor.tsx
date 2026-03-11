@@ -298,7 +298,14 @@ export default function ContentEditor({ section }: { section: string }) {
     const fetchData = useCallback(async () => {
         setLoading(true); setError(''); setHasDraft(false);
         try {
-            const res = await fetch(`/api/admin/content?section=${section}&locale=${locale}`);
+            const res = await fetch(`/api/admin/content?section=${section}&locale=${locale}&_t=${Date.now()}`, {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0'
+                }
+            });
             if (!res.ok) throw new Error('Раздел не найден');
             const json = await res.json();
             
@@ -409,6 +416,7 @@ export default function ContentEditor({ section }: { section: string }) {
 
                 setStatus('synced');
                 setTimeout(() => setStatus('idle'), 3000);
+                alert('Успешно! Изменения отправлены на GitHub.\n\nNetlify автоматически начал пересборку сайта. Изменения будут видны на сайте через 1-2 минуты.');
             } catch (e: any) {
                 setStatus('error');
                 setError(e.message);
